@@ -1,0 +1,10 @@
+/* css for sidebar  */
+
+:host {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 16px;
+}
