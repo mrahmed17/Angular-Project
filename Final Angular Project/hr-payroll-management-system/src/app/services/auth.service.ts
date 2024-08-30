@@ -27,7 +27,7 @@ export class AuthService {
               (u.email === identifier ||
                 u.username === identifier ||
                 u.id === identifier) &&
-              u.password === password // Ensure the 'password' field is in the models
+              (u as any).password === password // Ensure the 'password' field is in the models
           );
 
           if (user) {
@@ -105,6 +105,7 @@ export class AuthService {
     const user = localStorage.getItem('currentUser');
     return user ? JSON.parse(user) : null;
   }
+
 
   // Retrieves the user ID from the current user
   getUserId(): string | null {

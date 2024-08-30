@@ -10,6 +10,7 @@ import { LocationService } from '../../../services/location.service';
 })
 export class ViewlocationComponent implements OnInit {
   location: LocationModel | null = null;
+  breadcrumbs: Array<{ label: string; url: string }> = [];
   errorMessage: string | null = null;
 
   constructor(
@@ -33,6 +34,13 @@ export class ViewlocationComponent implements OnInit {
         );
       }
     });
+
+    this.breadcrumbs = [
+      { label: 'Home', url: '/' },
+      { label: 'Create Locations', url: '/locations/create' },
+      { label: 'List Locations', url: '/locations/list' },
+      { label: 'View Location', url: '#' },
+    ];
   }
 
   goBack(): void {

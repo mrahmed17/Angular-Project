@@ -1,0 +1,76 @@
+/* Container styling */
+.container {
+  margin-top: 20px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+/* Image styling */
+img {
+  border-radius: 0.5rem;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+/* Button styling */
+button.btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+button.btn-info {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+}
+
+button.btn-warning {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+/* Hover effects for buttons */
+button.btn-info:hover {
+  background-color: #138496;
+}
+
+button.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Alert styling */
+.alert {
+  font-size: 16px;
+  padding: 15px;
+  margin-top: 20px;
+}

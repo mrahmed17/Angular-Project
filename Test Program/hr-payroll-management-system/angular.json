@@ -35,34 +35,9 @@
               },
               "src/assets"
             ],
-            "styles": [
-              "src/styles.css",
-              "src/assets/css/jquery-jvectormap-2.0.2.css",
-              "src/assets/css/simplebar.css",
-              "src/assets/css/perfect-scrollbar.css",
-              "src/assets/css/metisMenu.min.css",
-              "src/assets/css/pace.min.css",
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/css/bootstrap-extended.css",
-              "src/assets/css/app.css",
-              "src/assets/css/icons.css",
-              "src/assets/css/dark-theme.css",
-              "src/assets/css/semi-dark.css",
-              "src/assets/css/header-colors.css"
-            ],
-            "scripts": [
-              "src/assets/js/pace.min.js",
-              "src/assets/js/bootstrap.bundle.min.js",
-              "src/assets/js/jquery.min.js",
-              "src/assets/js/simplebar.min.js",
-              "src/assets/js/metisMenu.min.js",
-              "src/assets/js/perfect-scrollbar.js",
-              "src/assets/js/jquery-jvectormap-2.0.2.min.js",
-              "src/assets/js/jquery-jvectormap-world-mill-en.js",
-              "src/assets/js/chart.js",
-              "src/assets/js/index.js",
-              "src/assets/js/app.js"
-            ],
+            "styles": [              "src/styles.css"],
+             
+            "scripts": [             ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -125,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "55428acf-4b46-4f2a-a713-358f7208932d"
   }
 }

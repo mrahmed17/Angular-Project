@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <!-- Sidebar navigation items -->
+          <!-- Example: -->
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span class="icon"></span> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/locations/list']">
+              <span class="icon"></span> Location
+            </a>
+
+          </li>
+
+          <!-- Add other nav items here -->
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main role="main" class="col-md-10 ml-sm-auto px-4">
+      <div class="container mt-4">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

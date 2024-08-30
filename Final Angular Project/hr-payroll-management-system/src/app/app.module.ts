@@ -43,7 +43,7 @@ import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
 import { CreateleaveComponent } from './components/leave/createleave/createleave.component';
 import { EditleaveComponent } from './components/leave/editleave/editleave.component';
 import { ListleaveComponent } from './components/leave/listleave/listleave.component';
-import { CreatePayrollComponent } from './components/payroll/createpayroll/createpayroll.component';
+import { CreatepayrollComponent } from './components/payroll/createpayroll/createpayroll.component';
 import { EditpayrollComponent } from './components/payroll/editpayroll/editpayroll.component';
 import { ListpayrollComponent } from './components/payroll/listpayroll/listpayroll.component';
 import { ViewpayrollComponent } from './components/payroll/viewpayroll/viewpayroll.component';
@@ -132,7 +132,7 @@ import { EditlocationComponent } from './components/location/editlocation/editlo
     CreateleaveComponent,
     EditleaveComponent,
     ListleaveComponent,
-    CreatePayrollComponent,
+    CreatepayrollComponent,
     EditpayrollComponent,
     ListpayrollComponent,
     ViewpayrollComponent,

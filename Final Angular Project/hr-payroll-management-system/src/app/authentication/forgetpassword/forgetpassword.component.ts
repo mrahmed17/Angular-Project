@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css'],
+  selector: 'app-forgetpassword',
+  templateUrl: './forgetpassword.component.html',
+  styleUrls: ['./forgetpassword.component.css'],
 })
-export class ForgotpasswordComponent {
-  forgotPasswordForm: FormGroup;
+export class ForgetpasswordComponent {
+  forgetPasswordForm: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
 
@@ -18,19 +18,19 @@ export class ForgotpasswordComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    this.forgotPasswordForm = this.fb.group({
+    this.forgetPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
     });
   }
 
   onSubmit(): void {
-    if (this.forgotPasswordForm.valid) {
-      const email = this.forgotPasswordForm.value.email;
+    if (this.forgetPasswordForm.valid) {
+      const email = this.forgetPasswordForm.value.email;
       this.authService.requestPasswordReset(email).subscribe(
         () => {
           this.successMessage =
             'A password reset link has been sent to your email.';
-          this.forgotPasswordForm.reset();
+          this.forgetPasswordForm.reset();
         },
         (error) => {
           this.errorMessage =

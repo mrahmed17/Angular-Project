@@ -30,7 +30,7 @@ import { CreateperformanceComponent } from './components/performance/createperfo
 import { EditperformanceComponent } from './components/performance/editperformance/editperformance.component';
 import { ListpayrollComponent } from './components/payroll/listpayroll/listpayroll.component';
 import { ViewpayrollComponent } from './components/payroll/viewpayroll/viewpayroll.component';
-import { CreatePayrollComponent } from './components/payroll/createpayroll/createpayroll.component';
+import { CreatepayrollComponent } from './components/payroll/createpayroll/createpayroll.component';
 import { EditpayrollComponent } from './components/payroll/editpayroll/editpayroll.component';
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
 import { AuthGuard } from './authentication/guard/auth.guard';
@@ -214,7 +214,7 @@ const routes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreatePayrollComponent,
+        component: CreatepayrollComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { role: 'Admin' },
       },

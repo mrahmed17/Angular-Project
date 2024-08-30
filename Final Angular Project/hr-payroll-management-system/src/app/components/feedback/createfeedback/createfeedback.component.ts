@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./createfeedback.component.css'],
 })
 export class CreatefeedbackComponent implements OnInit {
-  feedback: FeedbackModel = new FeedbackModel('', '', '', 1, '', new Date());
+  feedback: FeedbackModel = ''y;
   errorMessage: string = '';
   submitting: boolean = false;
 

@@ -1,5 +1,5 @@
-<!-- viewlocation.component.html -->
 <div class="container mt-4">
+  <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
   <h2>Location Details</h2>
   <div *ngIf="location; else loading">
     <div class="card">
@@ -26,20 +26,3 @@
     </div>
   </ng-template>
 </div>
-
-
-<!-- <section class="cards-wrapper">
-  <div class="card-grid-space" *ngFor="let card of cards; let i = index">
-    <div class="num">{{ i + 1 }}</div>
-    <a class="card" [href]="card.link" [ngStyle]="{'--bg-img': 'url(' + card.bgImg + ')'}">
-      <div>
-        <h1>{{ card.title }}</h1>
-        <p>{{ card.description }}</p>
-        <div class="date">{{ card.date }}</div>
-        <div class="tags">
-          <div class="tag">{{ card.tag }}</div>
-        </div>
-      </div>
-    </a>
-  </div>
-</section> -->

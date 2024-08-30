@@ -47,14 +47,14 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthService],
-    data: { expectedRole: 'admin' }
+    // canActivate: [AuthService],
+    // data: { expectedRole: 'admin' }
   },
   {
     path: 'user',
     component: UserComponent,
-    canActivate: [AuthService],
-    data: { expectedRole: 'user' }
+    // canActivate: [AuthService],
+    // data: { expectedRole: 'user' }
   },
   {
     path: 'unauthorized',

@@ -10,15 +10,15 @@ import { LeaveModel } from '../../../models/leave.model';
 })
 export class CreateleaveComponent implements OnInit {
   leave: LeaveModel = new LeaveModel(
-    '',
-    '',
-    'Sick',
-    new Date(),
-    new Date(),
-    0,
-    '',
-    'Pending',
-    new Date()
+    // '',
+    // '',
+    // 'Sick',
+    // new Date(),
+    // new Date(),
+    // 0,
+    // '',
+    // 'Pending',
+    // new Date()
   );
   submitting: boolean = false;
   errorMessage: string | null = null;

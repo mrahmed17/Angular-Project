@@ -65,6 +65,13 @@ export class AdminService {
       .pipe(catchError(this.handleError));
   }
 
+  // Method to get all admins
+  getAllAdmins(): Observable<AdminModel[]> {
+    return this.http
+      .get<AdminModel[]>(this.baseUrl)
+      .pipe(catchError(this.handleError));
+  }
+
   // Method to get admin by ID
   getAdminById(adminId: string): Observable<AdminModel> {
     return this.http
@@ -86,13 +93,6 @@ export class AdminService {
   deleteAdmin(adminId: string): Observable<void> {
     return this.http
       .delete<void>(`${this.baseUrl}/${adminId}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Method to get all admins
-  getAllAdmins(): Observable<AdminModel[]> {
-    return this.http
-      .get<AdminModel[]>(this.baseUrl)
       .pipe(catchError(this.handleError));
   }
 

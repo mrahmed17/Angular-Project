@@ -10,6 +10,7 @@ import { LocationModel } from '../../../models/location.model';
 })
 export class ListlocationComponent implements OnInit {
   locations: LocationModel[] = [];
+  breadcrumbs: Array<{ label: string; url: string }> = [];
 
   constructor(
     private locationService: LocationService,
@@ -18,6 +19,11 @@ export class ListlocationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLocations();
+    this.breadcrumbs = [
+      { label: 'Home', url: '/' },
+      { label: 'Create Locations', url: '/locations/create' },
+      { label: 'List Location', url: '#' },
+    ];
   }
 
   loadLocations(): void {
@@ -32,11 +38,11 @@ export class ListlocationComponent implements OnInit {
   }
 
   viewLocation(id: string | undefined): void {
-    this.router.navigate(['/locations/view/:id', id]);
+    this.router.navigate(['/locations/view/', id]);
   }
 
   editLocation(id: string | undefined): void {
-    this.router.navigate(['/locations/edit/:id', id]);
+    this.router.navigate(['/locations/edit/', id]);
   }
 
   deleteLocation(id: string | undefined): void {

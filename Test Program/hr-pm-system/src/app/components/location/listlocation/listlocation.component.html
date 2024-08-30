@@ -1,6 +1,7 @@
-<!-- listlocation.component.html -->
 <div class="container mt-4">
-  <h2>Locations</h2>
+  <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+
+  <h2>List Locations</h2>
   <div *ngIf="locations.length > 0; else noLocations">
     <table class="table table-bordered">
       <thead>
@@ -17,16 +18,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let location of locations">
-          <td><strong>{{location.id}}</strong></td>
+          <td>{{location.id}}</td>
           <td><img [src]="location.photo" alt="{{ location.name }}"
-              style="border-radius: 1rem; width: 50px; height: 50px;"></td>
-          <td> <strong>{{ location.name }} </strong></td>
-          <td><strong> {{ location.address }},
-              {{ location.city }}
-              {{ location.zipCode }},
-              {{ location.state }},
-              {{ location.country }} </strong></td>
-          <td> <strong>{{ location.createdAt | date: 'short' }} </strong></td>
+              style="border-radius: 1rem; width: 60px; height: 60px;"></td>
+          <td> {{ location.name }} </td>
+          <td> {{ location.address }},
+            {{ location.city }}
+            {{ location.zipCode }},
+            {{ location.state }},
+            {{ location.country }} </td>
+          <td> {{ location.createdAt | date: 'short' }} </td>
           <td>
             <button class="btn btn-info" (click)="viewLocation(location.id)">
               View

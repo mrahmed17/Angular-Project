@@ -14,5 +14,17 @@
       "position": "Admin",
       "salary": 100000
     }
-  ]
+  ],
+  "admin":[{
+    "name": "Md. Raju Ahmed",
+      "email": "raju@gmail.com",
+      "password": 123
+  }],
+  "attendances":[],
+  "auth":[],
+  "departments":[],
+  "feedback":[],
+  "leaves":[],
+  "payroll":[],
+  "performance":[]
 }

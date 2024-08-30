@@ -9,7 +9,7 @@ import { PayrollModel } from '../../../models/payroll.model';
   templateUrl: './createpayroll.component.html',
   styleUrls: ['./createpayroll.component.css'],
 })
-export class CreatePayrollComponent implements OnInit {
+export class CreatepayrollComponent implements OnInit {
   payrollForm: FormGroup;
   loading = false;
   errorMessage: string | null = null;

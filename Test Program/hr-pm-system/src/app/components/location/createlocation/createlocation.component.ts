@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class CreatelocationComponent {
   locationForm: FormGroup;
   submissionError: string | null = null;
+  breadcrumbs: Array<{ label: string; url: string }> = [];
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +27,12 @@ export class CreatelocationComponent {
       country: ['', Validators.required],
       photo: [''],
     });
+
+    this.breadcrumbs = [
+      { label: 'Home', url: '/' },
+      { label: 'List Locations', url: '/locations/list' },
+      { label: 'Create Location', url: '#' },
+    ];
   }
 
   onSubmit(): void {

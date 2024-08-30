@@ -1,5 +1,5 @@
 export class LeaveModel {
-  leaveId!: string;
+  id!: string;
   employeeId!: string; // ID of the employee requesting leave
   leaveType!: 'Sick' | 'Vacation' | 'Personal' | 'Other'; // Type of leave
   startDate!: Date; // Start date of the leave
@@ -40,7 +40,7 @@ export class LeaveModel {
 
   // Method to get leave details as a string
   getLeaveDetails(): string {
-    return `Leave ID: ${this.leaveId}\nEmployee ID: ${
+    return `Leave ID: ${this.id}\nEmployee ID: ${
       this.employeeId
     }\nLeave Type: ${
       this.leaveType

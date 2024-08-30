@@ -1,27 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { LayoutComponent } from './template/layout/layout.component';
+import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { CreatelocationComponent } from './components/location/createlocation/createlocation.component';
 import { EditlocationComponent } from './components/location/editlocation/editlocation.component';
 import { ViewlocationComponent } from './components/location/viewlocation/viewlocation.component';
 import { ListlocationComponent } from './components/location/listlocation/listlocation.component';
-import { SidebarComponent } from './template/sidebar/sidebar.component';
-import { DashboardComponent } from './template/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'locations/list', pathMatch: 'full' },
-  { path: 'sidebar', component: SidebarComponent },
-  { path: 'dashboard', component: DashboardComponent },
   {
-    path: 'locations',
+    path: '',
+    component: LayoutComponent,
     children: [
-      { path: 'create', component: CreatelocationComponent },
-      { path: 'edit', component: EditlocationComponent },
-      { path: 'view', component: ViewlocationComponent },
-      { path: 'list', component: ListlocationComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      {
+        path: 'locations',
+        children: [
+          { path: 'create', component: CreatelocationComponent },
+          { path: 'edit/:id', component: EditlocationComponent },
+          { path: 'view/:id', component: ViewlocationComponent },
+          { path: 'list', component: ListlocationComponent },
+        ],
+      },
+      // Add more routes here as needed
     ],
   },
-  { path: '**', redirectTo: '#' }, // Wildcard route for handling undefined paths
+  // Handle undefined routes
+  { path: '**', redirectTo: 'dashboard' },
 ];
 
 @NgModule({
