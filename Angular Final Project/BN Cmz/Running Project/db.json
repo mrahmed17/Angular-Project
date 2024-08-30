@@ -82,11 +82,31 @@
       "assignedLocations": [],
       "assignedManagers": [],
       "assignedDepartments": [],
-      "profilePhoto": "https://media.istockphoto.com/id/1346124841/photo/successful-construction-site-worker-thinking.jpg?s=1024x1024&w=is&k=20&c=4SvUvVZDP5JOS7lXFUc05CLyZZQcTGD_kSopYBqsbxc=",
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
       "payrollCalculationMethod": "Monthly",
       "lastLogin": "2024-08-30T13:01:51.803Z",
       "status": "active",
       "hourlyRate": "500"
+    },
+    {
+      "id": "tamim-2773",
+      "username": "tamim",
+      "fullName": "Tamim Ahmed Raju",
+      "email": "tamim@gmail.com",
+      "contactNumber": "01620500786",
+      "role": "Admin",
+      "gender": "Male",
+      "age": "27",
+      "nidNo": "456123456",
+      "accessLevel": "Manager",
+      "assignedLocations": [],
+      "assignedManagers": [],
+      "assignedDepartments": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-30T13:42:11.430Z",
+      "status": "active",
+      "hourlyRate": "350"
     }
   ],
   "attendances": [],
@@ -95,7 +115,29 @@
   "employees": [],
   "feedbacks": [],
   "leaves": [],
-  "managers": [],
+  "managers": [
+    {
+      "id": "raju-4054",
+      "username": "raju",
+      "fullName": "Md. Raju Ahmed",
+      "email": "raju@gmail.com",
+      "contactNumber": "01620000786",
+      "role": "Manager",
+      "gender": "Male",
+      "age": "27",
+      "nidNo": "123456789",
+      "department": "Java",
+      "assignedEmployees": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "hireDate": "2024-01-16T00:00:00.000Z",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-30T00:00:00.000Z",
+      "status": "active",
+      "hourlyRate": 300,
+      "createdAt": "2024-08-30T14:00:11.409Z",
+      "updatedAt": "2024-08-30T14:00:11.409Z"
+    }
+  ],
   "payrolls": [],
   "performances": []
 }

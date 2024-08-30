@@ -111,7 +111,134 @@
   ],
   "attendances": [],
   "users": [],
-  "departments": [],
+  "departments": [
+    {
+      "id": "b2f1",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-5879"
+    },
+    {
+      "id": "c570",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-8667"
+    },
+    {
+      "id": "b303",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-9360"
+    },
+    {
+      "id": "b1b6",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-6085"
+    },
+    {
+      "id": "2eb9",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-3117"
+    },
+    {
+      "id": "962d",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-9628"
+    },
+    {
+      "id": "a42f",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-4777"
+    },
+    {
+      "id": "d93a",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-4714"
+    },
+    {
+      "id": "d18b",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-9238"
+    },
+    {
+      "id": "827a",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-7270"
+    },
+    {
+      "id": "f11d",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-8063"
+    },
+    {
+      "id": "3e18",
+      "name": "C#",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ac39",
+      "managerId": "raju-4054",
+      "departmentId": "C#-6999"
+    },
+    {
+      "id": "8d5b",
+      "name": "C#",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ac39",
+      "managerId": "raju-4054",
+      "departmentId": "C#-5964"
+    },
+    {
+      "id": "7951",
+      "name": "NT",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ed03",
+      "managerId": "raju-4054",
+      "departmentId": "NT-3764"
+    }
+  ],
   "employees": [],
   "feedbacks": [],
   "leaves": [],
@@ -126,7 +253,7 @@
       "gender": "Male",
       "age": "27",
       "nidNo": "123456789",
-      "department": "Java",
+      "department": "JAVA",
       "assignedEmployees": [],
       "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
       "hireDate": "2024-01-16T00:00:00.000Z",

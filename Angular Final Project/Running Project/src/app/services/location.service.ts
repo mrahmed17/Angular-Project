@@ -8,7 +8,7 @@ import { LocationModel } from '../models/location.model'; // Adjust the import p
   providedIn: 'root',
 })
 export class LocationService {
-  private baseUrl: string = 'http://localhost:3000/locations'; // Base URL for locations API
+  private apiUrl: string = 'http://localhost:3000/locations'; // Base URL for locations API
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}
@@ -16,13 +16,13 @@ export class LocationService {
   // Method to get all locations
   getLocations(): Observable<LocationModel[]> {
     return this.http
-      .get<LocationModel[]>(this.baseUrl)
+      .get<LocationModel[]>(this.apiUrl)
       .pipe(catchError(this.handleError<LocationModel[]>('getLocations', [])));
   }
 
   // Method to get a location by ID
   getLocationById(id: string): Observable<LocationModel> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     console.log('Fetching location with URL:', url); // Log the URL
     return this.http
       .get<LocationModel>(url)
@@ -32,7 +32,7 @@ export class LocationService {
   // Method to create a new location
   createLocation(location: Partial<LocationModel>): Observable<LocationModel> {
     return this.http
-      .post<LocationModel>(this.baseUrl, location, { headers: this.headers })
+      .post<LocationModel>(this.apiUrl, location, { headers: this.headers })
       .pipe(catchError(this.handleError<LocationModel>('createLocation')));
   }
 
@@ -41,7 +41,7 @@ export class LocationService {
     id: string,
     updatedDetails: Partial<LocationModel>
   ): Observable<LocationModel> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http
       .put<LocationModel>(url, updatedDetails, { headers: this.headers })
       .pipe(catchError(this.handleError<LocationModel>('updateLocation')));
@@ -49,7 +49,7 @@ export class LocationService {
 
   // Method to delete a location
   deleteLocation(id: string): Observable<boolean> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url, { headers: this.headers }).pipe(
       map(() => true),
       catchError(this.handleError<boolean>('deleteLocation', false))

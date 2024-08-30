@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { DepartmentModel } from '../models/department.model';
 import { HttpClient } from '@angular/common/http';
+import { DepartmentModel } from '../models/department.model';
+import { ManagerModel } from '../models/manager.model';
+import { LocationModel } from '../models/location.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DepartmentService {
   private apiUrl: string = 'http://localhost:3000/departments';
+  private locationUrl: string = 'http://localhost:3000/locations'; // Adjust URL as needed
+  private managerUrl: string = 'http://localhost:3000/managers'; // Adjust URL as needed
 
   constructor(private httpClient: HttpClient) {}
 
@@ -17,19 +21,31 @@ export class DepartmentService {
       .get<DepartmentModel[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
   }
-  // Fetch departments for employee use-case (if differs from getAllDepartments)
-  getDepartmentsForEmployee(): Observable<DepartmentModel[]> {
+
+  // Fetch all locations
+  getAllLocations(): Observable<LocationModel[]> {
     return this.httpClient
-      .get<DepartmentModel[]>(this.apiUrl)
+      .get<LocationModel[]>(this.locationUrl)
+      .pipe(catchError(this.handleError));
+  }
+
+  // Fetch all managers
+  getAllManagers(): Observable<ManagerModel[]> {
+    return this.httpClient
+      .get<ManagerModel[]>(this.managerUrl)
       .pipe(catchError(this.handleError));
   }
 
   // Create a new department
-  createDepartment(
-    DepartmentModel: DepartmentModel
-  ): Observable<DepartmentModel> {
+  createDepartment(department: DepartmentModel): Observable<DepartmentModel> {
+    // Generate and set a new department ID before making the POST request
+    const departmentWithId = {
+      ...department,
+      departmentId: this.generateDepartmentId(department.name),
+    };
+
     return this.httpClient
-      .post<DepartmentModel>(this.apiUrl, DepartmentModel)
+      .post<DepartmentModel>(this.apiUrl, departmentWithId)
       .pipe(catchError(this.handleError));
   }
 
@@ -38,10 +54,9 @@ export class DepartmentService {
     return this.httpClient
       .delete<void>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
-    //  http://localhost:3000/DepartmentModels/id
   }
 
-  // Update an existing department
+  // Update an existing department by ID
   updateDepartment(
     id: string,
     department: Partial<DepartmentModel>
@@ -70,5 +85,12 @@ export class DepartmentService {
     }
     console.error('An error occurred:', errorMessage);
     return throwError(() => new Error(errorMessage));
+  }
+
+  // Method to generate a unique department ID
+  private generateDepartmentId(name: string): string {
+    const randomNumber = Math.floor(Math.random() * 10000); // Random number for uniqueness
+    const namePart = name.replace(/\s+/g, '').toUpperCase(); // Remove spaces and make uppercase
+    return `${namePart}-${randomNumber}`;
   }
 }

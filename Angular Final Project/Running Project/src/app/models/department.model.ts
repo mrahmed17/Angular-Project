@@ -53,3 +53,12 @@ export class DepartmentModel {
     return `${this.name} (Location ID: ${this.locationId}, Manager ID: ${this.managerId}) - Employees: ${this.numberOfEmployees}\nPhone: ${this.phoneNumber}\nEmail: ${this.email}`;
   }
 }
+export interface Location {
+  id: string;
+  name: string;
+}
+
+export interface Manager {
+  id: string;
+  fullName: string;
+}

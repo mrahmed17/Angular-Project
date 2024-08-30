@@ -30,6 +30,14 @@ import { CreateadminComponent } from './components/admin/createadmin/createadmin
 import { EditadminComponent } from './components/admin/editadmin/editadmin.component';
 import { ListadminComponent } from './components/admin/listadmin/listadmin.component';
 import { ViewadminComponent } from './components/admin/viewadmin/viewadmin.component';
+import { CreatemanagerComponent } from './components/manager/createmanager/createmanager.component';
+import { EditmanagerComponent } from './components/manager/editmanager/editmanager.component';
+import { ListmanagerComponent } from './components/manager/listmanager/listmanager.component';
+import { ViewmanagerComponent } from './components/manager/viewmanager/viewmanager.component';
+import { CreatedepartmentComponent } from './components/department/createdepartment/createdepartment.component';
+import { EditdepartmentComponent } from './components/department/editdepartment/editdepartment.component';
+import { ListdepartmentComponent } from './components/department/listdepartment/listdepartment.component';
+import { ViewdepartmentComponent } from './components/department/viewdepartment/viewdepartment.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +59,14 @@ import { ViewadminComponent } from './components/admin/viewadmin/viewadmin.compo
     EditadminComponent,
     ListadminComponent,
     ViewadminComponent,
+    CreatemanagerComponent,
+    EditmanagerComponent,
+    ListmanagerComponent,
+    ViewmanagerComponent,
+    CreatedepartmentComponent,
+    EditdepartmentComponent,
+    ListdepartmentComponent,
+    ViewdepartmentComponent,
   ],
   imports: [
     BrowserModule,

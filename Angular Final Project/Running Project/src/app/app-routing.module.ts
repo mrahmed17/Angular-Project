@@ -15,6 +15,10 @@ import { CreatemanagerComponent } from './components/manager/createmanager/creat
 import { EditmanagerComponent } from './components/manager/editmanager/editmanager.component';
 import { ViewmanagerComponent } from './components/manager/viewmanager/viewmanager.component';
 import { ListmanagerComponent } from './components/manager/listmanager/listmanager.component';
+import { CreatedepartmentComponent } from './components/department/createdepartment/createdepartment.component';
+import { EditdepartmentComponent } from './components/department/editdepartment/editdepartment.component';
+import { ViewdepartmentComponent } from './components/department/viewdepartment/viewdepartment.component';
+import { ListdepartmentComponent } from './components/department/listdepartment/listdepartment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -62,6 +66,27 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListmanagerComponent,
+      },
+    ],
+  },
+  {
+    path: 'departments',
+    children: [
+      {
+        path: 'create',
+        component: CreatedepartmentComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: EditdepartmentComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewdepartmentComponent,
+      },
+      {
+        path: 'list',
+        component: ListdepartmentComponent,
       },
     ],
   },

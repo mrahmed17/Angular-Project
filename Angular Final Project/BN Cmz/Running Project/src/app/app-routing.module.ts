@@ -11,6 +11,10 @@ import { CreateadminComponent } from './components/admin/createadmin/createadmin
 import { EditadminComponent } from './components/admin/editadmin/editadmin.component';
 import { ViewadminComponent } from './components/admin/viewadmin/viewadmin.component';
 import { ListadminComponent } from './components/admin/listadmin/listadmin.component';
+import { CreatemanagerComponent } from './components/manager/createmanager/createmanager.component';
+import { EditmanagerComponent } from './components/manager/editmanager/editmanager.component';
+import { ViewmanagerComponent } from './components/manager/viewmanager/viewmanager.component';
+import { ListmanagerComponent } from './components/manager/listmanager/listmanager.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -41,23 +45,23 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'employees',
+    path: 'managers',
     children: [
       {
         path: 'create',
-        component: CreateadminComponent,
+        component: CreatemanagerComponent,
       },
       {
         path: 'edit/:id',
-        component: EditadminComponent,
+        component: EditmanagerComponent,
       },
       {
         path: 'view/:id',
-        component: ViewadminComponent,
+        component: ViewmanagerComponent,
       },
       {
         path: 'list',
-        component: ListadminComponent,
+        component: ListmanagerComponent,
       },
     ],
   },
