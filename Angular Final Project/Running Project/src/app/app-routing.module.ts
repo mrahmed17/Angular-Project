@@ -19,6 +19,18 @@ import { CreatedepartmentComponent } from './components/department/createdepartm
 import { EditdepartmentComponent } from './components/department/editdepartment/editdepartment.component';
 import { ViewdepartmentComponent } from './components/department/viewdepartment/viewdepartment.component';
 import { ListdepartmentComponent } from './components/department/listdepartment/listdepartment.component';
+import { CreateemployeeComponent } from './components/employee/createemployee/createemployee.component';
+import { EditemployeeComponent } from './components/employee/editemployee/editemployee.component';
+import { ViewemployeeComponent } from './components/employee/viewemployee/viewemployee.component';
+import { ListemployeeComponent } from './components/employee/listemployee/listemployee.component';
+import { CreatepayrollComponent } from './components/payroll/createpayroll/createpayroll.component';
+import { EditpayrollComponent } from './components/payroll/editpayroll/editpayroll.component';
+import { ViewpayrollComponent } from './components/payroll/viewpayroll/viewpayroll.component';
+import { ListpayrollComponent } from './components/payroll/listpayroll/listpayroll.component';
+import { CreatefeedbackComponent } from './components/feedback/createfeedback/createfeedback.component';
+import { EditfeedbackComponent } from './components/feedback/editfeedback/editfeedback.component';
+import { ViewfeedbackComponent } from './components/feedback/viewfeedback/viewfeedback.component';
+import { ListfeedbackComponent } from './components/feedback/listfeedback/listfeedback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -70,6 +82,48 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'employees',
+    children: [
+      {
+        path: 'create',
+        component: CreateemployeeComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: EditemployeeComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewemployeeComponent,
+      },
+      {
+        path: 'list',
+        component: ListemployeeComponent,
+      },
+    ],
+  },
+  {
+    path: 'payrolls',
+    children: [
+      {
+        path: 'create',
+        component: CreatepayrollComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: EditpayrollComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewpayrollComponent,
+      },
+      {
+        path: 'list',
+        component: ListpayrollComponent,
+      },
+    ],
+  },
+  {
     path: 'departments',
     children: [
       {
@@ -87,6 +141,27 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListdepartmentComponent,
+      },
+    ],
+  },
+  {
+    path: 'feedbacks',
+    children: [
+      {
+        path: 'create',
+        component: CreatefeedbackComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: EditfeedbackComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewfeedbackComponent,
+      },
+      {
+        path: 'list',
+        component: ListfeedbackComponent,
       },
     ],
   },

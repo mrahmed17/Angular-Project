@@ -1,0 +1,270 @@
+{
+  "locations": [
+    {
+      "id": "2b59",
+      "name": "Lalbagh",
+      "address": "4 Way Road, Lalbag Kellah",
+      "city": "Dhaka",
+      "state": "South Dhaka",
+      "zipCode": "1211",
+      "country": "Bangladesh ",
+      "photo": "https://angular.io/assets/images/tutorials/faa/phil-hearing-IYfp2Ixe9nM-unsplash.jpg",
+      "createdAt": "2024-08-28T12:26:38.738Z"
+    },
+    {
+      "id": "8932",
+      "name": "Dhanmondi",
+      "address": "Shankar Plaza",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1215",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/bernard-hermant-CLKGGwIBTaY-unsplash.jpg",
+      "createdAt": "2024-08-28T19:56:26.690Z"
+    },
+    {
+      "id": "ac39",
+      "name": "Azimpur",
+      "address": "Azimput Colony",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1213",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/saru-robert-9rP3mxf8qWI-unsplash.jpg",
+      "createdAt": "2024-08-30T06:24:19.966Z"
+    },
+    {
+      "id": "ed03",
+      "name": "Mirpur 10",
+      "address": "Mirpur Zoo",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1320",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/brandon-griggs-wR11KBaB86U-unsplash.jpg",
+      "createdAt": "2024-08-30T06:26:56.459Z"
+    },
+    {
+      "id": "7d00",
+      "name": "Kollanpur",
+      "address": "Kollanpur Dhanmondi",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "8050",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/r-architecture-GGupkreKwxA-unsplash.jpg",
+      "createdAt": "2024-08-30T12:29:25.606Z"
+    },
+    {
+      "id": "bd1c",
+      "name": "Mohammadpur",
+      "address": "Mohammadpur ",
+      "city": "Dhaka",
+      "state": "Dhaka South",
+      "zipCode": "1250",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/saru-robert-9rP3mxf8qWI-unsplash.jpg",
+      "createdAt": "2024-08-30T12:42:47.178Z"
+    }
+  ],
+  "admins": [
+    {
+      "id": "raju-7063",
+      "username": "raju",
+      "fullName": "Md. Raju Ahmed",
+      "email": "raju@gmail.com",
+      "contactNumber": "01620000786",
+      "role": "Admin",
+      "gender": "Male",
+      "age": "27",
+      "nidNo": "123456789",
+      "accessLevel": "SuperAdmin",
+      "assignedLocations": [],
+      "assignedManagers": [],
+      "assignedDepartments": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-30T13:01:51.803Z",
+      "status": "active",
+      "hourlyRate": "500"
+    },
+    {
+      "id": "tamim-2773",
+      "username": "tamim",
+      "fullName": "Tamim Ahmed Raju",
+      "email": "tamim@gmail.com",
+      "contactNumber": "01620500786",
+      "role": "Admin",
+      "gender": "Male",
+      "age": "27",
+      "nidNo": "456123456",
+      "accessLevel": "Manager",
+      "assignedLocations": [],
+      "assignedManagers": [],
+      "assignedDepartments": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-30T13:42:11.430Z",
+      "status": "active",
+      "hourlyRate": "350"
+    }
+  ],
+  "attendances": [],
+  "users": [],
+  "departments": [
+    {
+      "id": "b2f1",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-5879"
+    },
+    {
+      "id": "c570",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-8667"
+    },
+    {
+      "id": "b303",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-9360"
+    },
+    {
+      "id": "b1b6",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-6085"
+    },
+    {
+      "id": "2eb9",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-3117"
+    },
+    {
+      "id": "962d",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-9628"
+    },
+    {
+      "id": "a42f",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-4777"
+    },
+    {
+      "id": "d93a",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-4714"
+    },
+    {
+      "id": "d18b",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-9238"
+    },
+    {
+      "id": "827a",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-7270"
+    },
+    {
+      "id": "f11d",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "raju-4054",
+      "departmentId": "JAVA59-8063"
+    },
+    {
+      "id": "3e18",
+      "name": "C#",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ac39",
+      "managerId": "raju-4054",
+      "departmentId": "C#-6999"
+    },
+    {
+      "id": "8d5b",
+      "name": "C#",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ac39",
+      "managerId": "raju-4054",
+      "departmentId": "C#-5964"
+    },
+    {
+      "id": "7951",
+      "name": "NT",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ed03",
+      "managerId": "raju-4054",
+      "departmentId": "NT-3764"
+    }
+  ],
+  "employees": [],
+  "feedbacks": [],
+  "leaves": [],
+  "managers": [
+    {
+      "id": "raju-4054",
+      "username": "raju",
+      "fullName": "Md. Raju Ahmed",
+      "email": "raju@gmail.com",
+      "contactNumber": "01620000786",
+      "role": "Manager",
+      "gender": "Male",
+      "age": "27",
+      "nidNo": "123456789",
+      "department": "JAVA",
+      "assignedEmployees": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "hireDate": "2024-01-16T00:00:00.000Z",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-30T00:00:00.000Z",
+      "status": "active",
+      "hourlyRate": 300,
+      "createdAt": "2024-08-30T14:00:11.409Z",
+      "updatedAt": "2024-08-30T14:00:11.409Z"
+    }
+  ],
+  "payrolls": [],
+  "performances": []
+}

@@ -38,6 +38,18 @@ import { CreatedepartmentComponent } from './components/department/createdepartm
 import { EditdepartmentComponent } from './components/department/editdepartment/editdepartment.component';
 import { ListdepartmentComponent } from './components/department/listdepartment/listdepartment.component';
 import { ViewdepartmentComponent } from './components/department/viewdepartment/viewdepartment.component';
+import { CreateemployeeComponent } from './components/employee/createemployee/createemployee.component';
+import { EditemployeeComponent } from './components/employee/editemployee/editemployee.component';
+import { ListemployeeComponent } from './components/employee/listemployee/listemployee.component';
+import { ViewemployeeComponent } from './components/employee/viewemployee/viewemployee.component';
+import { CreatepayrollComponent } from './components/payroll/createpayroll/createpayroll.component';
+import { EditpayrollComponent } from './components/payroll/editpayroll/editpayroll.component';
+import { ListpayrollComponent } from './components/payroll/listpayroll/listpayroll.component';
+import { ViewpayrollComponent } from './components/payroll/viewpayroll/viewpayroll.component';
+import { CreatefeedbackComponent } from './components/feedback/createfeedback/createfeedback.component';
+import { EditfeedbackComponent } from './components/feedback/editfeedback/editfeedback.component';
+import { ListfeedbackComponent } from './components/feedback/listfeedback/listfeedback.component';
+import { ViewfeedbackComponent } from './components/feedback/viewfeedback/viewfeedback.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +79,18 @@ import { ViewdepartmentComponent } from './components/department/viewdepartment/
     EditdepartmentComponent,
     ListdepartmentComponent,
     ViewdepartmentComponent,
+    CreateemployeeComponent,
+    EditemployeeComponent,
+    ListemployeeComponent,
+    ViewemployeeComponent,
+    CreatepayrollComponent,
+    EditpayrollComponent,
+    ListpayrollComponent,
+    ViewpayrollComponent,
+    CreatefeedbackComponent,
+    EditfeedbackComponent,
+    ListfeedbackComponent,
+    ViewfeedbackComponent,
   ],
   imports: [
     BrowserModule,

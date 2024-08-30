@@ -53,3 +53,13 @@ export class LeaveModel {
     }\nApproval Date: ${this.approvalDate?.toDateString() ?? 'N/A'}`;
   }
 }
+export interface Employee {
+  id: string;
+  fullName: string;
+}
+
+// ID of the manager who approved or rejected the leave
+export interface Manager {
+  id: string;
+  fullName: string;
+}

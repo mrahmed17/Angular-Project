@@ -1,5 +1,5 @@
 export class DepartmentModel {
-  departmentId: string;
+  id: string;
   name: string;
   phoneNumber: string; // Contact phone number for the department
   email: string; // Contact email for the department
@@ -8,7 +8,7 @@ export class DepartmentModel {
   numberOfEmployees: number; // It will be dynamic
 
   constructor(
-    departmentId: string,
+    id: string,
     name: string,
     phoneNumber: string,
     email: string,
@@ -16,7 +16,7 @@ export class DepartmentModel {
     managerId: string,
     numberOfEmployees: number
   ) {
-    this.departmentId = departmentId;
+    this.id = id;
     this.name = name;
     this.phoneNumber = phoneNumber;
     this.email = email;
@@ -52,4 +52,13 @@ export class DepartmentModel {
   getDepartmentDetails(): string {
     return `${this.name} (Location ID: ${this.locationId}, Manager ID: ${this.managerId}) - Employees: ${this.numberOfEmployees}\nPhone: ${this.phoneNumber}\nEmail: ${this.email}`;
   }
+}
+export interface Location {
+  id: string;
+  name: string;
+}
+
+export interface Manager {
+  id: string;
+  fullName: string;
 }

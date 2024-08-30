@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Employee Details</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Employee Details Card -->
+  <div *ngIf="!loading && employee" class="card employee-card mx-auto">
+    <div *ngIf="employee.profilePhoto" class="card-header text-center">
+      <img [src]="employee.profilePhoto" alt="Profile Photo" class="profile-photo card-img-top" />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-center">{{ employee.fullName }}</h5>
+      <div class="card-text">
+        <p><strong>Username:</strong> {{ employee.username }}</p>
+        <p><strong>Email:</strong> {{ employee.email }}</p>
+        <p><strong>Address:</strong> {{ employee.address }}</p>
+        <p><strong>Contact Number:</strong> {{ employee.contactNumber }}</p>
+        <p><strong>Gender:</strong> {{ employee.gender }}</p>
+        <p><strong>Age:</strong> {{ employee.age }}</p>
+        <p><strong>NID No:</strong> {{ employee.nidNo }}</p>
+        <p><strong>Department:</strong> {{ employee.department }}</p>
+        <p><strong>Manager ID:</strong> {{ employee.managerId }}</p>
+        <p><strong>Hire Date:</strong> {{ employee.hireDate | date }}</p>
+        <p><strong>Payroll Calculation Method:</strong> {{ employee.payrollCalculationMethod }}</p>
+        <p><strong>Overtime Exemption:</strong> {{ employee.overtimeExemption ? 'Yes' : 'No' }}</p>
+        <p><strong>Last Login:</strong> {{ employee.lastLogin | date }}</p>
+        <p><strong>Status:</strong> {{ employee.status }}</p>
+        <p><strong>Hourly Rate:</strong> {{ employee.hourlyRate | currency }}</p>
+      </div>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-primary" (click)="goBack()">Back to List</button>
+    </div>
+  </div>
+</div>

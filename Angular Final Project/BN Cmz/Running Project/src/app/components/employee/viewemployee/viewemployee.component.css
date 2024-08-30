@@ -1,0 +1,66 @@
+/* Container Styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Employee Card Styles */
+.employee-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 20px;
+  background-color: #f8f9fa; /* Card background color */
+}
+
+/* Card Header Styles */
+.card-header {
+  background-color: #e9ecef; /* Header background color */
+  padding: 20px;
+}
+
+.profile-photo {
+  max-width: 180px;
+  max-height: 150px;
+  object-fit: cover;
+  border: 3px solid #007bff; /* Border color for the profile photo */
+}
+
+/* Card Body Styles */
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #343a40; /* Title color */
+}
+
+.card-text p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.card-text strong {
+  font-weight: 600;
+}
+
+/* Button Styles */
+.card-footer .btn-primary {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.card-footer .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Loading Spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

@@ -1,5 +1,5 @@
 export class PayrollModel {
-  payrollId: string; // Unique identifier for the payroll record
+  id: string; // Unique identifier for the payroll record
   employeeId: string; // ID of the employee receiving the payroll
   managerId: string; // ID of the manager receiving the payroll
   hourlyRate: number; // Hourly rate for employees or managers
@@ -14,7 +14,7 @@ export class PayrollModel {
   payDate: Date; // Date of the payroll payment
 
   constructor(
-    payrollId: string,
+    id: string,
     employeeId: string,
     managerId: string,
     hourlyRate: number,
@@ -26,7 +26,7 @@ export class PayrollModel {
     yearlySickDay: number,
     payDate: Date
   ) {
-    this.payrollId = payrollId;
+    this.id = id;
     this.employeeId = employeeId;
     this.managerId = managerId;
     this.hourlyRate = hourlyRate;
@@ -74,4 +74,13 @@ export class PayrollModel {
     this.totalPay = this.calculateTotalPay();
     this.payDate = payDate;
   }
+}
+export interface Employee {
+  id: string;
+  name: string;
+}
+
+export interface Manager {
+  id: string;
+  fullName: string;
 }

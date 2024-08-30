@@ -52,7 +52,7 @@ export class ListdepartmentComponent implements OnInit {
       this.departmentService.deleteDepartment(departmentId).subscribe(
         () => {
           this.departments = this.departments.filter(
-            (department) => department.departmentId !== departmentId
+            (department) => department.id !== departmentId
           );
           this.loading = false;
         },

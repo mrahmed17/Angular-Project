@@ -14,18 +14,18 @@
   <!-- Departments Cards -->
   <div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let department of departments">
-      <div class="card mb-4">
+      <div class="card mb-4 department-card">
         <div class="card-body">
           <h5 class="card-title">{{ department.name }}</h5>
-          <p class="card-text"><strong>Phone Number:</strong> {{ department.phoneNumber }}</p>
+          <p class="card-text"><strong>Phone:</strong> {{ department.phoneNumber }}</p>
           <p class="card-text"><strong>Email:</strong> {{ department.email }}</p>
           <p class="card-text"><strong>Location ID:</strong> {{ department.locationId }}</p>
           <p class="card-text"><strong>Manager ID:</strong> {{ department.managerId }}</p>
-          <p class="card-text"><strong>Number of Employees:</strong> {{ department.numberOfEmployees }}</p>
-          <div class="d-flex justify-content-between">
-            <button class="btn btn-info btn-sm" (click)="viewDepartment(department.departmentId)">View</button>
-            <button class="btn btn-warning btn-sm" (click)="editDepartment(department.departmentId)">Edit</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.departmentId)">Delete</button>
+          <p class="card-text"><strong>Employees:</strong> {{ department.numberOfEmployees }}</p>
+          <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-info btn-sm" (click)="viewDepartment(department.id)">View</button>
+            <button class="btn btn-warning btn-sm" (click)="editDepartment(department.id)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.id)">Delete</button>
           </div>
         </div>
       </div>
@@ -34,6 +34,6 @@
 
   <!-- Add New Department Button -->
   <div class="text-center mt-4">
-    <a class="btn btn-primary" routerLink="/department/create">Add New Department</a>
+    <a class="btn btn-primary" routerLink="/departments/create">Add New Department</a>
   </div>
 </div>

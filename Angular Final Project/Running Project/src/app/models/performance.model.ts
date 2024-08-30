@@ -1,5 +1,5 @@
 export class PerformanceModel {
-  performanceId: string; // Unique identifier for the performance record
+  id: string; // Unique identifier for the performance record
   employeeId: string; // ID of the employee being evaluated
   managerId: string; // ID of the manager conducting the review
   goals: boolean; // Check if the employee has achieved the goal
@@ -9,7 +9,7 @@ export class PerformanceModel {
   comments: string; // Areas of improvement based on comments about the employee's performance
 
   constructor(
-    performanceId: string,
+    id: string,
     employeeId: string,
     managerId: string,
     goals: boolean,
@@ -18,7 +18,7 @@ export class PerformanceModel {
     rating: number,
     comments: string
   ) {
-    this.performanceId = performanceId;
+    this.id = id;
     this.employeeId = employeeId;
     this.managerId = managerId;
     this.goals = goals;
@@ -58,7 +58,7 @@ export class PerformanceModel {
 
   // Method to get performance details as a string
   getPerformanceDetails(): string {
-    return `Performance ID: ${this.performanceId}\nEmployee ID: ${
+    return `Performance ID: ${this.id}\nEmployee ID: ${
       this.employeeId
     }\nManager ID: ${this.managerId}\nGoals Achieved: ${
       this.goals
@@ -70,4 +70,13 @@ export class PerformanceModel {
       this.comments
     }\nPerformance Bonus: ${this.calculatePerformanceBonus()}`;
   }
+}
+export interface Employee {
+  id: string;
+  name: string;
+}
+
+export interface Manager {
+  id: string;
+  fullName: string;
 }

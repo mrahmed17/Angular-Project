@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { DepartmentModel } from '../models/department.model';
 import { HttpClient } from '@angular/common/http';
+import { DepartmentModel } from '../models/department.model';
+import { LocationModel } from '../models/location.model'; // Updated import
+import { ManagerModel } from '../models/manager.model'; // Updated import
 
 @Injectable({
   providedIn: 'root',
 })
 export class DepartmentService {
-  private apiUrl: string = 'http://localhost:3000/departments';
+  private apiUrl = 'http://localhost:3000/departments';
+  private locationUrl = 'http://localhost:3000/locations';
+  private managerUrl = 'http://localhost:3000/managers';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -17,19 +21,11 @@ export class DepartmentService {
       .get<DepartmentModel[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
   }
-  // Fetch departments for employee use-case (if differs from getAllDepartments)
-  getDepartmentsForEmployee(): Observable<DepartmentModel[]> {
-    return this.httpClient
-      .get<DepartmentModel[]>(this.apiUrl)
-      .pipe(catchError(this.handleError));
-  }
 
   // Create a new department
-  createDepartment(
-    DepartmentModel: DepartmentModel
-  ): Observable<DepartmentModel> {
+  createDepartment(department: DepartmentModel): Observable<DepartmentModel> {
     return this.httpClient
-      .post<DepartmentModel>(this.apiUrl, DepartmentModel)
+      .post<DepartmentModel>(this.apiUrl, department)
       .pipe(catchError(this.handleError));
   }
 
@@ -38,10 +34,9 @@ export class DepartmentService {
     return this.httpClient
       .delete<void>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
-    //  http://localhost:3000/DepartmentModels/id
   }
 
-  // Update an existing department
+  // Update an existing department by ID
   updateDepartment(
     id: string,
     department: Partial<DepartmentModel>
@@ -58,14 +53,26 @@ export class DepartmentService {
       .pipe(catchError(this.handleError));
   }
 
+  // Fetch all locations
+  getAllLocations(): Observable<LocationModel[]> {
+    return this.httpClient
+      .get<LocationModel[]>(this.locationUrl)
+      .pipe(catchError(this.handleError));
+  }
+
+  // Fetch all managers
+  getAllManagers(): Observable<ManagerModel[]> {
+    return this.httpClient
+      .get<ManagerModel[]>(this.managerUrl)
+      .pipe(catchError(this.handleError));
+  }
+
   // Error handling
   private handleError(error: any): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
-      // Client-side or network error
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.error('An error occurred:', errorMessage);

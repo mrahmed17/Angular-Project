@@ -1,27 +1,41 @@
 .container {
-  margin: 20px auto;
   max-width: 600px;
-  padding: 20px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.loading-spinner {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 20px;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-.form-control {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+.invalid-feedback {
+  color: red;
+  font-size: 0.875em;
 }
 
-textarea.form-control {
-  height: 100px;
+.text-center {
+  text-align: center;
 }
 
-.alert {
-  margin-bottom: 20px;
+button {
+  width: 120px;
 }
 
-.btn-primary {
-  margin-top: 20px;
+button + button {
+  margin-left: 10px;
 }
