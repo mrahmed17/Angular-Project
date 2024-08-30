@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>Location Details</h2>
+  <div *ngIf="location; else loading">
+    <div class="card">
+      <div class="card-header">
+        <h3>{{ location.name }}</h3>
+      </div>
+      <div class="card-body">
+        <p><strong>Address:</strong> {{ location.address }}</p>
+        <p><strong>City:</strong> {{ location.city }}</p>
+        <p><strong>State:</strong> {{ location.state }}</p>
+        <p><strong>Zip Code:</strong> {{ location.zipCode }}</p>
+        <p><strong>Country:</strong> {{ location.country }}</p>
+        <p><strong>Created At:</strong> {{ location.createdAt | date: 'short' }}</p>
+        <div *ngIf="location.photo">
+          <img [src]="location.photo" alt="Location Photo" class="img-fluid" />
+        </div>
+        <button class="btn btn-primary mt-3" (click)="goBack()">Back to List</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="alert alert-info" role="alert">
+      Loading location details...
+    </div>
+  </ng-template>
+</div>

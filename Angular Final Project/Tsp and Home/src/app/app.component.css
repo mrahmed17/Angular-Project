@@ -1,0 +1,73 @@
+/* app.component.css */
+
+/* General styling for the container */
+.container-fluid {
+  padding: 0;
+}
+
+/* Sidebar styling */
+.sidebar {
+  height: 100vh; /* Full viewport height */
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto; /* Enable vertical scroll if needed */
+  z-index: 1000; /* Ensure the sidebar is on top */
+  width: 16.67%; /* Sidebar width (2/12 columns) */
+}
+
+/* Header styling */
+/* .header {
+  position: fixed;
+  top: 0;
+  left: 16.67%; 
+  width: 83.33%; 
+  z-index: 1000; 
+  background-color: #ffffff; 
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+} */
+
+/* Main content area adjustments */
+.main-content {
+  margin-left: 16.67%; /* Sidebar width */
+  margin-top: 60px; /* Adjust for fixed header height */
+  padding: 15px; /* Add some padding */
+}
+
+/* Background for white sections */
+.bg-white {
+  background-color: #ffffff;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    position: static;
+    height: auto; /* Reset height for mobile view */
+    width: 100%; /* Full width for mobile view */
+  }
+  /* 
+  .header {
+    left: 0;
+    width: 100%; 
+  } */
+
+  .main-content {
+    margin-left: 0; /* Remove margin to make it full width */
+    margin-top: 60px; /* Keep margin for header */
+    padding: 10px;
+  }
+
+  .container-fluid {
+    padding: 0 10px; /* Adjust container padding */
+  }
+}
+
+/* Additional optional styling for smaller screens */
+@media (max-width: 576px) {
+  .main-content {
+    padding: 5px; /* Reduce padding for extra small screens */
+  }
+}

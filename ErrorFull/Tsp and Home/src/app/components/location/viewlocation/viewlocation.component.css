@@ -1,0 +1,57 @@
+/* Container styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+/* Card header styling */
+.card-header {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Card body styling */
+.card-body {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.card-body p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Photo styling */
+.card-body img {
+  margin-top: 15px;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Back button styling */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Alert styling for loading state */
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+  text-align: center;
+}
+
+/* Add some margin at the top */
+.mt-4 {
+  margin-top: 1.5rem !important;
+}

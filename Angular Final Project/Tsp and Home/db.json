@@ -1,0 +1,48 @@
+{
+  "locations": [
+    {
+      "id": "2b59",
+      "name": "Lalbag",
+      "address": "4 way road, lalbag kellah",
+      "city": "Dhaka",
+      "state": "South Dhaka",
+      "zipCode": "1211",
+      "country": "Bangladesh ",
+      "photo": "https://angular.io/assets/images/tutorials/faa/phil-hearing-IYfp2Ixe9nM-unsplash.jpg",
+      "createdAt": "2024-08-28T12:26:38.738Z"
+    },
+    {
+      "id": "8932",
+      "name": "Dhanmondi",
+      "address": "Shankar Plaza",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1215",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/bernard-hermant-CLKGGwIBTaY-unsplash.jpg",
+      "createdAt": "2024-08-28T19:56:26.690Z"
+    },
+    {
+      "id": "ac39",
+      "name": "Azimpur",
+      "address": "Azimput Colony",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1213",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/saru-robert-9rP3mxf8qWI-unsplash.jpg",
+      "createdAt": "2024-08-30T06:24:19.966Z"
+    },
+    {
+      "id": "ed03",
+      "name": "Mirpur 10",
+      "address": "Mirpur Zoo",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1320",
+      "country": "Bangladesh",
+      "photo": "https://angular.io/assets/images/tutorials/faa/brandon-griggs-wR11KBaB86U-unsplash.jpg",
+      "createdAt": "2024-08-30T06:26:56.459Z"
+    }
+  ]
+}
