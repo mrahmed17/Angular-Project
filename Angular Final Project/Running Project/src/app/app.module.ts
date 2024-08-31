@@ -53,6 +53,7 @@ import { ViewfeedbackComponent } from './components/feedback/viewfeedback/viewfe
 import { CreateattendanceComponent } from './components/attendance/createattendance/createattendance.component';
 import { EditattendanceComponent } from './components/attendance/editattendance/editattendance.component';
 import { ListattendanceComponent } from './components/attendance/listattendance/listattendance.component';
+import { ViewattendanceComponent } from './components/attendance/viewattendance/viewattendance.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { ListattendanceComponent } from './components/attendance/listattendance/
     CreateattendanceComponent,
     EditattendanceComponent,
     ListattendanceComponent,
+    ViewattendanceComponent,
   ],
   imports: [
     BrowserModule,
