@@ -16,7 +16,7 @@
   <!-- Employee Details Card -->
   <div *ngIf="!loading && employee" class="card employee-card mx-auto">
     <div *ngIf="employee.profilePhoto" class="card-header text-center">
-      <img [src]="employee.profilePhoto" alt="Profile Photo" class="profile-photo img-fluid rounded-circle" />
+      <img [src]="employee.profilePhoto" alt="Profile Photo" class="profile-photo card-img-top" />
     </div>
     <div class="card-body">
       <h5 class="card-title text-center">{{ employee.fullName }}</h5>

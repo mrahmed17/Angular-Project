@@ -17,8 +17,11 @@
 
     <div class="row">
       <div class="container container-fluid g-0">
+
+        <!-- 1st Dropdown -->
         <!-- Section for Navigation Buttons -->
         <div class="row mt-2">
+
           <!-- Employees Dropdown -->
           <div class="col-md-3">
             <div class="dropdown">
@@ -29,7 +32,6 @@
               <ul class="dropdown-menu" aria-labelledby="employeesDropdown">
                 <li><a class="dropdown-item" href="/employees/list">Employee List</a></li>
                 <li><a class="dropdown-item" href="/employees/create">Create Employee</a></li>
-                <li><a class="dropdown-item" href="/employees/edit">Edit Employee</a></li>
               </ul>
             </div>
           </div>
@@ -42,9 +44,8 @@
                 Locations
               </button>
               <ul class="dropdown-menu" aria-labelledby="locationsDropdown">
-                <li><a class="dropdown-item" href="/locations/view/:id">View Location</a></li>
+                <li><a class="dropdown-item" href="/locations/list">View Location</a></li>
                 <li><a class="dropdown-item" href="/locations/create">Create Location</a></li>
-                <li><a class="dropdown-item" href="/locations/edit">Edit Location</a></li>
               </ul>
             </div>
           </div>
@@ -57,12 +58,12 @@
                 Attendance
               </button>
               <ul class="dropdown-menu" aria-labelledby="attendanceDropdown">
-                <li><a class="dropdown-item" href="/attendance/list">Attendance List</a></li>
-                <li><a class="dropdown-item" href="/attendance/create">Create Attendance</a></li>
-                <li><a class="dropdown-item" href="/attendance/edit">Edit Attendance</a></li>
+                <li><a class="dropdown-item" href="/attendances/list">Attendance List</a></li>
+                <li><a class="dropdown-item" href="/attendances/create">Create Attendance</a></li>
               </ul>
             </div>
           </div>
+
 
           <!-- Departments Dropdown -->
           <div class="col-md-3">
@@ -74,12 +75,12 @@
               <ul class="dropdown-menu" aria-labelledby="departmentsDropdown">
                 <li><a class="dropdown-item" href="/departments/list">Department List</a></li>
                 <li><a class="dropdown-item" href="/departments/create">Create Department</a></li>
-                <li><a class="dropdown-item" href="/departments/edit">Edit Department</a></li>
               </ul>
             </div>
           </div>
         </div>
 
+        <!-- 2nd Dropdown -->
         <div class="row mt-2">
           <!-- Leave Dropdown -->
           <div class="col-md-3">
@@ -89,9 +90,8 @@
                 Leave
               </button>
               <ul class="dropdown-menu" aria-labelledby="leaveDropdown">
-                <li><a class="dropdown-item" href="/leave/list">Leave List</a></li>
-                <li><a class="dropdown-item" href="/leave/create">Create Leave</a></li>
-                <li><a class="dropdown-item" href="/leave/edit">Edit Leave</a></li>
+                <li><a class="dropdown-item" href="/leaves/list">Leave List</a></li>
+                <li><a class="dropdown-item" href="/leaves/create">Create Leave</a></li>
               </ul>
             </div>
           </div>
@@ -104,9 +104,8 @@
                 Performance
               </button>
               <ul class="dropdown-menu" aria-labelledby="performanceDropdown">
-                <li><a class="dropdown-item" href="/performance/list">Performance List</a></li>
-                <li><a class="dropdown-item" href="/performance/create">Create Performance</a></li>
-                <li><a class="dropdown-item" href="/performance/edit">Edit Performance</a></li>
+                <li><a class="dropdown-item" href="/performances/list">Performance List</a></li>
+                <li><a class="dropdown-item" href="/performances/create">Create Performance</a></li>
               </ul>
             </div>
           </div>
@@ -119,9 +118,8 @@
                 Payroll
               </button>
               <ul class="dropdown-menu" aria-labelledby="payrollDropdown">
-                <li><a class="dropdown-item" href="/payroll/list">Payroll List</a></li>
-                <li><a class="dropdown-item" href="/payroll/create">Create Payroll</a></li>
-                <li><a class="dropdown-item" href="/payroll/edit">Edit Payroll</a></li>
+                <li><a class="dropdown-item" href="/payrolls/list">Payroll List</a></li>
+                <li><a class="dropdown-item" href="/payrolls/create">Create Payroll</a></li>
               </ul>
             </div>
           </div>
@@ -136,11 +134,44 @@
               <ul class="dropdown-menu" aria-labelledby="feedbackDropdown">
                 <li><a class="dropdown-item" href="/feedbacks/list">Feedback List</a></li>
                 <li><a class="dropdown-item" href="/feedbacks/create">Create Feedback</a></li>
-                <li><a class="dropdown-item" href="/feedbacks/edit">Edit Feedback</a></li>
               </ul>
             </div>
           </div>
         </div>
+
+
+        <!-- 3nd Dropdown -->
+        <div class="row mt-2">
+
+          <!-- Admin Dropdown -->
+          <div class="col-md-3">
+            <div class="dropdown">
+              <button class="btn btn-outline-primary w-100 dropdown-toggle" type="button" id="adminDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Admins
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                <li><a class="dropdown-item" href="/admins/list">Admin List</a></li>
+                <li><a class="dropdown-item" href="/admins/create">Create Admin</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Managers Dropdown -->
+          <div class="col-md-3">
+            <div class="dropdown">
+              <button class="btn btn-outline-primary w-100 dropdown-toggle" type="button" id="managerDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Managers
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="managerDropdown">
+                <li><a class="dropdown-item" href="/managers/list">Managers List</a></li>
+                <li><a class="dropdown-item" href="/managers/create">Create Managers</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>

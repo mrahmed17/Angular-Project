@@ -39,7 +39,7 @@ export class CreatefeedbackComponent {
       this.feedbackService.createFeedback(feedback).subscribe(
         () => {
           this.loading = false;
-          this.router.navigate(['/feedbacks']);
+          this.router.navigate(['/feedbacks/list']);
         },
         (error) => {
           this.loading = false;
@@ -51,6 +51,6 @@ export class CreatefeedbackComponent {
   }
 
   onCancel() {
-    this.router.navigate(['/feedbacks']);
+    this.router.navigate(['/feedbacks/list']);
   }
 }

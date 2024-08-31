@@ -35,6 +35,10 @@ import { CreateattendanceComponent } from './components/attendance/createattenda
 import { EditattendanceComponent } from './components/attendance/editattendance/editattendance.component';
 import { ViewattendanceComponent } from './components/attendance/viewattendance/viewattendance.component';
 import { ListattendanceComponent } from './components/attendance/listattendance/listattendance.component';
+import { CreateperformanceComponent } from './components/performance/createperformance/createperformance.component';
+import { EditperformanceComponent } from './components/performance/editperformance/editperformance.component';
+import { ViewperformanceComponent } from './components/performance/viewperformance/viewperformance.component';
+import { ListperformanceComponent } from './components/performance/listperformance/listperformance.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -187,6 +191,27 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListfeedbackComponent,
+      },
+    ],
+  },
+  {
+    path: 'performances',
+    children: [
+      {
+        path: 'create',
+        component: CreateperformanceComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: EditperformanceComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewperformanceComponent,
+      },
+      {
+        path: 'list',
+        component: ListperformanceComponent,
       },
     ],
   },

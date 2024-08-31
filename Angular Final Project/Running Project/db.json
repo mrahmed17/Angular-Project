@@ -111,37 +111,49 @@
   ],
   "attendances": [
     {
+      "id": "",
+      "userId": "tamim-2773",
       "firstName": "Md Raju",
       "lastName": "Ahmed",
-      "role": "Admin",
+      "role": "Manager",
       "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
       "date": "2024-08-31",
-      "clockInTime": "02:07",
-      "clockOutTime": "07:07",
+      "clockInTime": "22:35",
+      "clockOutTime": "13:35",
       "status": "Present",
-      "id": "1",
-      "totalHours": 5
+      "totalHours": 0
+    },
+    {
+      "id": "",
+      "userId": "tamim-2773",
+      "firstName": "Md Raju",
+      "lastName": "Ahmed",
+      "role": "Employee",
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
+      "date": "2024-08-31",
+      "clockInTime": "12:09",
+      "clockOutTime": "16:09",
+      "status": "Present",
+      "totalHours": 0
     }
   ],
   "users": [],
   "departments": [
     {
-      "id": "8d5b",
       "name": "C#",
       "phoneNumber": "01620050786",
       "email": "tamim@gmail.com",
       "locationId": "ac39",
-      "managerId": "raju-4054",
-      "departmentId": "C#-5964"
+      "managerId": "rizvi-4610",
+      "id": "8d5b"
     },
     {
-      "id": "7951",
       "name": "NT",
       "phoneNumber": "01620050786",
       "email": "tamim@gmail.com",
-      "locationId": "ed03",
+      "locationId": "2b59",
       "managerId": "raju-4054",
-      "departmentId": "NT-3764"
+      "id": "7951"
     }
   ],
   "employees": [
@@ -200,6 +212,30 @@
       "performanceRating": 5,
       "comments": "Bhal hoye jao masud. Tumi kobe bhalo hoba amake ektu bolo to?",
       "date": "2024-08-31"
+    },
+    {
+      "id": "5d2f",
+      "employeeId": "tamim1996-6787",
+      "managerId": "raju-4054",
+      "performanceRating": 4.5,
+      "comments": "Ki Likhbo Sukher Kotha, Onek Chestar Por Ekhane Feedback Likhte Parchi. Good Job. Go Ahead.",
+      "date": "2024-08-31"
+    },
+    {
+      "id": "9338",
+      "employeeId": "tamim1996-6787",
+      "managerId": "raju-4054",
+      "performanceRating": 5,
+      "comments": "Ektu Upgrade Kore Aslam. Aage Create Feedback Submit Korle, Redirect Hoye Vul Page E Jeto. Now Ekhon Asha Kori Thik Page E Jabe.",
+      "date": "2024-08-31"
+    },
+    {
+      "id": "b411",
+      "employeeId": "tamim1996-6787",
+      "managerId": "raju-4054",
+      "performanceRating": 5,
+      "comments": "Hello Dear",
+      "date": "2024-08-31"
     }
   ],
   "leaves": [],
@@ -224,6 +260,48 @@
       "hourlyRate": 300,
       "createdAt": "2024-08-30T14:00:11.409Z",
       "updatedAt": "2024-08-30T14:00:11.409Z"
+    },
+    {
+      "id": "tamim-4750",
+      "username": "tamim",
+      "fullName": "Tamim Ahmed Raju",
+      "email": "tamim@gmail.com",
+      "contactNumber": "123456123",
+      "role": "Manager",
+      "gender": "Male",
+      "age": "27",
+      "nidNo": "5522446611",
+      "department": "C#",
+      "assignedEmployees": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
+      "hireDate": "2024-01-16T00:00:00.000Z",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-31T00:00:00.000Z",
+      "status": "active",
+      "hourlyRate": 350,
+      "createdAt": "2024-08-31T02:47:44.144Z",
+      "updatedAt": "2024-08-31T02:47:44.144Z"
+    },
+    {
+      "id": "rizvi-4610",
+      "username": "rizvi",
+      "fullName": "Mostafa Aminur Rashid",
+      "email": "mostafa@gmail.com",
+      "contactNumber": "1125511255",
+      "role": "Manager",
+      "gender": "Male",
+      "age": "26",
+      "nidNo": "45855545656",
+      "department": "NT",
+      "assignedEmployees": [],
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "hireDate": "2024-08-31T00:00:00.000Z",
+      "payrollCalculationMethod": "Monthly",
+      "lastLogin": "2024-08-31T00:00:00.000Z",
+      "status": "active",
+      "hourlyRate": 350,
+      "createdAt": "2024-08-31T02:49:42.790Z",
+      "updatedAt": "2024-08-31T02:50:30.854Z"
     }
   ],
   "payrolls": [
@@ -256,7 +334,46 @@
       "yearlySickDay": 5,
       "totalPay": 6750,
       "payDate": "2024-08-30T00:00:00.000Z"
+    },
+    {
+      "employeeId": "tamim1996-6787",
+      "managerId": "tamim-4750",
+      "hourlyRate": 500,
+      "performanceBonuses": 5000,
+      "insurance": 3000,
+      "medicare": 455,
+      "deductions": 488,
+      "overtimeHours": 4,
+      "overtimeRate": 750,
+      "yearlySickDay": 1,
+      "totalPay": 24512,
+      "payDate": "2024-08-31",
+      "editAt": "2024-08-31T04:19:10.530Z",
+      "id": "35"
     }
   ],
-  "performances": []
+  "performances": [
+    {
+      "id": "d37c",
+      "employeeId": "raju1996-9374",
+      "managerId": "raju-4054",
+      "goals": true,
+      "achievements": "Very Good",
+      "rating": 5,
+      "comments": "Nothing to say",
+      "bonusPercentage": 50,
+      "reviewDate": "2024-08-31T06:27:13.960Z"
+    },
+    {
+      "id": "4a04",
+      "employeeId": "tamim1996-6787",
+      "managerId": "tamim-4750",
+      "goals": false,
+      "achievements": "Yeah",
+      "reviewDate": "2024-08-31T06:33:13.989Z",
+      "rating": 5,
+      "comments": "Keep it up buddy.",
+      "bonusPercentage": 10
+    }
+  ]
 }

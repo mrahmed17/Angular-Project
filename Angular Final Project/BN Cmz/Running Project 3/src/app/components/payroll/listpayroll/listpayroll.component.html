@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Payroll List</h1>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Loading payroll records...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!loading && !errorMessage" class="row">
+    <div class="col-md-4 mb-3" *ngFor="let payroll of payrolls">
+      <div class="card">
+        <div class="card-header">
+          Bill ID No: {{ payroll.id }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ payroll.employeeId }}</h5>
+          <p class="card-text">Manager ID: {{ payroll.managerId }}</p>
+          <p class="card-text">Hourly Rate: ${{ payroll.hourlyRate }}</p>
+          <p class="card-text">Performance Bonuses: ${{ payroll.performanceBonuses }}</p>
+          <p class="card-text">Medicare: ${{ payroll.medicare }}</p>
+          <p class="card-text">Deductions: ${{ payroll.deductions }}</p>
+          <p class="card-text">Overtime Hours: {{ payroll.overtimeHours }}</p>
+          <p class="card-text">Overtime Rate: ${{ payroll.overtimeRate }}</p>
+          <p class="card-text">Yearly Sick Day: {{ payroll.yearlySickDay }}</p>
+          <p class="card-text">Total Pay: ${{ payroll.totalPay }}</p>
+          <p class="card-text">Pay Date: {{ payroll.payDate | date }}</p>
+        </div>
+        <div class="card-footer text-muted">
+          <button class="btn btn-primary" (click)="viewPayroll(payroll.id)">View</button>
+          <button class="btn btn-secondary" (click)="editPayroll(payroll.id)">Edit</button>
+          <button class="btn btn-danger" (click)="deletePayroll(payroll.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add new payroll button -->
+  <div class="text-center mt-4">
+    <a class="btn btn-primary" routerLink="/payroll/create">Add New Payroll</a>
+  </div>
+</div>

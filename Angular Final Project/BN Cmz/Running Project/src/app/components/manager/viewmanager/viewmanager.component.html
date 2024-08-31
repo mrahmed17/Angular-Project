@@ -3,6 +3,7 @@
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Loading...
   </div>
+  <h2 class="text-center">View Manager</h2>
 
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
@@ -11,6 +12,7 @@
   <div *ngIf="manager" class="card">
     <img [src]="manager.profilePhoto" class="card-img-top profile-photo" alt="{{ manager.fullName }}" />
     <div class="card-body">
+
       <h5 class="card-title">{{ manager.fullName }}</h5>
       <p class="card-text"><strong>Username:</strong> {{ manager.username }}</p>
       <p class="card-text"><strong>Email:</strong> {{ manager.email }}</p>

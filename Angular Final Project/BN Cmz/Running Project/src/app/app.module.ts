@@ -50,6 +50,10 @@ import { CreatefeedbackComponent } from './components/feedback/createfeedback/cr
 import { EditfeedbackComponent } from './components/feedback/editfeedback/editfeedback.component';
 import { ListfeedbackComponent } from './components/feedback/listfeedback/listfeedback.component';
 import { ViewfeedbackComponent } from './components/feedback/viewfeedback/viewfeedback.component';
+import { CreateattendanceComponent } from './components/attendance/createattendance/createattendance.component';
+import { EditattendanceComponent } from './components/attendance/editattendance/editattendance.component';
+import { ListattendanceComponent } from './components/attendance/listattendance/listattendance.component';
+import { ViewattendanceComponent } from './components/attendance/viewattendance/viewattendance.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +95,10 @@ import { ViewfeedbackComponent } from './components/feedback/viewfeedback/viewfe
     EditfeedbackComponent,
     ListfeedbackComponent,
     ViewfeedbackComponent,
+    CreateattendanceComponent,
+    EditattendanceComponent,
+    ListattendanceComponent,
+    ViewattendanceComponent,
   ],
   imports: [
     BrowserModule,

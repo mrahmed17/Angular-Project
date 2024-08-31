@@ -1,6 +1,5 @@
 <div class="container mt-4">
   <h2 class="text-center">Managers List</h2>
-
   <!-- Display error message if any -->
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
@@ -32,4 +31,10 @@
       </div>
     </div>
   </div>
+
+  <!-- Add New Manager Button -->
+  <div class="text-center mt-3">
+    <a routerLink="/managers/create" class="btn btn-primary">Add New Manager</a>
+  </div>
+
 </div>

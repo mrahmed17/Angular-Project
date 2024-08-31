@@ -29,6 +29,6 @@ export class ViewfeedbackComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/feedbacks']);
+    this.router.navigate(['/feedbacks/list']);
   }
 }

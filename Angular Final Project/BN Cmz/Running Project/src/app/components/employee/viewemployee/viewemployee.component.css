@@ -1,66 +1,88 @@
-/* Container Styles */
 .container {
   max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Employee Card Styles */
-.employee-card {
-  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-top: 20px;
-  background-color: #f8f9fa; /* Card background color */
 }
 
-/* Card Header Styles */
-.card-header {
-  background-color: #e9ecef; /* Header background color */
-  padding: 20px;
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
 }
 
-.profile-photo {
-  max-width: 180px;
-  max-height: 150px;
-  object-fit: cover;
-  border: 3px solid #007bff; /* Border color for the profile photo */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Card Body Styles */
 .card-body {
-  padding: 20px;
+  padding: 1.25rem;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  padding: 5px;
 }
 
 .card-title {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #343a40; /* Title color */
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  color: #007bff;
 }
 
-.card-text p {
+p {
   font-size: 1rem;
-  margin-bottom: 10px;
+  color: #555;
+  margin-bottom: 0.5rem;
 }
 
-.card-text strong {
-  font-weight: 600;
+strong {
+  color: #333;
 }
 
-/* Button Styles */
-.card-footer .btn-primary {
+.alert {
+  font-size: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+button.btn {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #007bff;
-  border-color: #007bff;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.card-footer .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
+button.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
 }
 
-/* Loading Spinner */
-.spinner-border {
-  width: 3rem;
-  height: 3rem;
+button.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
 }

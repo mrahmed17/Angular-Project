@@ -36,6 +36,7 @@ h2 {
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 0.75rem;
+  text-align: center;
   color: #007bff;
 }
 
@@ -68,14 +69,14 @@ button.btn {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button.btn-primary {
-  background-color: #007bff;
+button.btn-secondary {
+  background-color: #6c757d;
   color: #fff;
   border: none;
 }
 
-button.btn-primary:hover {
-  background-color: #0056b3;
+button.btn-secondary:hover {
+  background-color: #5a6268;
 }
 
 .mt-3 {

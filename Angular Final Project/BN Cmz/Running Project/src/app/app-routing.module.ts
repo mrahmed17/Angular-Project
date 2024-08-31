@@ -31,6 +31,10 @@ import { CreatefeedbackComponent } from './components/feedback/createfeedback/cr
 import { EditfeedbackComponent } from './components/feedback/editfeedback/editfeedback.component';
 import { ViewfeedbackComponent } from './components/feedback/viewfeedback/viewfeedback.component';
 import { ListfeedbackComponent } from './components/feedback/listfeedback/listfeedback.component';
+import { CreateattendanceComponent } from './components/attendance/createattendance/createattendance.component';
+import { EditattendanceComponent } from './components/attendance/editattendance/editattendance.component';
+import { ViewattendanceComponent } from './components/attendance/viewattendance/viewattendance.component';
+import { ListattendanceComponent } from './components/attendance/listattendance/listattendance.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -141,6 +145,27 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListdepartmentComponent,
+      },
+    ],
+  },
+  {
+    path: 'attendances',
+    children: [
+      {
+        path: 'create',
+        component: CreateattendanceComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: EditattendanceComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewattendanceComponent,
+      },
+      {
+        path: 'list',
+        component: ListattendanceComponent,
       },
     ],
   },

@@ -54,6 +54,10 @@ import { CreateattendanceComponent } from './components/attendance/createattenda
 import { EditattendanceComponent } from './components/attendance/editattendance/editattendance.component';
 import { ListattendanceComponent } from './components/attendance/listattendance/listattendance.component';
 import { ViewattendanceComponent } from './components/attendance/viewattendance/viewattendance.component';
+import { CreateperformanceComponent } from './components/performance/createperformance/createperformance.component';
+import { EditperformanceComponent } from './components/performance/editperformance/editperformance.component';
+import { ListperformanceComponent } from './components/performance/listperformance/listperformance.component';
+import { ViewperformanceComponent } from './components/performance/viewperformance/viewperformance.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +103,10 @@ import { ViewattendanceComponent } from './components/attendance/viewattendance/
     EditattendanceComponent,
     ListattendanceComponent,
     ViewattendanceComponent,
+    CreateperformanceComponent,
+    EditperformanceComponent,
+    ListperformanceComponent,
+    ViewperformanceComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ export class PerformanceModel {
   reviewDate: Date; // Date when the review was conducted
   rating: number; // Rating on a scale from 1 to 5 stars
   comments: string; // Areas of improvement based on comments about the employee's performance
+  bonusPercentage: number;
 
   constructor(
     id: string,
@@ -16,7 +17,8 @@ export class PerformanceModel {
     achievements: string,
     reviewDate: Date,
     rating: number,
-    comments: string
+    comments: string,
+    bonusPercentage: number
   ) {
     this.id = id;
     this.employeeId = employeeId;
@@ -26,10 +28,12 @@ export class PerformanceModel {
     this.reviewDate = reviewDate;
     this.rating = rating;
     this.comments = comments;
+    this.bonusPercentage = bonusPercentage;
   }
 
   // Method to calculate performance bonuses based on rating
   calculatePerformanceBonus(): number {
+    const baseBonus = 1000;
     let bonus: number;
 
     switch (this.rating) {
@@ -53,7 +57,7 @@ export class PerformanceModel {
         console.error('Invalid rating. Bonus cannot be calculated.');
     }
 
-    return bonus;
+    return baseBonus * (this.bonusPercentage + bonus);
   }
 
   // Method to get performance details as a string
@@ -71,6 +75,7 @@ export class PerformanceModel {
     }\nPerformance Bonus: ${this.calculatePerformanceBonus()}`;
   }
 }
+
 export interface Employee {
   id: string;
   name: string;
