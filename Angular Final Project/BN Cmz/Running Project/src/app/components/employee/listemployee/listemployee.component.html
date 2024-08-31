@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h1 class="text-center">Employee List</h1>
+
+  <!-- Display loading indicator -->
+  <div *ngIf="loading" class="loading-spinner text-center">
+    <p>Loading employees...</p>
+  </div>
+
+  <!-- Display error message -->
+  <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Employees Cards -->
+  <div *ngIf="!loading && !errorMessage">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let employee of employees">
+        <div class="card employee-card mb-4">
+          <img *ngIf="employee.profilePhoto" [src]="employee.profilePhoto" class="card-img-top" alt="Profile Photo">
+          <div class="card-body">
+            <h5 class="card-title">{{ employee.fullName }}</h5>
+            <p class="card-text"><strong>Email:</strong> {{ employee.email }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ employee.contactNumber }}</p>
+            <p class="card-text"><strong>Department:</strong> {{ employee.department }}</p>
+            <p class="card-text"><strong>Status:</strong> {{ employee.status | titlecase }}</p>
+            <div class="d-flex justify-content-between mt-3">
+              <button class="btn btn-info btn-sm" (click)="viewEmployee(employee.id)">View</button>
+              <button class="btn btn-warning btn-sm" (click)="editEmployee(employee.id)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add New Employee Button -->
+    <div class="text-center mt-4">
+      <a class="btn btn-primary" routerLink="/employees/create">Add New Employee</a>
+    </div>
+  </div>
+</div>

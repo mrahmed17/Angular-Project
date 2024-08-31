@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advance Details</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+    /* Smaller text size for the entire body */
+    body {
+      font-size: 14px;
+    }
+
+    /* Form container */
+    .form-container {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Add Advance Form -->
+    <div class="card form-container">
+      <div class="card-header bg-primary">
+        <h5 class="card-title text-white mb-0">Add Advance</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="advanceForm">
+          <!-- Employee Selection -->
+          <div class="form-group">
+            <label for="employee">Employee Name:</label>
+            <select id="employee" formControlName="employee" class="form-control">
+              <option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</option>
+            </select>
+          </div>
+          <!-- Amount Input -->
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" class="form-control" formControlName="amount">
+          </div>
+          <!-- Date Input -->
+          <div class="form-group">
+            <label for="date">Advance Date:</label>
+            <input type="date" id="date" class="form-control" formControlName="date">
+          </div>
+          <!-- Reason Input -->
+          <div class="form-group">
+            <label for="reason">Reason:</label>
+            <textarea id="reason" class="form-control" formControlName="reason" rows="3"></textarea>
+          </div>
+          <!-- Form Buttons -->
+          <div class="text-center">
+            <button class="btn btn-secondary mr-2" type="button" (click)="resetForm()">Reset</button>
+            <button class="btn btn-success" type="button" (click)="onSubmit()">Save</button>
+            <button class="btn btn-warning ml-2" type="button" *ngIf="selectedAdvanceId" (click)="updateAdvance()">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Advance Details Table -->
+    <div class="card mt-4">
+      <div class="card-header bg-primary">
+        <h5 class="card-title text-white mb-0">Advance Details</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="text-center">
+            <tr>
+              <th>ID</th>
+              <th>Employee Name</th>
+              <th>Amount</th>
+              <th>Advance Date</th>
+              <th>Reason</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Iterate over advance data to populate table rows -->
+            <tr *ngFor="let row of advance">
+              <td>{{ row.id }}</td>
+              <td>{{ row.employee.name }}</td>
+              <td>{{ row.amount }}</td>
+              <td>{{ row.date | date: 'yyyy-MM-dd' }}</td> <!-- Format date -->
+              <td>{{ row.reason }}</td>
+              <td>
+                <button class="btn btn-warning mx-1" (click)="onEdit(row)">Edit</button>
+                <button class="btn btn-danger mx-1" (click)="deleteAdvance(row.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    integrity="sha384-06fwefnKnhYzm3uoX3sYPpK3w3/nDRl0tqjt5z8HJCY8iK+jQGUp3FkzKgviyUoL"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk+2l5dLev+6mGgffgPeWg4wo5aq0w6PwMW"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

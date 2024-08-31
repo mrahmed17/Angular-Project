@@ -1,0 +1,63 @@
+<!-- Start Date -->
+<div class="row mt-3">
+  <div class="col-md-6">
+    <label for="fromDate">From Date</label>
+    <input type="date" id="fromDate" class="form-control" [(ngModel)]="fromDate">
+  </div>
+
+  <div class="col-md-6">
+    <label for="toDate">To Date</label>
+    <input type="date" id="toDate" class="form-control" [(ngModel)]="toDate">
+  </div>
+</div>
+
+<!-- Search Box -->
+<div class="row mt-4">
+  <div class="col-12">
+    <input type="search" class="form-control" [(ngModel)]="searchText" placeholder="Search..." name="search">
+  </div>
+</div>
+
+<!-- Data Table Show -->
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span>Leave Details</span>
+        <!-- Optionally, add any buttons or filters here -->
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="thead-light text-center">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Leave Date</th>
+              <th>Leave Reason</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of filteredData; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{row.employee?.name}}</td>
+              <td>{{row.contact}}</td>
+              <td>{{row.leaveDate}}</td>
+              <td>{{row.leaveReason}}</td>
+              <td>
+                <span *ngIf="row.grant === false" class="badge bg-danger">Disapproved</span>
+                <span *ngIf="row.grant === true" class="badge bg-primary">Approved</span>
+              </td>
+              <td>
+                <button class="btn btn-warning mx-1" (click)="onEdit(row)"
+                  [disabled]="row.grant === true">Grant</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
