@@ -1,0 +1,150 @@
+<div class="create-department-container">
+  <h2>Create Department</h2>
+
+  <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+    <!-- Department Name -->
+    <div class="form-group">
+      <label for="name">Department Name</label>
+      <input type="text" id="name" formControlName="name" class="form-control" />
+      <div *ngIf="departmentForm.get('name')?.invalid && departmentForm.get('name')?.touched" class="error-message">
+        Department name is required.
+      </div>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+      <div *ngIf="departmentForm.get('phoneNumber')?.invalid && departmentForm.get('phoneNumber')?.touched"
+        class="error-message">
+        Phone number is required.
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" />
+      <div *ngIf="departmentForm.get('email')?.invalid && departmentForm.get('email')?.touched" class="error-message">
+        Please enter a valid email address.
+      </div>
+    </div>
+
+    <!-- Location ID -->
+    <div class="form-group">
+      <label for="locationId">Location</label>
+      <select id="locationId" formControlName="locationId" class="form-control">
+        <option value="" disabled>Select Location</option>
+        <option *ngFor="let location of locations" [value]="location.id">{{ location.name }}</option>
+      </select>
+      <div *ngIf="departmentForm.get('locationId')?.invalid && departmentForm.get('locationId')?.touched"
+        class="error-message">
+        Location is required.
+      </div>
+    </div>
+
+    <!-- Manager ID -->
+    <div class="form-group">
+      <label for="managerId">Manager</label>
+      <select id="managerId" formControlName="managerId" class="form-control">
+        <option value="" disabled>Select Manager</option>
+        <option *ngFor="let manager of managers" [value]="manager.id">{{ manager.fullName }}</option>
+      </select>
+      <div *ngIf="departmentForm.get('managerId')?.invalid && departmentForm.get('managerId')?.touched"
+        class="error-message">
+        Manager is required.
+      </div>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button type="submit" [disabled]="loading" class="btn btn-primary">Create</button>
+      <button type="button" (click)="resetForm()" class="btn btn-secondary">Reset</button>
+      <button type="button" (click)="cancel()" class="btn btn-danger">Cancel</button>
+    </div>
+  </form>
+
+
+
+  <!-- Department Table Section -->
+  <div class="container mt-4">
+    <h1 class="text-center">Department List</h1>
+
+    <!-- Display loading indicator -->
+    <div *ngIf="loading" class="loading-spinner text-center">
+      <p>Loading departments...</p>
+    </div>
+
+    <!-- Display error message -->
+    <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+
+
+    <div *ngIf="!loading && !errorMessage">
+      <div class="row mt-2">
+        <div class="col">
+          <table class="table table-bordered table-striped" ngFor="let department of departments"">
+            <thead class="text-center">
+              <tr>
+                <th>Photo</th>
+                <th>ID</th>
+                <th>Employee Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>Joining Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Loop through departments data -->
+
+              <tr *ngFor="let department of departments">
+                <td><img *ngIf="department.profilePhoto" [src]="department.profilePhoto" alt="Profile Photo"></td>
+                <td>{{department.id}}</td>
+                <td>{{department.fullName}}</td>
+                <td>{{department.email}}</td>
+                <td>{{department.contactNumber}}</td>
+                <td>{{department.department?.deptName}}</td>
+                <td>{{department.gender}}</td>
+                <td>{{department.salary}}</td>
+                <td>{{department.joiningDate}}</td>
+
+                <td class="d-flex justify-content-between mt-3">
+                  <button class="btn btn-info btn-sm" (click)="viewdepartment(department.id)">View</button>
+                  <button class="btn btn-warning btn-sm" (click)="editdepartment(department.id)">Edit</button>
+                  <button class="btn btn-danger btn-sm" (click)="deletedepartment(department.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+        </div>
+      </div>
+
+            <div class="card-body">
+              <h5 class="card-title">{{ department.name }}</h5>
+              <p class="card-text"><strong>Phone:</strong> {{ department.phoneNumber }}</p>
+              <p class="card-text"><strong>Email:</strong> {{ department.email }}</p>
+              <p class="card-text"><strong>Location ID:</strong> {{ department.locationId }}</p>
+              <p class="card-text"><strong>Manager ID:</strong> {{ department.managerId }}</p>
+              <p class="card-text"><strong>Employees:</strong> {{ department.numberOfEmployees }}</p>
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-info btn-sm" (click)="viewDepartment(department.id)">View</button>
+                <button class="btn btn-warning btn-sm" (click)="editDepartment(department.id)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

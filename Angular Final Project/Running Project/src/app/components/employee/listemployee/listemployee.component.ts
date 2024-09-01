@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Observable, forkJoin } from 'rxjs';
 import { EmployeeService } from '../../../services/employee.service';
+import { DepartmentService } from '../../../services/department.service';
+import { ManagerService } from '../../../services/manager.service';
 import { EmployeeModel } from '../../../models/employee.model';
 
 @Component({
@@ -9,53 +11,55 @@ import { EmployeeModel } from '../../../models/employee.model';
   styleUrls: ['./listemployee.component.css'],
 })
 export class ListemployeeComponent implements OnInit {
-  employees: EmployeeModel[] = [];
-  loading = false;
-  errorMessage: string | null = null;
+  employees$!: Observable<EmployeeModel[]>;
+  departments: any[] = [];
+  managers: any[] = [];
 
   constructor(
     private employeeService: EmployeeService,
-    private router: Router
+    private departmentService: DepartmentService,
+    private managerService: ManagerService
   ) {}
 
   ngOnInit(): void {
-    this.loadEmployees();
+    this.loadEmployeeData();
   }
 
-  loadEmployees(): void {
-    this.loading = true;
-    this.employeeService.getAllEmployees().subscribe(
-      (employees: EmployeeModel[]) => {
-        this.employees = employees;
-        this.loading = false;
-      },
-      (error) => {
-        this.errorMessage = 'Failed to load employees.';
-        this.loading = false;
-        console.error('Failed to load employees', error);
-      }
+  loadEmployeeData(): void {
+    forkJoin({
+      employees: this.employeeService.getAllEmployees(),
+      departments: this.departmentService.getAllDepartments(),
+      managers: this.managerService.getAllManagers(),
+    }).subscribe(({ employees, departments, managers }) => {
+      this.departments = departments;
+      this.managers = managers;
+      this.employees$ = this.transformEmployees(employees);
+    });
+  }
+
+  transformEmployees(employees: EmployeeModel[]): Observable<EmployeeModel[]> {
+    return new Observable((subscriber) => {
+      const transformed = employees.map((employee) => ({
+        ...employee,
+        departmentName: this.getDepartmentName(employee.departmentId),
+        managerName: this.getManagerName(employee.managerId),
+      }));
+      subscriber.next(transformed);
+      subscriber.complete();
+    });
+  }
+
+  getDepartmentName(departmentId: string): string {
+    return (
+      this.departments.find((d) => d.id === departmentId)?.name || 'Unknown'
     );
   }
 
-  viewEmployee(id: string): void {
-    this.router.navigate([`/employees/view/${id}`]);
+  getManagerName(managerId: string): string {
+    return this.managers.find((m) => m.id === managerId)?.fullName || 'Unknown';
   }
 
-  editEmployee(id: string): void {
-    this.router.navigate([`/employees/edit/${id}`]);
-  }
-
-  deleteEmployee(id: string): void {
-    if (confirm('Are you sure you want to delete this employee?')) {
-      this.employeeService.deleteEmployee(id).subscribe(
-        () => {
-          this.loadEmployees(); // Refresh the list after deletion
-        },
-        (error) => {
-          this.errorMessage = 'Failed to delete employee.';
-          console.error('Failed to delete employee', error);
-        }
-      );
-    }
+  deleteEmployee(employeeId: string): void {
+    // Add your delete logic here
   }
 }

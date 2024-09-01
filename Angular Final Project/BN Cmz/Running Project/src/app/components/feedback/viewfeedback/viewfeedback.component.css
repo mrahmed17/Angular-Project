@@ -1,0 +1,42 @@
+/* Container Styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Heading Styles */
+h2.text-center {
+  color: #007bff; /* Adjust the color as needed */
+  margin-bottom: 20px;
+}
+
+/* Feedback Card Styles */
+.feedback-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.feedback-card .card-body {
+  padding: 20px;
+}
+
+.feedback-card dt {
+  font-weight: bold;
+}
+
+.feedback-card dd {
+  margin-left: 0;
+}
+
+/* Button Styles */
+.card-footer .btn-primary {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.card-footer .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}

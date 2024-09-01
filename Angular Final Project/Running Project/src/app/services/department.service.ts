@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { DepartmentModel } from '../models/department.model';
 import { LocationModel } from '../models/location.model'; // Updated import
 import { ManagerModel } from '../models/manager.model'; // Updated import
@@ -9,9 +10,10 @@ import { ManagerModel } from '../models/manager.model'; // Updated import
   providedIn: 'root',
 })
 export class DepartmentService {
-  private apiUrl = 'http://localhost:3000/departments';
-  private locationUrl = 'http://localhost:3000/locations';
-  private managerUrl = 'http://localhost:3000/managers';
+  private apiUrl = 'http://localhost:3000/departments'; // Base URL for departments API
+  private locationUrl = 'http://localhost:3000/locations'; // Base URL for locations API
+  private managerUrl = 'http://localhost:3000/managers'; // Base URL for managers API
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' }); // Headers for JSON requests
 
   constructor(private httpClient: HttpClient) {}
 
@@ -19,21 +21,23 @@ export class DepartmentService {
   getAllDepartments(): Observable<DepartmentModel[]> {
     return this.httpClient
       .get<DepartmentModel[]>(this.apiUrl)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError<DepartmentModel[]>('getAllDepartments', []))
+      );
   }
 
   // Create a new department
   createDepartment(department: DepartmentModel): Observable<DepartmentModel> {
     return this.httpClient
-      .post<DepartmentModel>(this.apiUrl, department)
-      .pipe(catchError(this.handleError));
+      .post<DepartmentModel>(this.apiUrl, department, { headers: this.headers })
+      .pipe(catchError(this.handleError<DepartmentModel>('createDepartment')));
   }
 
   // Delete a department by ID
   deleteDepartment(id: string): Observable<void> {
     return this.httpClient
-      .delete<void>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
+      .delete<void>(`${this.apiUrl}/${id}`, { headers: this.headers })
+      .pipe(catchError(this.handleError<void>('deleteDepartment')));
   }
 
   // Update an existing department by ID
@@ -42,40 +46,42 @@ export class DepartmentService {
     department: Partial<DepartmentModel>
   ): Observable<DepartmentModel> {
     return this.httpClient
-      .put<DepartmentModel>(`${this.apiUrl}/${id}`, department)
-      .pipe(catchError(this.handleError));
+      .put<DepartmentModel>(`${this.apiUrl}/${id}`, department, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.handleError<DepartmentModel>('updateDepartment')));
   }
 
   // Get a department by ID
   getDepartmentById(id: string): Observable<DepartmentModel> {
     return this.httpClient
       .get<DepartmentModel>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError<DepartmentModel>('getDepartmentById')));
   }
 
   // Fetch all locations
   getAllLocations(): Observable<LocationModel[]> {
     return this.httpClient
       .get<LocationModel[]>(this.locationUrl)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError<LocationModel[]>('getAllLocations', []))
+      );
   }
 
   // Fetch all managers
   getAllManagers(): Observable<ManagerModel[]> {
     return this.httpClient
       .get<ManagerModel[]>(this.managerUrl)
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError<ManagerModel[]>('getAllManagers', [])));
   }
 
   // Error handling
-  private handleError(error: any): Observable<never> {
-    let errorMessage = 'An unknown error occurred!';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.error('An error occurred:', errorMessage);
-    return throwError(() => new Error(errorMessage));
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return throwError(
+        () => new Error('Something went wrong; please try again later.')
+      );
+    };
   }
 }

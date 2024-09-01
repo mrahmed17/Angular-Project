@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Edit Attendance</h1>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Updating attendance record...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <h1>Edit Attendance</h1>
+
+      <div *ngIf="loading" class="loading-spinner">
+        <p>Updating attendance record...</p>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+
+      <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="firstName">Attendance Holder Name</label>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="role">For Manager</label>
+                <select id="role" formControlName="role" class="form-control">
+                  <option *ngFor="let emp of employeeData" [value]="emp.name">{{ manager.name }}-{{manager.id}}</option>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="role">For Employee</label>
+                <select id="role" formControlName="role" class="form-control">
+                  <option *ngFor="let emp of employeeData" [value]="emp.name">{{ employee.name }}-{{employee.id}}
+                  </option>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-warning mx-1" (click)="onEdit(attendance)">Edit</button>
+          <button class="btn btn-danger mx-1" (click)="deleteAttendance(attendance)">Delete</button>
+        </div>
+      </form>
+    </div>

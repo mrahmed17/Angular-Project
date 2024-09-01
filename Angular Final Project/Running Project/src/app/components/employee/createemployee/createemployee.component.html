@@ -1,226 +1,85 @@
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Create Employee</h2>
+<div class="container">
+  <h2>Create Employee</h2>
 
-  <!-- Error Message -->
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
-
-  <!-- Form for Creating Employee -->
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-    <div class="card employee-form-card mx-auto">
-      <div class="card-body">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input id="username" formControlName="username" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('username')?.invalid && (employeeForm.get('username')?.touched || employeeForm.get('username')?.dirty)"
-            class="text-danger">
-            Username is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input id="fullName" formControlName="fullName" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('fullName')?.invalid && (employeeForm.get('fullName')?.touched || employeeForm.get('fullName')?.dirty)"
-            class="text-danger">
-            Full Name is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input id="email" formControlName="email" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.touched || employeeForm.get('email')?.dirty)"
-            class="text-danger">
-            Enter a valid email.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input id="address" formControlName="address" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('address')?.invalid && (employeeForm.get('address')?.touched || employeeForm.get('address')?.dirty)"
-            class="text-danger">
-            Address is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="contactNumber">Contact Number</label>
-          <input id="contactNumber" formControlName="contactNumber" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('contactNumber')?.invalid && (employeeForm.get('contactNumber')?.touched || employeeForm.get('contactNumber')?.dirty)"
-            class="text-danger">
-            Contact Number is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="gender">Gender</label>
-          <select id="gender" formControlName="gender" class="form-control">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="age">Age</label>
-          <input id="age" formControlName="age" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('age')?.invalid && (employeeForm.get('age')?.touched || employeeForm.get('age')?.dirty)"
-            class="text-danger">
-            Age is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="nidNo">NID Number</label>
-          <input id="nidNo" formControlName="nidNo" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('nidNo')?.invalid && (employeeForm.get('nidNo')?.touched || employeeForm.get('nidNo')?.dirty)"
-            class="text-danger">
-            NID Number is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="department">Department</label>
-          <select class="form-control" formControlName="department">
-            <option *ngFor="let department of departments" [ngValue]="department">{{ department.deptName }}
-            </option>
-          </select>
-          <div
-            *ngIf="employeeForm.get('department')?.invalid && (employeeForm.get('department')?.touched || employeeForm.get('department')?.dirty)"
-            class="text-danger">
-            Department is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="managerId">Manager ID</label>
-          <select class="form-control" formControlName="manager">
-            <option *ngFor="let manager of managers" [ngValue]="manager">{{ manager.managerId }}
-            </option>
-          </select>
-          <div
-            *ngIf="employeeForm.get('managerId')?.invalid && (employeeForm.get('managerId')?.touched || employeeForm.get('managerId')?.dirty)"
-            class="text-danger">
-            Manager ID is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="hireDate">Hire Date</label>
-          <input id="hireDate" formControlName="hireDate" type="date" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('hireDate')?.invalid && (employeeForm.get('hireDate')?.touched || employeeForm.get('hireDate')?.dirty)"
-            class="text-danger">
-            Hire Date is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="payrollCalculationMethod">Payroll Calculation Method</label>
-          <select id="payrollCalculationMethod" formControlName="payrollCalculationMethod" class="form-control">
-            <option value="Weekly">Weekly</option>
-            <option value="Monthly">Monthly</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="hourlyRate">Hourly Rate</label>
-          <input id="hourlyRate" formControlName="hourlyRate" type="number" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('hourlyRate')?.invalid && (employeeForm.get('hourlyRate')?.touched || employeeForm.get('hourlyRate')?.dirty)"
-            class="text-danger">
-            Hourly Rate is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="profilePhoto">Profile Photo (URL)</label>
-          <input id="profilePhoto" formControlName="profilePhoto" class="form-control" />
-        </div>
-
-        <div class="form-buttons">
-          <button type="submit" class="btn btn-primary" [disabled]="loading">Create Employee</button>
-          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input id="username" formControlName="username" class="form-control" />
     </div>
 
-    <!-- Loading Spinner -->
-    <div *ngIf="loading" class="mt-3 text-center">
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      Creating employee...
+    <div class="form-group">
+      <label for="fullName">Full Name:</label>
+      <input id="fullName" formControlName="fullName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="contactNumber">Contact Number:</label>
+      <input id="contactNumber" formControlName="contactNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" formControlName="gender" class="form-control">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input id="age" formControlName="age" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="nidNo">NID Number:</label>
+      <input id="nidNo" formControlName="nidNo" type="number" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="departmentId">Department:</label>
+      <select id="departmentId" formControlName="departmentId" class="form-control">
+        <option *ngFor="let department of departments$ | async" [value]="department.id">
+          {{ department.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="managerId">Manager:</label>
+      <select id="managerId" formControlName="managerId" class="form-control">
+        <option *ngFor="let manager of managers$ | async" [value]="manager.id">
+          {{ manager.fullName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="profilePhoto">Profile Photo URL:</label>
+      <input id="profilePhoto" formControlName="profilePhoto" class="form-control" />
+    </div>
+
+    <!-- Hidden Fields -->
+    <input type="hidden" formControlName="status" />
+    <input type="hidden" formControlName="hourlyRate" />
+    <input type="hidden" formControlName="hireDate" />
+    <input type="hidden" formControlName="createdAt" />
+    <input type="hidden" formControlName="updatedAt" />
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Create Employee</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+      <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
     </div>
   </form>
-
-
-  <!-- Table Section -->
-
-
-  <div class="container mt-4">
-    <h1 class="text-center">Employee List</h1>
-
-    <!-- Display loading indicator -->
-    <div *ngIf="loading" class="loading-spinner text-center">
-      <p>Loading employees...</p>
-    </div>
-
-    <!-- Display error message -->
-    <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
-      <p>{{ errorMessage }}</p>
-    </div>
-
-    <!-- Employees Table list -->
-    <div *ngIf="!loading && !errorMessage">
-      <div class="row mt-2">
-        <div class="col">
-          <table class="table table-bordered table-striped" *ngFor="let employee of employees">
-            <thead class="text-center">
-              <tr>
-                <th>Photo</th>
-                <th>ID</th>
-                <th>Employee Name</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>Department</th>
-                <th>Gender</th>
-                <th>Salary</th>
-                <th>Joining Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <!-- Loop through employees data -->
-
-              <tr *ngFor="let employee of employees">
-                <td><img *ngIf="employee.profilePhoto" [src]="employee.profilePhoto" alt="Profile Photo"></td>
-                <td>{{employee.id}}</td>
-                <td>{{employee.fullName}}</td>
-                <td>{{employee.email}}</td>
-                <td>{{employee.contactNumber}}</td>
-                <td>{{employee.department?.deptName}}</td>
-                <td>{{employee.gender}}</td>
-                <td>{{employee.salary}}</td>
-                <td>{{employee.joiningDate}}</td>
-
-                <td class="d-flex justify-content-between mt-3">
-                  <button class="btn btn-info btn-sm" (click)="viewEmployee(employee.id)">View</button>
-                  <button class="btn btn-warning btn-sm" (click)="editEmployee(employee.id)">Edit</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.id)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>

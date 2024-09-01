@@ -1,75 +1,88 @@
-<div class="edit-department-container">
+<!-- editdepartment.component.html -->
+<div class="container">
   <h2>Edit Department</h2>
 
   <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
-    <!-- Department Name -->
+    <!-- Name Field -->
     <div class="form-group">
-      <label for="name">Department Name</label>
-      <input type="text" id="name" formControlName="name" class="form-control" />
-      <div *ngIf="departmentForm.get('name')?.invalid && departmentForm.get('name')?.touched" class="error-message">
-        Department name is required.
+      <label for="name">Department Name:</label>
+      <input id="name" formControlName="name" class="form-control" />
+      <div *ngIf="departmentForm.get('name')?.invalid && departmentForm.get('name')?.touched" class="text-danger">
+        <div *ngIf="departmentForm.get('name')?.errors?.['required']">Department Name is required.</div>
       </div>
     </div>
 
-    <!-- Phone Number -->
+    <!-- Phone Number Field -->
     <div class="form-group">
-      <label for="phoneNumber">Phone Number</label>
-      <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+      <label for="phoneNumber">Phone Number:</label>
+      <input id="phoneNumber" formControlName="phoneNumber" class="form-control" />
       <div *ngIf="departmentForm.get('phoneNumber')?.invalid && departmentForm.get('phoneNumber')?.touched"
-        class="error-message">
-        Phone number is required.
+        class="text-danger">
+        <div *ngIf="departmentForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</div>
       </div>
     </div>
 
-    <!-- Email -->
+    <!-- Email Field -->
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" class="form-control" />
-      <div *ngIf="departmentForm.get('email')?.invalid && departmentForm.get('email')?.touched" class="error-message">
-        Please enter a valid email address.
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" class="form-control" />
+      <div *ngIf="departmentForm.get('email')?.invalid && departmentForm.get('email')?.touched" class="text-danger">
+        <div *ngIf="departmentForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="departmentForm.get('email')?.errors?.['email']">Invalid email format.</div>
       </div>
     </div>
 
-    <!-- Location ID -->
+    <!-- Location Dropdown -->
     <div class="form-group">
-      <label for="locationId">Location</label>
+      <label for="locationId">Location:</label>
       <select id="locationId" formControlName="locationId" class="form-control">
         <option value="" disabled>Select a location</option>
-        <option *ngFor="let location of locations" [value]="location.id">
-          {{ location.name }}
-        </option>
+        <option *ngFor="let location of locations$ | async" [value]="location.id">{{ location.name }}</option>
       </select>
       <div *ngIf="departmentForm.get('locationId')?.invalid && departmentForm.get('locationId')?.touched"
-        class="error-message">
-        Location ID is required.
+        class="text-danger">
+        <div *ngIf="departmentForm.get('locationId')?.errors?.['required']">Location is required.</div>
       </div>
     </div>
 
-    <!-- Manager ID -->
+    <!-- Manager Dropdown -->
     <div class="form-group">
-      <label for="managerId">Manager</label>
+      <label for="managerId">Manager:</label>
       <select id="managerId" formControlName="managerId" class="form-control">
         <option value="" disabled>Select a manager</option>
-        <option *ngFor="let manager of managers" [value]="manager.id">
-          {{ manager.fullName }}
-        </option>
+        <option *ngFor="let manager of managers$ | async" [value]="manager.id">{{ manager.fullName }}</option>
       </select>
       <div *ngIf="departmentForm.get('managerId')?.invalid && departmentForm.get('managerId')?.touched"
-        class="error-message">
-        Manager ID is required.
+        class="text-danger">
+        <div *ngIf="departmentForm.get('managerId')?.errors?.['required']">Manager is required.</div>
       </div>
+    </div>
+
+    <!-- Number of Employees Field -->
+    <div class="form-group">
+      <label for="numberOfEmployees">Number of Employees:</label>
+      <input id="numberOfEmployees" formControlName="numberOfEmployees" type="number" class="form-control" />
+      <div *ngIf="departmentForm.get('numberOfEmployees')?.invalid && departmentForm.get('numberOfEmployees')?.touched"
+        class="text-danger">
+        <div *ngIf="departmentForm.get('numberOfEmployees')?.errors?.['required']">Number of Employees is required.
+        </div>
+        <div *ngIf="departmentForm.get('numberOfEmployees')?.errors?.['min']">Number of Employees cannot be negative.
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Buttons -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="departmentForm.invalid || loading">
+        {{ loading ? 'Saving...' : 'Save' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+      <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
     </div>
 
     <!-- Error Message -->
-    <div *ngIf="errorMessage" class="error-message">
+    <div *ngIf="errorMessage" class="alert alert-danger">
       {{ errorMessage }}
-    </div>
-
-    <!-- Buttons -->
-    <div class="form-actions">
-      <button type="submit" [disabled]="loading" class="btn btn-primary">Save</button>
-      <button type="button" (click)="resetForm()" class="btn btn-secondary">Reset</button>
-      <button type="button" (click)="cancel()" class="btn btn-danger">Cancel</button>
     </div>
   </form>
 </div>

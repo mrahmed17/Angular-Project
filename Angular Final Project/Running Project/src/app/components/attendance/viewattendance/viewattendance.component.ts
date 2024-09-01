@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
-import { AttendanceModel } from '../../../models/attendance.model';
 
 @Component({
   selector: 'app-viewattendance',
@@ -9,37 +8,56 @@ import { AttendanceModel } from '../../../models/attendance.model';
   styleUrls: ['./viewattendance.component.css'],
 })
 export class ViewattendanceComponent implements OnInit {
-  attendance: AttendanceModel | null = null;
-  loading = false;
-  errorMessage: string | null = null;
+  attendances: any[] = [];
+  errorMessage: string = '';
+  loading: boolean = false;
+  employeeId: string = '';
+  managerId: string = ''; // Add this if you also need manager ID
 
   constructor(
-    private route: ActivatedRoute,
     private attendanceService: AttendanceService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.loadAttendance();
+    this.employeeId = this.route.snapshot.paramMap.get('employeeId') || '';
+    this.managerId = this.route.snapshot.paramMap.get('managerId') || '';
+    this.loadAttendances();
   }
 
-  loadAttendance(): void {
-    const id = this.route.snapshot.paramMap.get('id') || '';
+  loadAttendances(): void {
     this.loading = true;
-    this.attendanceService.getAttendanceById(id).subscribe(
-      (attendance: AttendanceModel) => {
-        this.attendance = attendance;
-        this.loading = false;
-      },
-      (error) => {
-        this.errorMessage = 'Failed to load attendance details.';
-        this.loading = false;
-        console.error('Failed to load attendance details', error);
-      }
-    );
+    if (this.employeeId) {
+      this.attendanceService
+        .getAttendancesByEmployeeId(this.employeeId)
+        .subscribe({
+          next: (data) => {
+            this.attendances = data;
+            this.loading = false;
+          },
+          error: (error) => {
+            this.errorMessage = 'Failed to load attendance records';
+            this.loading = false;
+          },
+        });
+    } else if (this.managerId) {
+      this.attendanceService
+        .getAttendancesByManagerId(this.managerId)
+        .subscribe({
+          next: (data) => {
+            this.attendances = data;
+            this.loading = false;
+          },
+          error: (error) => {
+            this.errorMessage = 'Failed to load attendance records';
+            this.loading = false;
+          },
+        });
+    }
   }
 
-  goBack(): void {
-    this.router.navigate(['/attendances']);
+  backToList(): void {
+    this.router.navigate(['/attendances/list']);
   }
 }

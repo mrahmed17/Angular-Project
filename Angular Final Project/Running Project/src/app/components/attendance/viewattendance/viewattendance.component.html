@@ -11,20 +11,28 @@
     <p>{{ errorMessage }}</p>
   </div>
 
-  <!-- Attendance Details Card -->
-  <div *ngIf="!loading && !errorMessage && attendance" class="card attendance-card mx-auto">
-    <div class="card-body">
-      <h5 class="card-title">{{ attendance.user.firstName }} {{ attendance.user.lastName }}</h5>
-      <p class="card-text"><strong>User ID:</strong> {{ attendance.user.id }}</p>
-      <p class="card-text"><strong>Role:</strong> {{ attendance.user.role }}</p>
-      <p class="card-text"><strong>Date:</strong> {{ attendance.date | date }}</p>
-      <p class="card-text"><strong>Clock-In Time:</strong> {{ attendance.clockInTime | date:'shortTime' }}</p>
-      <p class="card-text"><strong>Clock-Out Time:</strong> {{ attendance.clockOutTime | date:'shortTime' }}</p>
-      <p class="card-text"><strong>Total Hours:</strong> {{ attendance.totalHours }}</p>
-      <p class="card-text"><strong>Status:</strong> {{ attendance.status }}</p>
-    </div>
-    <div class="card-footer text-center">
-      <button class="btn btn-primary" (click)="goBack()">Back to List</button>
-    </div>
+  <div class="container mt-4">
+    <h2>Attendance Records</h2>
+
+    <table *ngIf="attendances.length > 0" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Clock In Time</th>
+          <th>Clock Out Time</th>
+          <th>Total Hours</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attendance of attendances">
+          <td>{{ attendance.id }}</td>
+          <td>{{ attendance.clockInTime }}</td>
+          <td>{{ attendance.clockOutTime }}</td>
+          <td>{{ attendance.totalHours || 'N/A' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary mt-3" (click)="backToList()">Back to Attendance List</button>
   </div>
 </div>
