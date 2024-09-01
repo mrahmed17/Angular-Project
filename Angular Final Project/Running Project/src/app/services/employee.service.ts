@@ -1,13 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { EmployeeModel } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private apiUrl: string = 'http://localhost:3000/employees';
+  private apiUrl = 'https://api.yourdomain.com/employees'; // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -18,44 +19,47 @@ export class EmployeeService {
       .pipe(catchError(this.handleError));
   }
 
-  // Fetch an employee by ID
-  getEmployeeById(id: string): Observable<EmployeeModel> {
-    return this.http
-      .get<EmployeeModel>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Fetch all employees
-  getAllEmployees(): Observable<EmployeeModel[]> {
+  // Get all employees
+  getEmployees(): Observable<EmployeeModel[]> {
     return this.http
       .get<EmployeeModel[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
   }
 
-  // Update an existing employee by ID
-  updateEmployee(
-    id: string,
-    updatedDetails: Partial<EmployeeModel>
-  ): Observable<EmployeeModel> {
-    // Ensure that `updatedAt` is included in the update
-    updatedDetails.updatedAt = new Date();
+  // Get a single employee by ID
+  getEmployeeById(id: string): Observable<EmployeeModel> {
+    const url = `${this.apiUrl}/${id}`;
     return this.http
-      .put<EmployeeModel>(`${this.apiUrl}/${id}`, updatedDetails)
+      .get<EmployeeModel>(url)
       .pipe(catchError(this.handleError));
   }
 
-  // Delete an employee by ID
+  // Update an employee
+  updateEmployee(id: string, employee: EmployeeModel): Observable<EmployeeModel> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http
+      .put<EmployeeModel>(url, employee)
+      .pipe(catchError(this.handleError));
+  }
+
+  // Delete an employee
   deleteEmployee(id: string): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
     return this.http
-      .delete<void>(`${this.apiUrl}/${id}`)
+      .delete<void>(url)
       .pipe(catchError(this.handleError));
   }
 
-  // Error handling
-  private handleError(error: any): Observable<never> {
-    console.error('An error occurred:', error);
-    return throwError(
-      () => new Error('An error occurred while processing the request.')
-    );
+  // Handle any errors from the HTTP request
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(() => new Error(errorMessage));
   }
 }
