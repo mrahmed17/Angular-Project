@@ -2,88 +2,94 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../../../services/employee.service';
-import { DepartmentService } from '../../../services/department.service';
-import { ManagerService } from '../../../services/manager.service';
 import { EmployeeModel } from '../../../models/employee.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-editemployee',
   templateUrl: './editemployee.component.html',
-  styleUrls: ['./editemployee.component.css'],
+  styleUrls: ['./editemployee.component.css']
 })
 export class EditemployeeComponent implements OnInit {
   employeeForm!: FormGroup;
-  departments$!: Observable<any[]>;
-  managers$!: Observable<any[]>;
   employeeId!: string;
+  employee!: EmployeeModel;
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
-    private departmentService: DepartmentService,
-    private managerService: ManagerService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.employeeId = this.route.snapshot.paramMap.get('id')!;
-    this.departments$ = this.departmentService.getAllDepartments();
-    this.managers$ = this.managerService.getAllManagers();
+    this.loadEmployee();
 
-    this.employeeService
-      .getEmployeeById(this.employeeId)
-      .subscribe((employee) => {
-        this.employeeForm = this.fb.group({
-          username: [employee.username, Validators.required],
-          fullName: [employee.fullName, Validators.required],
-          email: [employee.email, [Validators.required, Validators.email]],
-          address: [employee.address, Validators.required],
-          contactNumber: [employee.contactNumber, Validators.required],
-          gender: [employee.gender, Validators.required],
-          age: [employee.age, Validators.required],
-          nidNo: [employee.nidNo, Validators.required],
-          departmentId: [employee.departmentId, Validators.required], // Directly use the string value
-          managerId: [employee.managerId, Validators.required], // Directly use the string value
-          profilePhoto: [employee.profilePhoto],
-          hireDate: [
-            {
-              value: new Date(employee.hireDate).toISOString().substring(0, 16),
-              disabled: true,
-            },
-          ],
-          payrollCalculationMethod: [
-            employee.payrollCalculationMethod,
-            Validators.required,
-          ],
-          status: [{ value: employee.status, disabled: true }], // boolean value for checkbox
-          hourlyRate: [{ value: employee.hourlyRate, disabled: true }], // number value for input
-          createdAt: [{ value: employee.createdAt, disabled: true }], // string value for text input
-          updatedAt: [{ value: employee.updatedAt, disabled: true }], // string value for text input
+    this.employeeForm = this.fb.group({
+      username: ['', Validators.required],
+      fullName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      contactNumber: ['', Validators.required],
+      departmentId: ['', Validators.required],
+      managerId: ['', Validators.required],
+      hireDate: [{ value: '', disabled: true }],
+      status: [true],
+      hourlyRate: [250, Validators.required],
+      createdAt: [{ value: '', disabled: true }],
+      updatedAt: [{ value: new Date().toISOString(), disabled: true }],
+      updateStatus: ['']
+    });
+  }
+
+  loadEmployee(): void {
+    this.employeeService.getEmployeeById(this.employeeId).subscribe(
+      (employee) => {
+        this.employee = employee;
+        this.employeeForm.patchValue({
+          username: employee.username,
+          fullName: employee.fullName,
+          email: employee.email,
+          address: employee.address,
+          contactNumber: employee.contactNumber,
+          departmentId: employee.departmentId,
+          managerId: employee.managerId,
+          hireDate: employee.hireDate.toISOString().substring(0, 16),
+          status: employee.status,
+          hourlyRate: employee.hourlyRate,
+          createdAt: employee.createdAt.toISOString(),
+          updatedAt: new Date().toISOString(),
+          updateStatus: employee.updateStatus
         });
-      });
+      },
+      (error) => {
+        console.error('Error loading employee:', error);
+      }
+    );
   }
 
   onSubmit(): void {
     if (this.employeeForm.valid) {
       const updatedEmployee: EmployeeModel = {
         ...this.employeeForm.value,
-        updatedAt: new Date().toISOString(),
+        id: this.employeeId,
+        hireDate: new Date(this.employeeForm.get('hireDate')!.value),
+        createdAt: this.employee.createdAt,
+        updatedAt: new Date()
       };
-      this.employeeService
-        .updateEmployee(this.employeeId, updatedEmployee)
-        .subscribe(() => {
-          this.router.navigate(['/employees/list']);
-        });
+
+      this.employeeService.updateEmployee(this.employeeId, updatedEmployee).subscribe(
+        () => {
+          this.router.navigate(['/employees']);
+        },
+        (error) => {
+          console.error('Error updating employee:', error);
+        }
+      );
     }
   }
 
-  resetForm(): void {
-    this.employeeForm.reset();
-  }
-
   cancel(): void {
-    this.router.navigate(['/employees/list']);
+    this.router.navigate(['/employees']);
   }
 }
