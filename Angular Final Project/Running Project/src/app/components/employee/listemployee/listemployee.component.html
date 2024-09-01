@@ -1,36 +1,36 @@
 <div class="container mt-4">
   <h2>Employee List</h2>
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th>
+        <th>Employee ID</th>
         <th>Username</th>
         <th>Full Name</th>
         <th>Email</th>
+        <th>Address</th>
         <th>Contact Number</th>
-        <th>Department</th>
-        <th>Manager</th>
+        <th>Department ID</th>
+        <th>Manager ID</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of employees$ | async; let i = index">
-        <td>{{ i + 1 }}</td>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.id }}</td>
         <td>{{ employee.username }}</td>
         <td>{{ employee.fullName }}</td>
         <td>{{ employee.email }}</td>
+        <td>{{ employee.address }}</td>
         <td>{{ employee.contactNumber }}</td>
-        <td>{{ employee.departmentName }}</td>
-        <td>{{ employee.managerName }}</td>
+        <td>{{ employee.departmentId }}</td>
+        <td>{{ employee.managerId }}</td>
         <td>
-          <a [routerLink]="['/employees/edit', employee.id]" class="btn btn-warning btn-sm">Edit</a>
-          <button (click)="deleteEmployee(employee.id)" class="btn btn-danger btn-sm">Delete</button>
+          <button class="btn btn-info btn-sm" (click)="viewEmployee(employee.id)">View</button>
+          <button class="btn btn-primary btn-sm ml-2" (click)="editEmployee(employee.id)">Edit</button>
+          <button class="btn btn-danger btn-sm ml-2" (click)="deleteEmployee(employee.id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
-
+  <button class="btn btn-secondary mt-3" (click)="goBack()">Back</button>
 </div>
