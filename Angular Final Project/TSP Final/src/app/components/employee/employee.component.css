@@ -1,0 +1,19 @@
+/* Form Section */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 90vh; /* Adjusted height */
+    margin-top: 75px; /* Added margin-top */
+}
+
+/* Form Text */
+.form-control {
+    font-size: 14px;
+}
+
+/* Table Data */
+table.table td {
+    font-size: 13px;
+    padding: 0.7rem;
+}

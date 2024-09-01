@@ -1,38 +1,65 @@
 export class LeaveModel {
-  id: string;
-  employeeId: string; // ID of the employee on leave
-  leaveType: 'Sick' | 'Casual' | 'Annual'; // Type of leave
-  startDate: Date; // Leave start date
-  endDate: Date; // Leave end date
-  leaveDuration: number; // Duration of leave in days
-  reason: string; // Reason for the leave
+  id!: string;
+  employeeId!: string; // ID of the employee requesting leave
+  leaveType!: 'Sick' | 'Vacation' | 'Personal' | 'Other'; // Type of leave
+  startDate!: Date; // Start date of the leave
+  endDate!: Date; // End date of the leave
+  remainingLeave!: number; // Remaining leave balance for each employee
+  reason!: string; // Reason for taking leave
+  attachment?: string; // Optional, URL or reference to an attachment (e.g., medical certificate)
+  status!: 'Pending' | 'Approved' | 'Rejected'; // Status of the leave request
+  requestDate!: Date; // Date when the leave request was submitted
+  approvedBy?: string; // ID of the manager who approved or rejected the leave
+  approvalDate?: Date; // Date when the leave was approved or rejected
 
-  constructor(
-    id: string,
-    employeeId: string,
-    leaveType: 'Sick' | 'Casual' | 'Annual',
-    startDate: Date,
-    endDate: Date,
-    leaveDuration: number,
-    reason: string
+  // Method to update leave status and assign approver
+  updateStatus(
+    newStatus: 'Pending' | 'Approved' | 'Rejected',
+    managerId?: string
   ) {
-    this.id = id;
-    this.employeeId = employeeId;
-    this.leaveType = leaveType;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.leaveDuration = leaveDuration;
-    this.reason = reason;
+    this.status = newStatus;
+    if (newStatus === 'Approved' || newStatus === 'Rejected') {
+      this.approvedBy = managerId;
+      this.approvalDate = new Date(); // Set current date as the approval date
+    }
   }
 
-  // Method to calculate leave duration
-  calculateLeaveDuration() {
-    const diffInMillis = this.endDate.getTime() - this.startDate.getTime();
-    this.leaveDuration = Math.floor(diffInMillis / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+  // Method to extend the leave period
+  extendLeave(newEndDate: Date) {
+    this.endDate = newEndDate;
   }
 
-  // Method to get leave details
+  // Method to calculate leave duration in days
+  getLeaveDuration(): number {
+    const start = new Date(this.startDate);
+    const end = new Date(this.endDate);
+    const duration =
+      Math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24)) + 1; // Add 1 to include the end date
+    return duration;
+  }
+
+  // Method to get leave details as a string
   getLeaveDetails(): string {
-    return `Employee ID: ${this.employeeId}, Leave Type: ${this.leaveType}, Duration: ${this.leaveDuration} days, Reason: ${this.reason}`;
+    return `Leave ID: ${this.id}\nEmployee ID: ${
+      this.employeeId
+    }\nLeave Type: ${
+      this.leaveType
+    }\nStart Date: ${this.startDate.toDateString()}\nEnd Date: ${this.endDate.toDateString()}\nRemaining Leave: ${
+      this.remainingLeave
+    }\nReason: ${this.reason}\nStatus: ${
+      this.status
+    }\nRequest Date: ${this.requestDate.toDateString()}\nApproved By: ${
+      this.approvedBy ?? 'N/A'
+    }\nApproval Date: ${this.approvalDate?.toDateString() ?? 'N/A'}`;
   }
+}
+export interface Employee {
+  id: string;
+  fullName: string;
+}
+
+// ID of the manager who approved or rejected the leave
+export interface Manager {
+  id: string;
+  fullName: string;
 }

@@ -1,0 +1,113 @@
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #343a40; /* Dark gray color */
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-right: 1px solid #dee2e6;
+}
+
+.sidenav a {
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ffffff; /* White color */
+    display: block;
+}
+
+.sidenav a:hover {
+    background-color: #6c757d; /* Gray color */
+    color: #ffffff; /* White color */
+}
+
+.main {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.fa {
+    margin-right: 10px;
+}
+
+.home-icon {
+    color: #dc3545; /* Red color */
+}
+
+.employee-icon {
+    color: #28a745; /* Green color */
+}
+
+.department-icon {
+    color: #007bff; /* Blue color */
+}
+
+.attendance-icon {
+    color: #ffc107; /* Yellow color */
+}
+
+.advance-icon {
+    color: #17a2b8; /* Cyan color */
+}
+
+.bonus-icon {
+    color: #6610f2; /* Purple color */
+}
+
+.leaves-icon {
+    color: #fd7e14; /* Orange color */
+}
+
+.allleaves-icon {
+    color: #6f42c1; /* Indigo color */
+}
+
+.salary-icon {
+    color: #20c997; /* Teal color */
+}
+
+.emp-details-icon {
+    color: #e83e8c; /* Pink color */
+}

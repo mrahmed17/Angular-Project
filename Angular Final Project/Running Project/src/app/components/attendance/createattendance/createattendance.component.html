@@ -9,63 +9,65 @@
     <p>{{ errorMessage }}</p>
   </div>
 
-  <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="userId">User ID</label>
-      <input id="userId" formControlName="userId" type="text" class="form-control" />
-    </div>
+  <div class="form-group">
+    <label for="firstName">Attendance Holder Name</label>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="role">For Manager</label>
+          <select id="role" formControlName="role" class="form-control">
+            <option *ngFor="let emp of employeeData" [value]="emp.name">{{ manager.name }}-{{manager.id}}</option>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input id="firstName" formControlName="firstName" type="text" class="form-control" />
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="role">For Employee</label>
+          <select id="role" formControlName="role" class="form-control">
+            <option *ngFor="let emp of employeeData" [value]="emp.name">{{ employee.name }}-{{employee.id}}</option>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input id="lastName" formControlName="lastName" type="text" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="role">Role</label>
-      <select id="role" formControlName="role" class="form-control">
-        <option value="Admin">Admin</option>
-        <option value="Manager">Manager</option>
-        <option value="Employee">Employee</option>
-      </select>
-    </div>
-
-    <!-- <div class="form-group">
-      <label for="profilePhoto">Profile Photo URL</label>
-      <input id="profilePhoto" formControlName="profilePhoto" type="text" class="form-control" />
+  <!-- <div class="row justify-content-center">
+    <div class="col-4 text-center pt-3">
+      <button class="btn btn-secondary btn-sm" (click)="resetForm()">Reset</button>
     </div> -->
-
-    <div class="form-group">
-      <label for="date">Date</label>
-      <input id="date" formControlName="date" type="date" class="form-control" />
+    <div class="col-4 text-center pt-3">
+      <button class="btn btn-success btn-sm" (click)="saveAttendance()">Check In</button>
     </div>
-
-    <!-- <div class="form-group">
-      <label for="clockInTime">Clock In Time</label>
-      <input id="clockInTime" formControlName="clockInTime" type="time" class="form-control" />
-    </div> -->
-
-    <div class="form-group">
-      <label for="clockOutTime">Clock Out Time</label>
-      <input id="clockOutTime" formControlName="clockOutTime" type="time" class="form-control" />
+    <div class="col-4 text-center pt-3">
+      <button class="btn btn-success btn-sm" (click)="saveAttendance()">Check Out</button>
     </div>
-
-    <div class="form-group">
-      <label for="status">Status</label>
-      <select id="status" formControlName="status" class="form-control">
-        <option value="Present">Present</option>
-        <option value="Absent">Absent</option>
-        <option value="Leave">Leave</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Create Attendance</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-    </div>
+  </div>
   </form>
+
+  <!-- Second Row - Table -->
+  <div class="col-md-12">
+    <div>
+      <h5 class="text-center mb-4">Attendance Details</h5>
+      <table class="table table-bordered">
+        <thead class="text-center">
+          <tr>
+            <th>ID</th>
+            <th>Attendance Holder Name</th>
+            <th>In Time</th>
+            <th>Out Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let attendance of attendanceData let i=index">
+            <td>{{i+1}}</td>
+            <td>{{attendance.employee.fullName}}</td>
+            <td>{{attendance.checkIn| date:'medium'}}</td>
+            <td>{{attendance.checkOut| date:'medium'}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 </div>

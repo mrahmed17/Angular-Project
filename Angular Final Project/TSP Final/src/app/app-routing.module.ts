@@ -14,30 +14,25 @@ import { AllLeavesComponent } from './components/all-leaves/all-leaves.component
 import { EmpDetailsComponent } from './components/emp-details/emp-details.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'attendance', component: AttendanceComponent },
-  { path: 'employee', component: EmployeeComponent },
-  { path: 'department', component: DepartmentComponent },
-  { path: 'leaves', component: LeavesComponent },
-  { path: 'salary', component: SalaryComponent },
-  { path: 'advance', component: AdvanceComponent },
-  { path: 'bonus', component: BonusComponent },
-  { path: 'allleaves', component: AllLeavesComponent },
-  { path: 'empdetails', component: EmpDetailsComponent },
-  { path: '', component: LayoutComponent  },
-
-   {path:"login", component:LoginComponent
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'attendance', component: AttendanceComponent },
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'department', component: DepartmentComponent },
+      { path: 'leaves', component: LeavesComponent },
+      { path: 'salary', component: SalaryComponent },
+      { path: 'advance', component: AdvanceComponent },
+      { path: 'bonus', component: BonusComponent },
+      { path: 'allleaves', component: AllLeavesComponent },
+      { path: 'emp_details', component: EmpDetailsComponent },
+    ],
   },
-  // { path: 'empLogIn', component: EmpLoginComponent },
-  //   {
-  //     path: "emplayout", component: EmpLayoutComponent,
-
-  //     children: [
-  //       { path: "attendance", component: AttendanceComponent },
-  //       { path: "leaves", component: LeavesComponent },
-  //     ]
-  //   }
+  // Wildcard route should be at the end
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

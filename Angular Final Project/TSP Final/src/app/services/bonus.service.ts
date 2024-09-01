@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { map } from 'rxjs';
 import { Bonus } from '../models/bonus.model';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -1,52 +1,87 @@
 export class ManagerModel {
-  id: string;
-  fullName: string;
-  email: string;
-  contactNumber: string;
-  departmentId: string; // Department ID where the manager works
+  id: string; // Unique identifier for the manager
+  username: string; // Username for the manager
+  fullName: string; // Full name of the manager
+  email: string; // Email address of the manager
+  contactNumber: string; // Contact number of the manager
   role: 'Manager'; // Role should be 'Manager'
-  dateOfJoining: Date; // Date when the manager joined
-  createdAt: Date; // Creation date of the manager record
-  updatedAt: Date; // Last update date of the manager record
+  gender: 'Male' | 'Female' | 'Other'; // Gender of the manager
+  age: string; // Age of the manager (for verification purposes)
+  nidNo: number; // National ID number, must be provided and unique
+  department: string; // Department the manager is associated with
+  assignedEmployees: string[]; // List of employee IDs assigned to this manager
+  profilePhoto?: string; // Optional profile photo of the manager
+  hireDate: Date; // Date when the manager was hired
+  payrollCalculationMethod: 'Weekly' | 'Monthly'; // Method of payroll calculation
+  lastLogin: Date; // Last login date of the manager
+  status: 'active' | 'inactive'; // Employment status
+  hourlyRate: number; // Hourly rate for the manager
+  createdAt: Date; // Account creation date
+  updatedAt: Date; // Last update date
 
   constructor(
-    id: string,
+    managerId: string,
+    username: string,
     fullName: string,
     email: string,
     contactNumber: string,
-    departmentId: string,
     role: 'Manager',
-    dateOfJoining: Date,
+    gender: 'Male' | 'Female' | 'Other',
+    age: string,
+    nidNo: number,
+    department: string,
+    assignedEmployees: string[],
+    hireDate: Date,
+    payrollCalculationMethod: 'Weekly' | 'Monthly',
+    lastLogin: Date,
+    status: 'active' | 'inactive',
+    hourlyRate: number,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    profilePhoto?: string // Optional
   ) {
-    this.id = id;
+    this.id = managerId;
+    this.username = username;
     this.fullName = fullName;
     this.email = email;
     this.contactNumber = contactNumber;
-    this.departmentId = departmentId;
     this.role = role;
-    this.dateOfJoining = dateOfJoining;
+    this.gender = gender;
+    this.age = age;
+    this.nidNo = nidNo;
+    this.department = department;
+    this.assignedEmployees = assignedEmployees;
+    this.profilePhoto = profilePhoto;
+    this.hireDate = hireDate;
+    this.payrollCalculationMethod = payrollCalculationMethod;
+    this.lastLogin = lastLogin;
+    this.status = status;
+    this.hourlyRate = hourlyRate;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
 
-  // Method to update manager details
-  updateManagerDetails(
-    fullName?: string,
-    email?: string,
-    contactNumber?: string,
-    departmentId?: string
-  ) {
-    if (fullName) this.fullName = fullName;
-    if (email) this.email = email;
-    if (contactNumber) this.contactNumber = contactNumber;
-    if (departmentId) this.departmentId = departmentId;
-    this.updatedAt = new Date(); // Update the timestamp
+  // Method to update the manager's status
+  updateStatus(newStatus: 'active' | 'inactive') {
+    this.status = newStatus;
   }
 
   // Method to get manager's full details
   getManagerDetails(): string {
-    return `${this.fullName} (${this.email}) - Role: ${this.role}`;
+    return `${this.fullName} (${this.email}) - Status: ${this.status}`;
+  }
+
+  // Method to add an employee to the list of assigned employees
+  addEmployee(employeeId: string) {
+    if (!this.assignedEmployees.includes(employeeId)) {
+      this.assignedEmployees.push(employeeId);
+    }
+  }
+
+  // Method to remove an employee from the list of assigned employees
+  removeEmployee(employeeId: string) {
+    this.assignedEmployees = this.assignedEmployees.filter(
+      (id) => id !== employeeId
+    );
   }
 }

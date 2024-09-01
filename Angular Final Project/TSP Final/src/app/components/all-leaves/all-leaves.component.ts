@@ -1,73 +1,61 @@
 import { Component, OnInit } from '@angular/core';
+import { AllLeavesService } from '../../services/all-leaves.service';
 import { LeaveService } from '../../services/leave.service';
+import { LeaveModel } from '../../models/leave.model';
 
 @Component({
   selector: 'app-all-leaves',
   templateUrl: './all-leaves.component.html',
-  styleUrls: ['./all-leaves.component.css'],
+  styleUrl: './all-leaves.component.css',
 })
 export class AllLeavesComponent implements OnInit {
-  leaveData: any[] = [];
-  filteredData: any[] = [];
-  searchText: string = '';
-  fromDate: string = '';
-  toDate: string = '';
+  leaveData: any;
+  searchText: any;
 
-  constructor(private leaveService: LeaveService) {}
+  fromDate: string = ''; // Initialize as string
+  toDate: string = ''; // Initialize as string
+  constructor(
+    private allLeaves: AllLeavesService,
+    private leave: LeaveService
+  ) {}
 
   ngOnInit(): void {
     this.getAll();
   }
-
-  getAll(): void {
-    this.leaveService.getAllLeaves().subscribe((res) => {
+  getAll() {
+    this.leave.getAllLeave().subscribe((res) => {
       this.leaveData = res;
-      this.applyFilters();
+      console.log(this.leaveData);
     });
   }
 
-  applyFilters(): void {
-    let data = this.leaveData;
-
-    // Filter by date range
+  filterDataByDateRange() {
     if (this.fromDate && this.toDate) {
-      const fromDate = new Date(this.fromDate);
-      const toDate = new Date(this.toDate);
+      const fromDate = new Date(this.fromDate); // Convert to Date object
+      const toDate = new Date(this.toDate); // Convert to Date object
 
-      data = data.filter((record) => {
-        if (record.leaveDate) {
-          // Check if leaveDate is defined
-          const leaveDate = new Date(record.leaveDate);
-          return fromDate <= leaveDate && leaveDate <= toDate;
-        }
-        return false; // Exclude records with undefined leaveDate
+      const filteredData = this.leaveData.filter((record: any) => {
+        const leaveDate = new Date(record.leaveDate); // Assuming record.leaveDate is a string 'YYYY-MM-DD'
+        return fromDate <= leaveDate && leaveDate <= toDate;
       });
+      return filteredData;
     }
-
-    // Filter by search text
-    if (this.searchText) {
-      const lowerSearchText = this.searchText.toLowerCase();
-      data = data.filter((record) =>
-        Object.values(record).some((val) =>
-          String(val).toLowerCase().includes(lowerSearchText)
-        )
-      );
-    }
-
-    this.filteredData = data;
+    return this.leaveData;
   }
 
-  onEdit(row: any): void {
-    const leaveapproved = row;
-    this.leaveService.editLeave(leaveapproved.id, leaveapproved).subscribe({
+  onEdit(row: any) {
+    const leaveapproved: LeaveModel = row;
+    this.leave.editLeave(leaveapproved.id, leaveapproved).subscribe({
       next: (res) => {
         console.log(res);
         alert('Leave granted.');
-        this.getAll(); // Refresh the data after editing
+        console.log(leaveapproved);
+        this.getAll();
       },
       error: (err) => {
         console.log(err);
         alert('Not granted.');
+        console.log(leaveapproved);
       },
     });
   }

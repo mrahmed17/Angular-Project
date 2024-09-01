@@ -1,11 +1,42 @@
 {
-"advances":{},
-"allleave":{},
-"attendance":{},
-"bonus":{},
-"department":{},
-"employee":{},
-"leave":{},
-"salaries":{}
-
+  "advance": [
+    {
+      "id": "5a17"
+    }
+  ],
+  "allleave": [
+    {
+      "id": "6b98"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "ea72"
+    }
+  ],
+  "bonus": [
+    {
+      "id": "956b"
+    }
+  ],
+  "department": [
+    {
+      "id": "0d80"
+    }
+  ],
+  "employee": [
+    {
+      "id": "ed77"
+    }
+  ],
+  "leave": [
+    {
+      "id": "d048"
+    }
+  ],
+  "salaries": [
+    {
+      "id": "30ea"
+    }
+  ]
 }

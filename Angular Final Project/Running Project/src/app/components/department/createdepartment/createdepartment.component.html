@@ -31,7 +31,7 @@
     </div>
 
     <!-- Location ID -->
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label for="locationId">Location</label>
       <select id="locationId" formControlName="locationId" class="form-control">
         <option value="" disabled>Select Location</option>
@@ -41,7 +41,7 @@
         class="error-message">
         Location is required.
       </div>
-    </div> -->
+    </div>
 
     <!-- Manager ID -->
     <div class="form-group">
@@ -68,4 +68,83 @@
       <button type="button" (click)="cancel()" class="btn btn-danger">Cancel</button>
     </div>
   </form>
-</div>
+
+
+
+  <!-- Department Table Section -->
+  <div class="container mt-4">
+    <h1 class="text-center">Department List</h1>
+
+    <!-- Display loading indicator -->
+    <div *ngIf="loading" class="loading-spinner text-center">
+      <p>Loading departments...</p>
+    </div>
+
+    <!-- Display error message -->
+    <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+
+
+    <div *ngIf="!loading && !errorMessage">
+      <div class="row mt-2">
+        <div class="col">
+          <table class="table table-bordered table-striped" ngFor="let department of departments"">
+            <thead class="text-center">
+              <tr>
+                <th>Photo</th>
+                <th>ID</th>
+                <th>Employee Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>Joining Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Loop through departments data -->
+
+              <tr *ngFor="let department of departments">
+                <td><img *ngIf="department.profilePhoto" [src]="department.profilePhoto" alt="Profile Photo"></td>
+                <td>{{department.id}}</td>
+                <td>{{department.fullName}}</td>
+                <td>{{department.email}}</td>
+                <td>{{department.contactNumber}}</td>
+                <td>{{department.department?.deptName}}</td>
+                <td>{{department.gender}}</td>
+                <td>{{department.salary}}</td>
+                <td>{{department.joiningDate}}</td>
+
+                <td class="d-flex justify-content-between mt-3">
+                  <button class="btn btn-info btn-sm" (click)="viewdepartment(department.id)">View</button>
+                  <button class="btn btn-warning btn-sm" (click)="editdepartment(department.id)">Edit</button>
+                  <button class="btn btn-danger btn-sm" (click)="deletedepartment(department.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+        </div>
+      </div>
+
+            <div class="card-body">
+              <h5 class="card-title">{{ department.name }}</h5>
+              <p class="card-text"><strong>Phone:</strong> {{ department.phoneNumber }}</p>
+              <p class="card-text"><strong>Email:</strong> {{ department.email }}</p>
+              <p class="card-text"><strong>Location ID:</strong> {{ department.locationId }}</p>
+              <p class="card-text"><strong>Manager ID:</strong> {{ department.managerId }}</p>
+              <p class="card-text"><strong>Employees:</strong> {{ department.numberOfEmployees }}</p>
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-info btn-sm" (click)="viewDepartment(department.id)">View</button>
+                <button class="btn btn-warning btn-sm" (click)="editDepartment(department.id)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

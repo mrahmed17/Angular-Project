@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 export class AttendanceService {
   constructor(private http: HttpClient) {}
   baseUrl: string = 'http://localhost:3000/attendance';
+  
   attendancePost(data: any) {
     return this.http.post<any>(this.baseUrl, data).pipe(
       map((res) => {

@@ -13,31 +13,33 @@
 
   <!-- Attendance Cards -->
   <div *ngIf="!loading && !errorMessage">
-    <div class="row">
-      <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let attendance of attendances">
-        <div class="card attendance-card mb-4">
-          <div class="card-body">
-            <h5 class="card-title">{{ attendance.user.firstName }} {{ attendance.user.lastName }}</h5>
-            <p class="card-text"><strong>User ID:</strong> {{ attendance.user.id }}</p>
-            <p class="card-text"><strong>Role:</strong> {{ attendance.user.role }}</p>
-            <p class="card-text"><strong>Date:</strong> {{ attendance.date | date }}</p>
-            <p class="card-text"><strong>Clock-In Time:</strong> {{ attendance.clockInTime | date:'shortTime' }}</p>
-            <p class="card-text"><strong>Clock-Out Time:</strong> {{ attendance.clockOutTime | date:'shortTime' }}</p>
-            <p class="card-text"><strong>Total Hours:</strong> {{ attendance.totalHours }}</p>
-            <p class="card-text"><strong>Status:</strong> {{ attendance.status }}</p>
-            <div class="d-flex justify-content-between mt-3">
-              <button class="btn btn-info btn-sm" (click)="viewAttendance(attendance.id)">View</button>
-              <button class="btn btn-warning btn-sm" (click)="editAttendance(attendance.id)">Edit</button>
-              <button class="btn btn-danger btn-sm" (click)="deleteAttendance(attendance.id)">Delete</button>
-            </div>
-          </div>
-        </div>
+    <div class="col-md-12">
+      <div>
+        <h5 class="text-center mb-4">Attendance Details</h5>
+        <table class="table table-bordered">
+          <thead class="text-center">
+            <tr>
+              <th>ID</th>
+              <th>Attendance Holder Name</th>
+              <th>In Time</th>
+              <th>Out Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let attendance of attendanceData let i=index">
+              <td>{{i+1}}</td>
+              <td>{{attendance.employee.fullName}}</td>
+              <td>{{attendance.checkIn| date:'medium'}}</td>
+              <td>{{attendance.checkOut| date:'medium'}}</td>
+              <td>
+                <button class="btn btn-warning mx-1" (click)="onEdit(attendance)">Edit</button>
+                <button class="btn btn-danger mx-1" (click)="deleteAttendance(attendance)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-
-    <!-- Add New Attendance Button -->
-    <div class="text-center mt-4">
-      <a class="btn btn-primary" routerLink="/attendances/create">Add New Attendance</a>
     </div>
   </div>
 </div>

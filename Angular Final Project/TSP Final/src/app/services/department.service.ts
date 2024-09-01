@@ -9,23 +9,7 @@ import { DepartmentModel } from '../models/department.model';
 export class DepartmentService {
   constructor(private http: HttpClient) {}
   // baseUrl:string="http://localhost:8086/api/department/";
-  private apiUrl = 'http://localhost:3000/department';
-
-  getAllDepartments(): Observable<DepartmentModel[]> {
-    return this.http.get<DepartmentModel[]>(this.apiUrl);
-  }
-
-  departmentPost(department: DepartmentModel): Observable<DepartmentModel> {
-    return this.http.post<DepartmentModel>(this.apiUrl, department);
-  }
-
-  deleteDepartment(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-
-  editDepartment(id: number, department: DepartmentModel): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, department);
-  }
+  private baseUrl = 'http://localhost:3000/department';
 
   // departmentPost(data:any){
   //   return this.http.post<any>(this.baseUrl,data)
@@ -56,4 +40,20 @@ export class DepartmentService {
   //     })
   //   ))
   // }
+
+  getAllDepartments(): Observable<DepartmentModel[]> {
+    return this.http.get<DepartmentModel[]>(this.baseUrl);
+  }
+
+  departmentPost(department: DepartmentModel): Observable<DepartmentModel> {
+    return this.http.post<DepartmentModel>(this.baseUrl, department);
+  }
+
+  deleteDepartment(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  editDepartment(id: number, department: DepartmentModel): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, department);
+  }
 }

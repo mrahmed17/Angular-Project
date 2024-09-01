@@ -73,7 +73,7 @@ export class PerformanceModel {
 }
 export interface Employee {
   id: string;
-  name: string;
+  fullName: string;
 }
 
 export interface Manager {

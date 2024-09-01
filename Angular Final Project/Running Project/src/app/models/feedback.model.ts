@@ -1,31 +1,32 @@
 export class FeedbackModel {
-  id: string;
-  employeeId: string; // ID of the employee receiving feedback
-  feedback: string; // Feedback text
-  performanceRating: number; // Rating for the performance (1-5)
-  reviewDate: Date; // Date when the feedback was given
+  id!: string;
+  employeeId!: string; // ID of the employee receiving the feedback
+  managerId!: string; // ID of the manager providing the feedback
+  performanceRating!: number; // Rating given by the manager (e.g., 1-5)
+  comments!: string; // Detailed comments or feedback
+  date!: Date; // Date when the feedback was given
 
-  constructor(
-    id: string,
-    employeeId: string,
-    feedback: string,
-    performanceRating: number,
-    reviewDate: Date
-  ) {
-    this.id = id;
-    this.employeeId = employeeId;
-    this.feedback = feedback;
+  // Method to update feedback details
+  updateFeedback(performanceRating: number, comments: string) {
     this.performanceRating = performanceRating;
-    this.reviewDate = reviewDate;
+    this.comments = comments;
   }
 
-  // Method to validate performance rating
-  validateRating(): boolean {
-    return this.performanceRating >= 1 && this.performanceRating <= 5;
+  // Method to get feedback details as a string
+  getFeedbackDetails(): string {
+    return `Feedback ID: ${this.id}\nEmployee ID: ${
+      this.employeeId
+    }\nManager ID: ${this.managerId}\nRating: ${
+      this.performanceRating
+    }\nComments: ${this.comments}\nDate: ${this.date.toDateString()}`;
   }
+}
+export interface Employee {
+  id: string;
+  name: string;
+}
 
-  // Method to get feedback summary
-  getFeedbackSummary(): string {
-    return `Employee ID: ${this.employeeId}, Rating: ${this.performanceRating}, Feedback: ${this.feedback}`;
-  }
+export interface Manager {
+  id: string;
+  fullName: string;
 }

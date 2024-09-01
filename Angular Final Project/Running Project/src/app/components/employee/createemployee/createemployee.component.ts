@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../../services/employee.service';
@@ -9,7 +9,7 @@ import { EmployeeModel } from '../../../models/employee.model';
   templateUrl: './createemployee.component.html',
   styleUrls: ['./createemployee.component.css'],
 })
-export class CreateemployeeComponent implements OnInit {
+export class CreateemployeeComponent {
   employeeForm: FormGroup;
   loading = false;
   errorMessage: string | null = null;
@@ -32,15 +32,10 @@ export class CreateemployeeComponent implements OnInit {
       managerId: ['', Validators.required],
       hireDate: ['', Validators.required],
       payrollCalculationMethod: ['Weekly', Validators.required],
-      overtimeExemption: [false],
-      lastLogin: [new Date(), Validators.required],
-      status: ['active', Validators.required],
       hourlyRate: ['', Validators.required],
       profilePhoto: [''],
     });
   }
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.employeeForm.valid) {
@@ -60,12 +55,8 @@ export class CreateemployeeComponent implements OnInit {
         this.employeeForm.value.managerId,
         new Date(this.employeeForm.value.hireDate),
         this.employeeForm.value.payrollCalculationMethod,
-        this.employeeForm.value.overtimeExemption,
-        new Date(this.employeeForm.value.lastLogin),
-        this.employeeForm.value.status,
         this.employeeForm.value.hourlyRate,
-        new Date(),
-        new Date(),
+        '250',
         this.employeeForm.value.profilePhoto
       );
 

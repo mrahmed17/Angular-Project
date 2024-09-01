@@ -38,4 +38,27 @@ export class DepartmentModel {
       console.warn('No employees to remove.');
     }
   }
+
+  // Method to update the number of employees in the department
+  updateEmployeeCount(count: number) {
+    if (count >= 0) {
+      this.numberOfEmployees = count;
+    } else {
+      console.error('Number of employees cannot be negative.');
+    }
+  }
+
+  // Method to get department details as a string
+  getDepartmentDetails(): string {
+    return `${this.name} (Location ID: ${this.locationId}, Manager ID: ${this.managerId}) - Employees: ${this.numberOfEmployees}\nPhone: ${this.phoneNumber}\nEmail: ${this.email}`;
+  }
+}
+export interface Location {
+  id: string;
+  name: string;
+}
+
+export interface Manager {
+  id: string;
+  fullName: string;
 }

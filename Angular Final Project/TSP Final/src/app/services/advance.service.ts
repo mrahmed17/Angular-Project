@@ -1,56 +1,44 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Advance } from '../models/advance.model';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdvanceService {
-  private baseUrl = 'http://localhost:3000/advances'; // Replace with your actual API endpoint
-
   constructor(private http: HttpClient) {}
 
-  // Method to update an advance record
-  updateAdvance(id: number, advance: Advance): Observable<Advance> {
-    return this.http.put<Advance>(`${this.baseUrl}/${id}`, advance).pipe(
-      catchError(this.handleError) // Basic error handling
+  private baseUrl = 'http://localhost:3000/advance';
+
+  advancePost(data: Advance) {
+    return this.http.post<any>(this.baseUrl, data).pipe(
+      map((res) => {
+        return res;
+      })
     );
   }
 
-  // Method to get all advance records
-  getAllAdvance(): Observable<Advance[]> {
-    return this.http.get<Advance[]>(this.baseUrl).pipe(
-      catchError(this.handleError) // Basic error handling
+  getAllAdvance() {
+    return this.http.get<any>(this.baseUrl).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+  editAdvance(id: number, advanceData: Advance) {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, advanceData).pipe(
+      map((res) => {
+        return res;
+      })
     );
   }
 
-  // Method to create a new advance record
-  advancePost(advance: Advance): Observable<Advance> {
-    return this.http.post<Advance>(this.baseUrl, advance).pipe(
-      catchError(this.handleError) // Basic error handling
+  deleteAdvance(id: number) {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`).pipe(
+      map((res) => {
+        return res;
+      })
     );
-  }
-
-  // Method to delete an advance record
-  deleteAdvance(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`).pipe(
-      catchError(this.handleError) // Basic error handling
-    );
-  }
-
-  // Error handling logic
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An unknown error occurred!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.error(errorMessage);
-    return throwError(errorMessage);
   }
 }

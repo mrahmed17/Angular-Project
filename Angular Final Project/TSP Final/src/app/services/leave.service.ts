@@ -18,7 +18,7 @@ export class LeaveService {
     );
   }
 
-  getAllLeaves() {
+  getAllLeave() {
     return this.http.get<any>(this.baseUrl).pipe(
       map((res) => {
         return res;

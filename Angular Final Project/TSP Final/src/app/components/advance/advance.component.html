@@ -1,3 +1,103 @@
+<!-- <div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <div class="row">
+                    <div class="col-6 text-white">
+                        Advance Details
+                    </div>
+                    <div class="col-6 text-right">
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Employee Name</th>
+                            <th>Amount</th>
+                            <th>AdvanceDate</th>
+                            <th>Reason</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of advance">
+                            <td>{{row.id}}</td>
+                            <td>{{row.employee?.name}}</td>
+                            <td>{{row.amount}}</td>
+                            <td>{{row.date}}</td>
+                            <td>{{row.reason}}</td>
+
+
+                            <td>
+                                <button class="btn btn-warning mx-1" (click)="onEdit(row)">Update</button>
+                                <button class="btn btn-danger mx-1" (click)="deleteAdvance(row.id)">Delete</button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <div class="row">
+                    <div class="col-6 text-white">
+                        Add Bonus
+                    </div>
+                    <div class="col-6 text-right">
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="advanceForm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="department">Name:</label>
+                            <select id="department" formControlName="employee">
+                                <option *ngFor="let empBonus of employees" [ngValue]="empBonus">{{empBonus.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="name">Amount</label>
+                            <input type="text" class="form-control" formControlName="amount">
+                        </div>
+                        <div class="col-6">
+                            <label for="name">AdvanceTakingDate</label>
+                            <input type="date" class="form-control" formControlName="date">
+                        </div>
+                        <div class="col-6">
+                            <label for="name">Reason</label>
+                            <textarea class="form-control" formControlName="reason"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4 text-center pt-3">
+                            <button class="btn btn-secondary btn-sm" (click)=" resetForm()">Reset</button>
+                        </div>
+                        <div class="col-4 text-center pt-3">
+                            <button class="btn btn-success btn-sm" (click)="onSubmit()">Save</button>
+                        </div>
+                        <div class="col-4 text-center pt-3">
+                            <button class="btn btn-warning btn-sm " (click)="updateAdvance()">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,46 +124,42 @@
 
 <body>
   <div class="container">
-    <!-- Add Advance Form -->
+    <!-- Add Bonus Form -->
     <div class="card form-container">
       <div class="card-header bg-primary">
-        <h5 class="card-title text-white mb-0">Add Advance</h5>
+        <h5 class="card-title text-white mb-0">Add Bonus</h5>
       </div>
       <div class="card-body">
         <form [formGroup]="advanceForm">
-          <!-- Employee Selection -->
+          <!-- Form content -->
           <div class="form-group">
-            <label for="employee">Employee Name:</label>
-            <select id="employee" formControlName="employee" class="form-control">
-              <option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</option>
+            <label for="department">Name:</label>
+            <select id="department" formControlName="employee" class="form-control">
+              <option *ngFor="let empBonus of employees" [ngValue]="empBonus">{{empBonus.name }}</option>
             </select>
           </div>
-          <!-- Amount Input -->
           <div class="form-group">
             <label for="amount">Amount:</label>
-            <input type="number" id="amount" class="form-control" formControlName="amount">
+            <input type="text" class="form-control" formControlName="amount">
           </div>
-          <!-- Date Input -->
           <div class="form-group">
             <label for="date">Advance Date:</label>
-            <input type="date" id="date" class="form-control" formControlName="date">
+            <input type="date" class="form-control" formControlName="date">
           </div>
-          <!-- Reason Input -->
           <div class="form-group">
             <label for="reason">Reason:</label>
-            <textarea id="reason" class="form-control" formControlName="reason" rows="3"></textarea>
+            <textarea class="form-control" formControlName="reason" rows="3"></textarea>
           </div>
-          <!-- Form Buttons -->
+          <!-- Buttons -->
           <div class="text-center">
-            <button class="btn btn-secondary mr-2" type="button" (click)="resetForm()">Reset</button>
-            <button class="btn btn-success" type="button" (click)="onSubmit()">Save</button>
-            <button class="btn btn-warning ml-2" type="button" *ngIf="selectedAdvanceId" (click)="updateAdvance()">Update</button>
+            <button class="btn btn-secondary mr-2" (click)="resetForm()">Reset</button>
+            <button class="btn btn-success" (click)="onSubmit()">Save</button>
           </div>
         </form>
       </div>
     </div>
 
-    <!-- Advance Details Table -->
+    <!-- Advance Details -->
     <div class="card mt-4">
       <div class="card-header bg-primary">
         <h5 class="card-title text-white mb-0">Advance Details</h5>
@@ -83,13 +179,13 @@
           <tbody>
             <!-- Iterate over advance data to populate table rows -->
             <tr *ngFor="let row of advance">
-              <td>{{ row.id }}</td>
-              <td>{{ row.employee.name }}</td>
-              <td>{{ row.amount }}</td>
-              <td>{{ row.date | date: 'yyyy-MM-dd' }}</td> <!-- Format date -->
-              <td>{{ row.reason }}</td>
+              <td>{{row.id}}</td>
+              <td>{{row.employee?.name}}</td>
+              <td>{{row.amount}}</td>
+              <td>{{row.date}}</td>
+              <td>{{row.reason}}</td>
               <td>
-                <button class="btn btn-warning mx-1" (click)="onEdit(row)">Edit</button>
+                <button class="btn btn-warning mx-1" (click)="onEdit(row)">Update</button>
                 <button class="btn btn-danger mx-1" (click)="deleteAdvance(row.id)">Delete</button>
               </td>
             </tr>

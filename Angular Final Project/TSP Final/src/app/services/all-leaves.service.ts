@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 })
 export class AllLeavesService {
   constructor(private http: HttpClient) {}
-  baseUrl: string = 'http://localhost:3000/leave';
+  baseUrl: string = 'http://localhost:3000/allleave';
   getAll() {
     return this.http.get<any>(this.baseUrl).pipe(
       map((res) => {

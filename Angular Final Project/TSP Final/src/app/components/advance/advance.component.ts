@@ -5,17 +5,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 import { AdvanceService } from '../../services/advance.service';
 
+
 @Component({
   selector: 'app-advance',
   templateUrl: './advance.component.html',
-  styleUrls: ['./advance.component.css'],
+  styleUrl: './advance.component.css',
 })
 export class AdvanceComponent implements OnInit {
   advance: Advance[] = [];
   employees: EmployeeModel[] = [];
   advanceForm!: FormGroup;
   advanceModel: Advance = new Advance();
-  selectedAdvanceId: number | null = null;
+  selectedEmployeeId: number | null = null;
 
   constructor(
     private employeeService: EmployeeService,
@@ -23,12 +24,14 @@ export class AdvanceComponent implements OnInit {
     private advanceService: AdvanceService
   ) {}
 
+  //This method use for loading function or loading method
   ngOnInit(): void {
     this.loadAdvance();
     this.initAdvanceForm();
     this.loadEmployees();
   }
 
+  //Basically i want to see employee  in my advance .thats why i need this
   private loadEmployees() {
     this.employeeService.getAllEmployee().subscribe(
       (data) => (this.employees = data),
@@ -39,34 +42,33 @@ export class AdvanceComponent implements OnInit {
   private loadAdvance() {
     this.advanceService.getAllAdvance().subscribe(
       (data) => (this.advance = data),
-      (error) => console.error('Error fetching advances', error)
+      (error) => console.error('Error fetching employees', error)
     );
   }
 
+  //This method is working for creating form or showing form
   private initAdvanceForm() {
     this.advanceForm = this.formBuilder.group({
       employee: ['', Validators.required],
-      amount: ['', Validators.required],
-      reason: ['', Validators.required],
-      // date: [new Date().toISOString(), Validators.required], // Auto-set to current date and time
+      amount: [''],
+      reason: [''],
+      date: [''],
     });
   }
-  
 
+  //This method for savind advance
   onSubmit() {
     if (this.advanceForm.valid) {
-      this.advanceModel = {
-        ...this.advanceForm.value,
-        employee: this.employees.find(emp => emp.id === this.advanceForm.value.employee),
-        date: this.advanceForm.value.date || new Date().toISOString(), // Ensure date is set to the current date/time
-      };
-  
+      this.advanceModel.employee = this.advanceForm.value.employee;
+      this.advanceModel.amount = this.advanceForm.value.amount;
+      this.advanceModel.reason = this.advanceForm.value.reason;
+      this.advanceModel.date = this.advanceForm.value.date;
+      console.log(this.advanceModel);
       this.advanceService.advancePost(this.advanceModel).subscribe({
         next: (res) => {
           alert('Advance saved');
           console.log(res);
           this.loadAdvance();
-          this.resetForm(); // Reset the form after saving
         },
         error: (err) => {
           alert('Data not saved');
@@ -75,55 +77,15 @@ export class AdvanceComponent implements OnInit {
       });
     }
   }
-  
-
-  onEdit(row: Advance) {
-    this.selectedAdvanceId = row.id;
-  
-    // Ensure the date is properly formatted and handle undefined
-    const formattedDate = row.date ? new Date(row.date).toISOString().split('T')[0] : '';
-  
-    this.advanceForm.patchValue({
-      employee: row.employee?.id,
-      amount: row.amount,
-      reason: row.reason,
-      date: formattedDate, // Use the formatted date
-    });
-  }
-  
-
-  updateAdvance() {
-    if (this.selectedAdvanceId !== null && this.advanceForm.valid) {
-      const updatedAdvance: Advance = {
-        id: this.selectedAdvanceId,
-        ...this.advanceForm.value,
-        employee: this.employees.find(emp => emp.id === this.advanceForm.value.employee),
-      };
-
-      this.advanceService.updateAdvance(this.selectedAdvanceId, updatedAdvance).subscribe(
-        (response: Advance) => {  // Specify type for 'response'
-          console.log('Advance updated successfully', response);
-          this.loadAdvance();
-          this.resetForm();
-        },
-        (error: any) => {  // Specify type for 'error'
-          console.error('Error updating advance', error);
-          alert('Error updating advance. Please try again.');
-        }
-      );
-    } else {
-      console.error('No advance selected for update or form is invalid');
-    }
-  }
 
   deleteAdvance(id: number) {
     if (confirm('Are you sure you want to delete this advance?')) {
       this.advanceService.deleteAdvance(id).subscribe(
         (response) => {
           console.log('Advance deleted successfully', response);
-          this.loadAdvance();
+          this.loadEmployees(); // Refresh the list of employees after deletion
         },
-        (error: any) => {  // Specify type for 'error'
+        (error) => {
           console.error('Error deleting advance', error);
           alert('Error deleting advance. Please try again.');
         }
@@ -131,9 +93,51 @@ export class AdvanceComponent implements OnInit {
     }
   }
 
+  onEdit(row: Advance) {
+    // Populate the form fields with the selected employee's data
+    this.selectedEmployeeId = row.id; // Set the selected employee ID
+    this.advanceForm.patchValue({
+      name: row.employee?.name,
+      amount: row.amount,
+      reason: row.reason,
+      date: row.date,
+    });
+  }
+
+  updateAdvance() {
+    if (this.selectedEmployeeId !== null) {
+      const advanceData: EmployeeModel = this.advanceForm.value;
+      this.employeeService
+        .editEmployee(this.selectedEmployeeId, advanceData)
+        .subscribe(
+          (response) => {
+            console.log('Advance updated successfully', response);
+            this.loadEmployees();
+            this.loadAdvance(); // Refresh the list of employees after update
+            this.advanceForm.reset(); // Reset the form
+            this.selectedEmployeeId = null; // Reset the selected employee ID
+          },
+          (error) => {
+            console.error('Error updating advance', error);
+            if (error.error instanceof ErrorEvent) {
+              // Client-side error
+              console.error('An error occurred:', error.error.message);
+            } else {
+              // Server-side error
+              console.error(
+                `Backend returned code ${error.status}, body was: ${error.error}`
+              );
+            }
+            alert('Error updating advance. Please try again.');
+          }
+        );
+    } else {
+      console.error('No employee selected for update');
+    }
+  }
+
   resetForm() {
-    this.advanceForm.reset();
-    this.selectedAdvanceId = null;
-    this.advanceForm.markAsPristine(); // Reset form validation state
+    this.advanceForm.reset(); // Reset the form fields to their initial empty state
+    this.selectedEmployeeId = null; // Reset the selected employee ID
   }
 }

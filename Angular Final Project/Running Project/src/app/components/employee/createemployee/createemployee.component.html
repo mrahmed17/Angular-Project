@@ -91,7 +91,10 @@
 
         <div class="form-group">
           <label for="department">Department</label>
-          <input id="department" formControlName="department" class="form-control" />
+          <select class="form-control" formControlName="department">
+            <option *ngFor="let department of departments" [ngValue]="department">{{ department.deptName }}
+            </option>
+          </select>
           <div
             *ngIf="employeeForm.get('department')?.invalid && (employeeForm.get('department')?.touched || employeeForm.get('department')?.dirty)"
             class="text-danger">
@@ -101,7 +104,10 @@
 
         <div class="form-group">
           <label for="managerId">Manager ID</label>
-          <input id="managerId" formControlName="managerId" class="form-control" />
+          <select class="form-control" formControlName="manager">
+            <option *ngFor="let manager of managers" [ngValue]="manager">{{ manager.managerId }}
+            </option>
+          </select>
           <div
             *ngIf="employeeForm.get('managerId')?.invalid && (employeeForm.get('managerId')?.touched || employeeForm.get('managerId')?.dirty)"
             class="text-danger">
@@ -124,29 +130,6 @@
           <select id="payrollCalculationMethod" formControlName="payrollCalculationMethod" class="form-control">
             <option value="Weekly">Weekly</option>
             <option value="Monthly">Monthly</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="overtimeExemption">Overtime Exemption</label>
-          <input id="overtimeExemption" formControlName="overtimeExemption" type="checkbox" />
-        </div>
-
-        <div class="form-group">
-          <label for="lastLogin">Last Login</label>
-          <input id="lastLogin" formControlName="lastLogin" type="date" class="form-control" />
-          <div
-            *ngIf="employeeForm.get('lastLogin')?.invalid && (employeeForm.get('lastLogin')?.touched || employeeForm.get('lastLogin')?.dirty)"
-            class="text-danger">
-            Last Login is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="status">Status</label>
-          <select id="status" formControlName="status" class="form-control">
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
           </select>
         </div>
 
@@ -178,4 +161,66 @@
       Creating employee...
     </div>
   </form>
-</div>
+
+
+  <!-- Table Section -->
+
+
+  <div class="container mt-4">
+    <h1 class="text-center">Employee List</h1>
+
+    <!-- Display loading indicator -->
+    <div *ngIf="loading" class="loading-spinner text-center">
+      <p>Loading employees...</p>
+    </div>
+
+    <!-- Display error message -->
+    <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <!-- Employees Table list -->
+    <div *ngIf="!loading && !errorMessage">
+      <div class="row mt-2">
+        <div class="col">
+          <table class="table table-bordered table-striped" *ngFor="let employee of employees">
+            <thead class="text-center">
+              <tr>
+                <th>Photo</th>
+                <th>ID</th>
+                <th>Employee Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>Joining Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Loop through employees data -->
+
+              <tr *ngFor="let employee of employees">
+                <td><img *ngIf="employee.profilePhoto" [src]="employee.profilePhoto" alt="Profile Photo"></td>
+                <td>{{employee.id}}</td>
+                <td>{{employee.fullName}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.contactNumber}}</td>
+                <td>{{employee.department?.deptName}}</td>
+                <td>{{employee.gender}}</td>
+                <td>{{employee.salary}}</td>
+                <td>{{employee.joiningDate}}</td>
+
+                <td class="d-flex justify-content-between mt-3">
+                  <button class="btn btn-info btn-sm" (click)="viewEmployee(employee.id)">View</button>
+                  <button class="btn btn-warning btn-sm" (click)="editEmployee(employee.id)">Edit</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+        </div>
+      </div>
+    </div>
+  </div>
