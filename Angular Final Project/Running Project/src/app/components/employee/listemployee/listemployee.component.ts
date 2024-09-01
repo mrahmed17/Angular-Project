@@ -1,65 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 import { EmployeeService } from '../../../services/employee.service';
-import { DepartmentService } from '../../../services/department.service';
-import { ManagerService } from '../../../services/manager.service';
 import { EmployeeModel } from '../../../models/employee.model';
 
 @Component({
   selector: 'app-listemployee',
   templateUrl: './listemployee.component.html',
-  styleUrls: ['./listemployee.component.css'],
+  styleUrls: ['./listemployee.component.css']
 })
 export class ListemployeeComponent implements OnInit {
-  employees$!: Observable<EmployeeModel[]>;
-  departments: any[] = [];
-  managers: any[] = [];
+  employees: EmployeeModel[] = [];
 
-  constructor(
-    private employeeService: EmployeeService,
-    private departmentService: DepartmentService,
-    private managerService: ManagerService
-  ) {}
+  constructor(private employeeService: EmployeeService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadEmployeeData();
+    this.loadEmployees();
   }
 
-  loadEmployeeData(): void {
-    forkJoin({
-      employees: this.employeeService.getAllEmployees(),
-      departments: this.departmentService.getAllDepartments(),
-      managers: this.managerService.getAllManagers(),
-    }).subscribe(({ employees, departments, managers }) => {
-      this.departments = departments;
-      this.managers = managers;
-      this.employees$ = this.transformEmployees(employees);
-    });
-  }
-
-  transformEmployees(employees: EmployeeModel[]): Observable<EmployeeModel[]> {
-    return new Observable((subscriber) => {
-      const transformed = employees.map((employee) => ({
-        ...employee,
-        departmentName: this.getDepartmentName(employee.departmentId),
-        managerName: this.getManagerName(employee.managerId),
-      }));
-      subscriber.next(transformed);
-      subscriber.complete();
-    });
-  }
-
-  getDepartmentName(departmentId: string): string {
-    return (
-      this.departments.find((d) => d.id === departmentId)?.name || 'Unknown'
+  loadEmployees(): void {
+    this.employeeService.getEmployees().subscribe(
+      (data) => {
+        this.employees = data;
+      },
+      (error) => {
+        console.error('Error loading employees:', error);
+      }
     );
   }
 
-  getManagerName(managerId: string): string {
-    return this.managers.find((m) => m.id === managerId)?.fullName || 'Unknown';
+  editEmployee(id: string): void {
+    this.router.navigate(['/employees/edit', id]);
   }
 
-  deleteEmployee(employeeId: string): void {
-    // Add your delete logic here
+  deleteEmployee(id: string): void {
+    if (confirm('Are you sure you want to delete this employee?')) {
+      this.employeeService.deleteEmployee(id).subscribe(
+        () => {
+          this.employees = this.employees.filter((employee) => employee.id !== id);
+          console.log('Employee deleted successfully.');
+        },
+        (error) => {
+          console.error('Error deleting employee:', error);
+        }
+      );
+    }
+  }
+
+  viewEmployee(id: string): void {
+    this.router.navigate(['/employees/view', id]);
+  }
+
+  goBack(): void {
+    this.router.navigate(['/']); // Navigate to the home page or wherever you want to go back
   }
 }
