@@ -1,3 +1,49 @@
+<div class="container">
+  <form [formGroup]="viewEmployeeForm">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="department">Select Department</label>
+          <select id="department" formControlName="departmentId" class="form-control">
+            <option value="">-- Select Department --</option>
+            <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped mt-3">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Hire Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.username }}</td>
+            <td>{{ employee.fullName }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.contactNumber }}</td>
+            <td>{{ employee.hireDate | date: 'short' }}</td>
+            <td>{{ employee.status ? 'Active' : 'Inactive' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
 <!-- <div *ngIf="errorMessage" class="alert alert-danger text-center">
   {{ errorMessage }}
 </div>
