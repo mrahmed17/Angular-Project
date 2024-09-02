@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h2>Attendance List</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Employee ID</th>
+        <th>Clock In Time</th>
+        <th>Clock Out Time</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let attendance of attendances; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ attendance.employeeId }}</td>
+        <td>{{ attendance.clockInTime | date:'short' }}</td>
+        <td>{{ attendance.clockOutTime | date:'short' }}</td>
+        <td>{{ attendance.status }}</td>
+        <td>
+          <button class="btn btn-info mx-1" (click)="onView(attendance.id)">View</button>
+          <button class="btn btn-warning mx-1" (click)="onEdit(attendance.id)">Edit</button>
+          <button class="btn btn-danger mx-1" (click)="onDelete(attendance.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

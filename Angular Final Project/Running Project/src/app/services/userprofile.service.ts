@@ -26,6 +26,11 @@ export class UserprofileService {
     return of(null); // Return an observable with null if userId is not available
   }
 
+  updateUserProfile(user: UserModel): Observable<UserModel> {
+    localStorage.setItem('userProfile', JSON.stringify(user));
+    return this.http.put<UserModel>(`${this.apiUrl}/${user.id}`, user);
+  }
+  
   // UserprofileService
   // getUserProfile(): Observable<UserModel | null> {
   //   const userId = this.authService.getUserId();
@@ -38,9 +43,4 @@ export class UserprofileService {
   // getUserProfile(): Observable<UserModel | null> {
   //   return of(this.authService.getUserProfileFromStorage());
   // }
-
-  updateUserProfile(user: UserModel): Observable<UserModel> {
-    localStorage.setItem('userProfile', JSON.stringify(user));
-    return this.http.put<UserModel>(`${this.apiUrl}/${user.id}`, user);
-  }
 }

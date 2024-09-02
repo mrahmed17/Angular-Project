@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 class="text-center mb-4">Attendance Details</h1>
+
+  <!-- Display loading indicator -->
+  <div *ngIf="loading" class="loading-spinner text-center">
+    <p>Loading attendance details...</p>
+  </div>
+
+  <!-- Display error message -->
+  <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div class="container mt-4">
+    <h2>Attendance Records</h2>
+
+    <table *ngIf="attendances.length > 0" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Clock In Time</th>
+          <th>Clock Out Time</th>
+          <th>Total Hours</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attendance of attendances">
+          <td>{{ attendance.id }}</td>
+          <td>{{ attendance.clockInTime }}</td>
+          <td>{{ attendance.clockOutTime }}</td>
+          <td>{{ attendance.totalHours || 'N/A' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary mt-3" (click)="backToList()">Back to Attendance List</button>
+  </div>
+</div>

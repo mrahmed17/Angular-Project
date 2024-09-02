@@ -1,0 +1,47 @@
+/* Container */
+.container {
+  padding: 2rem;
+}
+
+/* Card */
+.performance-card {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn-sm {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 1rem;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .card-body {
+    padding: 1rem;
+  }
+}

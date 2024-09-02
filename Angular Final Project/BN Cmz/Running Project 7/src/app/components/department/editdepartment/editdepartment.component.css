@@ -1,0 +1,34 @@
+.edit-department-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875em;
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.form-actions .btn {
+  margin-right: 10px;
+}

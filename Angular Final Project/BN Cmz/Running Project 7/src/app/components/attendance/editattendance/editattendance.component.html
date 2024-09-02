@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 class="text-center mb-4">Edit Attendance Record</h1>
+
+  <!-- Display loading indicator -->
+  <div *ngIf="loading" class="loading-spinner text-center">
+    <p>Loading attendance details...</p>
+  </div>
+
+  <!-- Display error message -->
+  <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Attendance Edit Form -->
+  <form [formGroup]="editAttendanceForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="employeeId">Employee ID</label>
+          <input type="text" id="employeeId" formControlName="employeeId" class="form-control" [attr.disabled]="true" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="managerId">Manager ID</label>
+          <input type="text" id="managerId" formControlName="managerId" class="form-control" [attr.disabled]="true" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="clockInTime">Clock In Time</label>
+          <input type="datetime-local" id="clockInTime" formControlName="clockInTime" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="clockOutTime">Clock Out Time</label>
+          <input type="datetime-local" id="clockOutTime" formControlName="clockOutTime" class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

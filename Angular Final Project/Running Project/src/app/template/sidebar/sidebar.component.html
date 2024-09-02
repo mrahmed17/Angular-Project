@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+  <ng-container *ngIf="userRole === 'Admin'">
   <!-- Sidebar -->
   <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
@@ -20,13 +20,8 @@
             Dashboard
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="#">
-            <span data-feather="user"></span>
-            Profile
-          </a>
-        </li>
 
+        
         <!-- Admins Dropdown -->
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="adminsDropdown" role="button" data-bs-toggle="dropdown"
@@ -159,9 +154,16 @@
 
         <!-- Authentication -->
         <li class="nav-item">
-          <a class="nav-link" routerLink="/register">
+          <a class="nav-link" routerLink="/userprofile">
+            <span data-feather="user"></span>
+            Profile
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/createprofille">
             <span data-feather="user-plus"></span>
-            Register User
+            Create Profile
           </a>
         </li>
         <li class="nav-item">
@@ -176,12 +178,12 @@
             Logout
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/unauthorized">
             <span data-feather="alert-circle"></span>
             Unauthorized
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </nav>
@@ -191,7 +193,7 @@
   <script>
     feather.replace()
   </script>
-
+        </ng-container>
 </body>
 
 </html>
