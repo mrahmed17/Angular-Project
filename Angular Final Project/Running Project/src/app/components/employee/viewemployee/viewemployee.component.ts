@@ -1,45 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
-import { DepartmentService } from '../../../services/department.service';
 import { EmployeeModel } from '../../../models/employee.model';
-import { DepartmentModel } from '../../../models/department.model';
-import { ActivatedRoute } from '@angular/router';
+import { DepartmentService } from '../../../services/department.service'; // Ensure you have this service to get department data
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-viewemployee',
   templateUrl: './viewemployee.component.html',
-  styleUrls: ['./viewemployee.component.css'],
+  styleUrls: ['./viewemployee.component.css']
 })
-export class ViewemployeeComponent
-{
-  // implements OnInit {
-  // errorMessage: string | null = null;
-  // loading: boolean = false;
-  // employee: EmployeeModel | null = null;
+export class ViewemployeeComponent implements OnInit {
+  departments: any[] = []; // Adjust this type according to your department model
+  employees: EmployeeModel[] = [];
+  viewEmployeeForm!: FormGroup;
 
-  // constructor(
-  //   private employeeService: EmployeeService,
-  //   private route: ActivatedRoute
-  // ) {}
+  constructor(
+    private fb: FormBuilder,
+    private employeeService: EmployeeService,
+    private departmentService: DepartmentService
+  ) {}
 
-  // ngOnInit(): void {
-  //   this.loading = true;
-  //   const departmentId = this.route.snapshot.paramMap.get('id');
-  //   if (departmentId) {
-  //     this.employeeService.getEmployeesByDepartment(departmentId).subscribe({
-  //       next: (employees) => {
-  //         this.loading = false;
-  //         this.employee = employees.length > 0 ? employees[0] : null;
-  //       },
-  //       error: (err) => {
-  //         this.loading = false;
-  //         this.errorMessage = 'Could not load employee data';
-  //       },
-  //     });
-  //   }
-  // }
+  ngOnInit(): void {
+    // Initialize the form
+    this.viewEmployeeForm = this.fb.group({
+      departmentId: ['']
+    });
 
-  // goBack(): void {
-  //   window.history.back();
-  // }
+    // Load departments on component initialization
+    this.loadDepartments();
+
+    // Load employees when department changes
+    this.viewEmployeeForm.get('departmentId')?.valueChanges.subscribe((departmentId) => {
+      if (departmentId) {
+        this.loadEmployees(departmentId);
+      } else {
+        this.employees = [];
+      }
+    });
+  }
+
+  // Load all departments
+  loadDepartments(): void {
+    this.departmentService.getAllDepartments().subscribe((departments) => {
+      this.departments = departments;
+    });
+  }
+
+  // Load employees based on selected department
+  loadEmployees(departmentId: string): void {
+    this.employeeService.getEmployeesByDepartment(departmentId).subscribe((employees) => {
+      this.employees = employees;
+    });
+  }
 }
