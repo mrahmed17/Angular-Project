@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
 import { EmployeeModel } from '../../../models/employee.model';
-import { DepartmentService } from '../../../services/department.service'; // Ensure you have this service to get department data
+import { DepartmentService } from '../../../services/department.service'; 
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({

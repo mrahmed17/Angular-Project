@@ -23,6 +23,14 @@
       "password": "123456",
       "role": "User",
       "profilePhoto": "https://media.istockphoto.com/id/1346124841/photo/successful-construction-site-worker-thinking.jpg?s=1024x1024&w=is&k=20&c=4SvUvVZDP5JOS7lXFUc05CLyZZQcTGD_kSopYBqsbxc="
+    },
+    {
+      "id": "aadb",
+      "name": "Md. Raju Ahmed",
+      "email": "raju@gmail.com",
+      "password": "123456",
+      "role": "User",
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY="
     }
   ],
   "users": [
@@ -390,6 +398,66 @@
       "yearlySickDay": 5,
       "totalPay": 7450,
       "payDate": "2024-09-02T00:00:00.000Z"
+    },
+    {
+      "id": "584",
+      "employeeId": "raju1996",
+      "managerId": "rizvi-4750",
+      "hourlyRate": 500,
+      "performanceBonuses": 500,
+      "insurance": 3000,
+      "medicare": 5000,
+      "deductions": 9010,
+      "overtimeHours": 4,
+      "overtimeRate": 750,
+      "yearlySickDay": 10,
+      "totalPay": 11490,
+      "payDate": "2024-09-02T00:00:00.000Z"
+    },
+    {
+      "id": "4512",
+      "employeeId": "EMP2XGZT1AZ5",
+      "managerId": "raju-4054",
+      "hourlyRate": 500,
+      "performanceBonuses": 500,
+      "insurance": 3000,
+      "medicare": 500,
+      "deductions": 4000,
+      "overtimeHours": 4,
+      "overtimeRate": 750,
+      "yearlySickDay": 5,
+      "totalPay": 16500,
+      "payDate": "2024-09-02T00:00:00.000Z"
+    },
+    {
+      "id": "12132",
+      "employeeId": "EMP2XGZT1AZ5",
+      "managerId": "raju-4054",
+      "hourlyRate": 250,
+      "performanceBonuses": 250,
+      "insurance": 3000,
+      "medicare": 1000,
+      "deductions": 5000,
+      "overtimeHours": 4,
+      "overtimeRate": 500,
+      "yearlySickDay": 0,
+      "totalPay": 5250,
+      "payDate": "2024-09-02T00:00:00.000Z"
+    },
+    {
+      "id": "RS5",
+      "employeeId": "raju1996-9374",
+      "managerId": "raju-4054",
+      "hourlyRate": 250,
+      "performanceBonuses": 1000,
+      "insurance": 3000,
+      "medicare": 5000,
+      "deductions": 9000,
+      "overtimeHours": 4,
+      "overtimeRate": 5000,
+      "yearlySickDay": 5,
+      "totalPay": 2000,
+      "payDate": "2024-09-02T12:39:41.188Z"
     }
   ],
   "performances": [

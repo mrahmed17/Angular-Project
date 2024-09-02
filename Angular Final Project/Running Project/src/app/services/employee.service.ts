@@ -10,11 +10,19 @@ import { EmployeeModel } from '../models/employee.model';
 export class EmployeeService {
   private apiUrl: string = 'http://localhost:3000/employees';
   private departmentApiUrl: string = 'https://localhost:3000/departments'; // Assuming you have a departments endpoint
+
+  
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
+
+  // Method to generate a unique adminId
+  private generateEmployeeId(username: string): string {
+    const randomNumber = Math.floor(Math.random() * 10000); // Random number for uniqueness
+    return `${username}-${randomNumber}`;
+  }
 
   constructor(private http: HttpClient) {}
 

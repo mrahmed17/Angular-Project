@@ -1,72 +1,137 @@
-<div class="container">
-  <h1>Create Payroll</h1>
-
-  <div *ngIf="loading" class="loading-spinner">
-    <p>Creating payroll...</p>
-  </div>
-
-  <div *ngIf="errorMessage" class="error-message">
-    <p>{{ errorMessage }}</p>
-  </div>
-
+<div class="container mt-5">
+  <h2>Create Payroll</h2>
   <form [formGroup]="payrollForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="employeeId">Employee ID</label>
-      <input id="employeeId" formControlName="employeeId" class="form-control" />
+    <div class="row">
+      <!-- Payroll ID -->
+      <div class="form-group col-md-6">
+        <label for="id">Payroll ID</label>
+        <input type="text" id="id" formControlName="id" class="form-control" placeholder="Enter Payroll ID" />
+        <div *ngIf="payrollForm.get('id')?.invalid && payrollForm.get('id')?.touched" class="text-danger">
+          Payroll ID is required.
+        </div>
+      </div>
+
+      <!-- Employee ID Dropdown -->
+      <div class="form-group col-md-6">
+        <label for="employeeId">Employee</label>
+        <select id="employeeId" formControlName="employeeId" class="form-control"
+          (change)="onEmployeeOrManagerSelect()">
+          <option value="">Select Employee</option>
+          <option *ngFor="let employee of employees" [value]="employee.id">
+            {{ employee.fullName }}
+          </option>
+        </select>
+        <div *ngIf="payrollForm.get('employeeId')?.invalid && payrollForm.get('employeeId')?.touched"
+          class="text-danger">
+          Employee ID is required.
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="managerId">Manager ID</label>
-      <input id="managerId" formControlName="managerId" class="form-control" />
+    <div class="row">
+      <!-- Manager ID Dropdown -->
+      <div class="form-group col-md-6">
+        <label for="managerId">Manager</label>
+        <select id="managerId" formControlName="managerId" class="form-control" (change)="onEmployeeOrManagerSelect()">
+          <option value="">Select Manager</option>
+          <option *ngFor="let manager of managers" [value]="manager.id">
+            {{ manager.fullName }}
+          </option>
+        </select>
+        <div *ngIf="payrollForm.get('managerId')?.invalid && payrollForm.get('managerId')?.touched" class="text-danger">
+          Manager ID is required.
+        </div>
+      </div>
+
+      <!-- Hourly Rate -->
+      <div class="form-group col-md-6">
+        <label for="hourlyRate">Hourly Rate</label>
+        <input type="number" id="hourlyRate" formControlName="hourlyRate" class="form-control" readonly />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="hourlyRate">Hourly Rate</label>
-      <input id="hourlyRate" type="number" formControlName="hourlyRate" class="form-control" />
+    <div class="row">
+      <!-- Performance Bonuses -->
+      <div class="form-group col-md-6">
+        <label for="performanceBonuses">Performance Bonuses</label>
+        <input type="number" id="performanceBonuses" formControlName="performanceBonuses" class="form-control"
+          placeholder="Enter Performance Bonuses" />
+      </div>
+
+      <!-- Medicare -->
+      <div class="form-group col-md-6">
+        <label for="medicare">Medicare</label>
+        <input type="number" id="medicare" formControlName="medicare" class="form-control"
+          placeholder="Enter Medicare" />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="performanceBonuses">Performance Bonuses</label>
-      <input id="performanceBonuses" type="number" formControlName="performanceBonuses" class="form-control" />
+    <div class="row">
+      <!-- Deductions -->
+      <div class="form-group col-md-6">
+        <label for="deductions">Deductions</label>
+        <input type="number" id="deductions" formControlName="deductions" class="form-control"
+          placeholder="Enter Deductions" />
+      </div>
+
+      <!-- Overtime Hours -->
+      <div class="form-group col-md-6">
+        <label for="overtimeHours">Overtime Hours</label>
+        <input type="number" id="overtimeHours" formControlName="overtimeHours" class="form-control"
+          placeholder="Enter Overtime Hours" />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="insurance">Insurance</label>
-      <input id="insurance" type="number" formControlName="insurance" class="form-control" />
+    <div class="row">
+      <!-- Overtime Rate -->
+      <div class="form-group col-md-6">
+        <label for="overtimeRate">Overtime Rate</label>
+        <input type="number" id="overtimeRate" formControlName="overtimeRate" class="form-control"
+          placeholder="Enter Overtime Rate" />
+      </div>
+
+      <!-- Yearly Sick Day -->
+      <div class="form-group col-md-6">
+        <label for="yearlySickDay">Yearly Sick Days</label>
+        <input type="number" id="yearlySickDay" formControlName="yearlySickDay" class="form-control"
+          placeholder="Enter Yearly Sick Days" />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="medicare">Medicare</label>
-      <input id="medicare" type="number" formControlName="medicare" class="form-control" />
+    <div class="row">
+      <!-- Pay Date -->
+      <div class="form-group col-md-6">
+        <label for="payDate">Pay Date</label>
+        <input type="date" id="payDate" formControlName="payDate" class="form-control" readonly />
+      </div>
+
+      <!-- Total Pay -->
+      <div class="form-group col-md-6">
+        <label for="totalPay">Total Pay</label>
+        <input type="number" id="totalPay" formControlName="totalPay" class="form-control" readonly />
+      </div>
     </div>
 
+    <!-- Submit Button -->
     <div class="form-group">
-      <label for="deductions">Deductions</label>
-      <input id="deductions" type="number" formControlName="deductions" class="form-control" />
+      <button type="submit" class="btn btn-primary" [disabled]="loading || payrollForm.invalid">
+        {{ loading ? 'Saving...' : 'Save Payroll' }}
+      </button>
+
+      <!-- Reset Button -->
+      <button type="button" class="btn btn-secondary ml-2" (click)="resetForm()">
+        Reset
+      </button>
+
+      <!-- Cancel Button -->
+      <button type="button" class="btn btn-danger ml-2" (click)="cancel()">
+        Cancel
+      </button>
     </div>
 
-    <div class="form-group">
-      <label for="overtimeHours">Overtime Hours</label>
-      <input id="overtimeHours" type="number" formControlName="overtimeHours" class="form-control" />
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+      {{ errorMessage }}
     </div>
-
-    <div class="form-group">
-      <label for="overtimeRate">Overtime Rate</label>
-      <input id="overtimeRate" type="number" formControlName="overtimeRate" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="yearlySickDay">Yearly Sick Day</label>
-      <input id="yearlySickDay" type="number" formControlName="yearlySickDay" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="payDate">Pay Date</label>
-      <input id="payDate" type="date" formControlName="payDate" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create Payroll</button>
-    <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
-    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
   </form>
 </div>
