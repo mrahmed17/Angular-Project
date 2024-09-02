@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../../services/employee.service';
 import { EmployeeModel } from '../../../models/employee.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-createemployee',
@@ -42,15 +44,17 @@ export class CreateemployeeComponent implements OnInit {
         updatedAt: new Date(), // Same as createdAt initially
         id: this.generateEmployeeId(), // Manually generated ID
       };
-
+      console.log('Form Submitted', this.employeeForm.value);
       this.employeeService.createEmployee(newEmployee).subscribe(
         () => {
-          this.router.navigate(['/employees']); // Redirect after successful creation
+          this.router.navigate(['/employees/list']); // Redirect after successful creation
         },
         (error) => {
           console.error('Error creating employee:', error);
         }
       );
+    } else {
+      console.log('Form is invalid');
     }
   }
 
@@ -71,5 +75,17 @@ export class CreateemployeeComponent implements OnInit {
       status: true,
       hourlyRate: 250,
     });
+  }
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Client-side error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Server-side error: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error('Error details:', error); // Log the full error details
+    return throwError(errorMessage);
   }
 }

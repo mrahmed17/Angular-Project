@@ -8,7 +8,7 @@ import { EmployeeModel } from '../models/employee.model';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private apiUrl: string = 'https://localhost:3000/employees';
+  private apiUrl: string = 'http://localhost:3000/employees';
   private departmentApiUrl: string = 'https://localhost:3000/departments'; // Assuming you have a departments endpoint
   private httpOptions = {
     headers: new HttpHeaders({

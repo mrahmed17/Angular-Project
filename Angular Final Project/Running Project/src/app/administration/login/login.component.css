@@ -1,4 +1,4 @@
-body {
+/* .container {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
@@ -7,17 +7,29 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 200%;
+  overflow: hidden;
+} */
+ 
+.container {
+  font-family: 'Roboto', sans-serif;
+  background-color: #e3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 1200px;
   overflow: hidden;
 }
 
 
-.container {
-  background:linear-gradient(120deg, #48dfe2, #da566c);
+.loginForm {
+  background:linear-gradient(120deg, #a9e2e3, #ebb0ba);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 100%;
-  max-width: 400px;
-  padding: 20px;
+  max-width: 500px;
+  padding: 50px;
 }
 
 .container h2 {
@@ -75,6 +87,7 @@ body {
 
 .text-decoration-none {
   text-decoration: none;
+  color: #fff;
 }
 
 .text-decoration-none:hover {

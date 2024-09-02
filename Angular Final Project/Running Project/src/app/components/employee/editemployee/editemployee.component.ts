@@ -75,7 +75,7 @@ export class EditemployeeComponent implements OnInit {
         .updateEmployee(this.employeeId, updatedEmployee)
         .subscribe(
           () => {
-            this.router.navigate(['/employees']); // Redirect after successful update
+            this.router.navigate(['/employees/list']); // Redirect after successful update
           },
           (error) => {
             console.error('Error updating employee:', error);
