@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Payroll Details</h1>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Loading payroll details...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+
+  <div *ngIf="payroll && !loading && !errorMessage" class="card payroll-details-card">
+    <div class="card-header text-center">
+      <h5 class="card-title">Payroll for Employee ID: {{ payroll.employeeId }}</h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><strong>Manager ID:</strong> {{ payroll.managerId }}</p>
+      <p class="card-text"><strong>Hourly Rate:</strong> {{ payroll.hourlyRate | currency }}</p>
+      <p class="card-text"><strong>Performance Bonuses:</strong> {{ payroll.performanceBonuses | currency }}</p>
+      <p class="card-text"><strong>Medicare:</strong> {{ payroll.medicare | currency }}</p>
+      <p class="card-text"><strong>Deductions:</strong> {{ payroll.deductions | currency }}</p>
+      <p class="card-text"><strong>Overtime Hours:</strong> {{ payroll.overtimeHours }}</p>
+      <p class="card-text"><strong>Overtime Rate:</strong> {{ payroll.overtimeRate | currency }}</p>
+      <p class="card-text"><strong>Yearly Sick Day:</strong> {{ payroll.yearlySickDay }}</p>
+      <p class="card-text"><strong>Total Pay:</strong> {{ payroll.totalPay | currency }}</p>
+      <p class="card-text"><strong>Pay Date:</strong> {{ payroll.payDate | date }}</p>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" (click)="editPayroll()">Edit</button>
+        <button class="btn btn-secondary" (click)="backToList()">Back to List</button>
+      </div>
+    </div>
+  </div>
+</div>
