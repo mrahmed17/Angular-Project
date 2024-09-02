@@ -7,24 +7,24 @@ import { EmployeeModel } from '../../../models/employee.model';
 @Component({
   selector: 'app-editemployee',
   templateUrl: './editemployee.component.html',
-  styleUrls: ['./editemployee.component.css']
+  styleUrls: ['./editemployee.component.css'],
 })
 export class EditemployeeComponent implements OnInit {
   employeeForm!: FormGroup;
   employeeId!: string;
-  employee!: EmployeeModel;
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
-    private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.employeeId = this.route.snapshot.paramMap.get('id')!;
-    this.loadEmployee();
+    // Get employeeId from route parameters
+    this.employeeId = this.route.snapshot.paramMap.get('id') || '';
 
+    // Initialize form
     this.employeeForm = this.fb.group({
       username: ['', Validators.required],
       fullName: ['', Validators.required],
@@ -33,63 +33,58 @@ export class EditemployeeComponent implements OnInit {
       contactNumber: ['', Validators.required],
       departmentId: ['', Validators.required],
       managerId: ['', Validators.required],
-      hireDate: [{ value: '', disabled: true }],
+      hireDate: ['', Validators.required],
       status: [true],
       hourlyRate: [250, Validators.required],
-      createdAt: [{ value: '', disabled: true }],
-      updatedAt: [{ value: new Date().toISOString(), disabled: true }],
-      updateStatus: ['']
+      createdAt: [{ value: new Date().toISOString(), readonly: true }],
+      updatedAt: [{ value: new Date().toISOString(), readonly: true }],
     });
+
+    // Fetch employee details
+    this.loadEmployee();
   }
 
   loadEmployee(): void {
-    this.employeeService.getEmployeeById(this.employeeId).subscribe(
-      (employee) => {
-        this.employee = employee;
-        this.employeeForm.patchValue({
-          username: employee.username,
-          fullName: employee.fullName,
-          email: employee.email,
-          address: employee.address,
-          contactNumber: employee.contactNumber,
-          departmentId: employee.departmentId,
-          managerId: employee.managerId,
-          hireDate: employee.hireDate.toISOString().substring(0, 16),
-          status: employee.status,
-          hourlyRate: employee.hourlyRate,
-          createdAt: employee.createdAt.toISOString(),
-          updatedAt: new Date().toISOString(),
-          updateStatus: employee.updateStatus
-        });
-      },
-      (error) => {
-        console.error('Error loading employee:', error);
-      }
-    );
+    if (this.employeeId) {
+      this.employeeService.getEmployeeById(this.employeeId).subscribe(
+        (employee: EmployeeModel) => {
+          this.employeeForm.patchValue({
+            ...employee,
+            hireDate: employee.hireDate
+              ? new Date(employee.hireDate).toISOString().substring(0, 16)
+              : '',
+            createdAt: new Date(employee.createdAt).toISOString(),
+            updatedAt: new Date(employee.updatedAt).toISOString(),
+          });
+        },
+        (error) => {
+          console.error('Error fetching employee details:', error);
+        }
+      );
+    }
   }
 
   onSubmit(): void {
     if (this.employeeForm.valid) {
       const updatedEmployee: EmployeeModel = {
         ...this.employeeForm.value,
-        id: this.employeeId,
-        hireDate: new Date(this.employeeForm.get('hireDate')!.value),
-        createdAt: this.employee.createdAt,
-        updatedAt: new Date()
+        updatedAt: new Date(), // Set updatedAt to current date/time
       };
 
-      this.employeeService.updateEmployee(this.employeeId, updatedEmployee).subscribe(
-        () => {
-          this.router.navigate(['/employees']);
-        },
-        (error) => {
-          console.error('Error updating employee:', error);
-        }
-      );
+      this.employeeService
+        .updateEmployee(this.employeeId, updatedEmployee)
+        .subscribe(
+          () => {
+            this.router.navigate(['/employees']); // Redirect after successful update
+          },
+          (error) => {
+            console.error('Error updating employee:', error);
+          }
+        );
     }
   }
 
-  cancel(): void {
-    this.router.navigate(['/employees']);
+  resetForm(): void {
+    this.loadEmployee(); // Reload employee data to reset form
   }
 }

@@ -8,56 +8,58 @@ import { PerformanceModel } from '../../../models/performance.model';
   templateUrl: './listperformance.component.html',
   styleUrls: ['./listperformance.component.css'],
 })
-export class ListperformanceComponent implements OnInit {
-  performances: PerformanceModel[] = [];
-  loading = true;
-  errorMessage: string | null = null;
+export class ListperformanceComponent {
+  
+  // implements OnInit {
+  // performances: PerformanceModel[] = [];
+  // loading = true;
+  // errorMessage: string | null = null;
 
-  constructor(
-    private performanceService: PerformanceService,
-    private router: Router
-  ) {}
+  // constructor(
+  //   private performanceService: PerformanceService,
+  //   private router: Router
+  // ) {}
 
-  ngOnInit(): void {
-    this.loadPerformances();
-  }
+  // ngOnInit(): void {
+  //   this.loadPerformances();
+  // }
 
-  loadPerformances(): void {
-    this.performanceService.getAllPerformance().subscribe({
-      next: (data) => {
-        this.performances = data;
-        this.loading = false;
-      },
-      error: (error) => {
-        this.errorMessage = 'Failed to load performance records.';
-        console.error('Error loading performance records', error);
-        this.loading = false;
-      },
-    });
-  }
+  // loadPerformances(): void {
+  //   this.performanceService.getAllPerformance().subscribe({
+  //     next: (data) => {
+  //       this.performances = data;
+  //       this.loading = false;
+  //     },
+  //     error: (error) => {
+  //       this.errorMessage = 'Failed to load performance records.';
+  //       console.error('Error loading performance records', error);
+  //       this.loading = false;
+  //     },
+  //   });
+  // }
 
-  viewPerformance(id: string): void {
-    this.router.navigate([`/performances/view/${id}`]);
-  }
+  // viewPerformance(id: string): void {
+  //   this.router.navigate([`/performances/view/${id}`]);
+  // }
 
-  editPerformance(id: string): void {
-    this.router.navigate([`/performances/edit/${id}`]);
-  }
+  // editPerformance(id: string): void {
+  //   this.router.navigate([`/performances/edit/${id}`]);
+  // }
 
-  deletePerformance(id: string): void {
-    if (confirm('Are you sure you want to delete this performance record?')) {
-      this.performanceService.deletePerformance(id).subscribe({
-        next: () => {
-          this.performances = this.performances.filter(
-            (performance) => performance.id !== id
-          );
-          alert('Performance record deleted successfully');
-        },
-        error: (error) => {
-          this.errorMessage = 'Failed to delete performance record.';
-          console.error('Error deleting performance record', error);
-        },
-      });
-    }
-  }
+  // deletePerformance(id: string): void {
+  //   if (confirm('Are you sure you want to delete this performance record?')) {
+  //     this.performanceService.deletePerformance(id).subscribe({
+  //       next: () => {
+  //         this.performances = this.performances.filter(
+  //           (performance) => performance.id !== id
+  //         );
+  //         alert('Performance record deleted successfully');
+  //       },
+  //       error: (error) => {
+  //         this.errorMessage = 'Failed to delete performance record.';
+  //         console.error('Error deleting performance record', error);
+  //       },
+  //     });
+  //   }
+  // }
 }

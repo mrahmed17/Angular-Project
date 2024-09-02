@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 
 * {
   margin: 0px;
@@ -8,7 +8,7 @@
 
 body {
   background: #02024e;
-}
+} */
 
 /* 
 #logo {
@@ -107,7 +107,7 @@ body {
   background: #fff;
 } */
 
-.portfolio .card {
+/* .portfolio .card {
   box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -129,16 +129,16 @@ ul :hover {
 
 #copyright {
   font-size: small;
-}
+} */
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* .carousel-caption {
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .carousel-caption {
     bottom: 100px;
   }
 
   .carousel-caption p {
     width: 100%;
-  } */
+  }
 
   .card {
     margin-bottom: 30px;
@@ -147,10 +147,10 @@ ul :hover {
   .img-area img {
     width: 100%;
   }
-}
-
+} */
+/* 
 @media only screen and (max-width: 767px) {
-  /* .navbar-nav {
+  .navbar-nav {
     text-align: center;
   }
 
@@ -162,13 +162,13 @@ ul :hover {
     font-size: 25px;
     color: crimson;
     font-weight: bold;
-  } */
+  }
 
   h6 {
     font-size: 15px;
   }
 
-  /* .carousel-caption a {
+  .carousel-caption a {
     padding: 8px 15px;
     font-size: 15px;
   }
@@ -177,7 +177,7 @@ ul :hover {
     width: 100%;
     line-height: 1.6;
     font-size: 12px;
-  } */
+  }
 
   .about-text {
     padding-top: 50px;
@@ -186,4 +186,4 @@ ul :hover {
   .card {
     margin-bottom: 30px;
   }
-}
+} */

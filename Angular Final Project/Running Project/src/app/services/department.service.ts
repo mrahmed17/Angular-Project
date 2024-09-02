@@ -10,9 +10,9 @@ import { ManagerModel } from '../models/manager.model'; // Updated import
   providedIn: 'root',
 })
 export class DepartmentService {
-  private apiUrl = 'http://localhost:3000/departments'; // Base URL for departments API
-  private locationUrl = 'http://localhost:3000/locations'; // Base URL for locations API
-  private managerUrl = 'http://localhost:3000/managers'; // Base URL for managers API
+  private apiUrl: string = 'http://localhost:3000/departments'; // Base URL for departments API
+  private locationUrl: string = 'http://localhost:3000/locations'; // Base URL for locations API
+  private managerUrl: string = 'http://localhost:3000/managers'; // Base URL for managers API
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' }); // Headers for JSON requests
 
   constructor(private httpClient: HttpClient) {}

@@ -1,121 +1,170 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { AdminModel } from '../models/admin.model';
-import { ManagerModel } from '../models/manager.model';
-import { EmployeeModel } from '../models/employee.model';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { UserModel } from '../models/user.model';
 import { AuthResponseModel } from '../models/auth-response.model';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl: string = 'http://localhost:3000/users';
-  private tokenKey = 'authToken'; // Key to store token in localStorage
+  private apiUrl: string = 'http://localhost:3000/user';
+  private currentUserSubject: BehaviorSubject<UserModel | null>;
+  public currentUser$: Observable<UserModel | null>;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object // Injecting PLATFORM_ID to check if it's browser
+  ) {
+    const storedUser = this.isBrowser()
+      ? JSON.parse(localStorage.getItem('currentUser') || 'null')
+      : null;
+    this.currentUserSubject = new BehaviorSubject<UserModel | null>(storedUser);
+    this.currentUser$ = this.currentUserSubject.asObservable();
+  }
 
-  // Method to login and obtain an authentication token
-  login(identifier: string, password: string): Observable<AuthResponseModel> {
-    return this.http
-      .get<(AdminModel | ManagerModel | EmployeeModel)[]>(this.apiUrl)
-      .pipe(
-        map((users) => {
-          const user = users.find(
-            (u) =>
-              (u.email === identifier ||
-                u.username === identifier ||
-                u.id === identifier) &&
-              (u as any).password === password // Ensure the 'password' field is in the models
-          );
+  // Get the current user ID
+  getUserId(): string | null {
+    return this.currentUserValue?.id || null;
+  }
 
-          if (user) {
-            const token = this.generateToken(user);
-            const authResponse: AuthResponseModel = new AuthResponseModel(
-              token,
-              3600, // Example expiration time in seconds
-              new Date(),
-              user.role as 'Admin' | 'Manager' | 'Employee'
-            );
-            this.storeToken(authResponse.token);
+  // Check if the platform is a browser
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  // Registers a new user
+  registration(user: UserModel): Observable<AuthResponseModel> {
+    return this.http.post<UserModel>(this.apiUrl, user).pipe(
+      map((newUser: UserModel) => {
+        const token = btoa(`${newUser.email}${newUser.password}`);
+        return { token, user: newUser } as AuthResponseModel;
+      }),
+      catchError((error) => {
+        console.error('Registration error:', error);
+        throw error;
+        return throwError(() => new Error('Registration failed'));
+      })
+    );
+  }
+
+  // Logs in a user
+  login(credentials: {
+    email: string;
+    password: string;
+  }): Observable<AuthResponseModel> {
+    let params = new HttpParams();
+    params = params.append('email', credentials.email);
+
+    return this.http.get<UserModel[]>(`${this.apiUrl}`, { params }).pipe(
+      map((users) => {
+        if (users.length > 0) {
+          const user = users[0];
+          if (user.password === credentials.password) {
+            const token = btoa(`${user.email}:${user.password}`);
+            this.storeToken(token);
             this.setCurrentUser(user);
-            return authResponse;
+            // this.storeUserProfile(user);
+            return { token, user } as AuthResponseModel;
           } else {
-            throw new Error('Invalid credentials');
+            throw new Error('Invalid password');
           }
-        }),
-        catchError((error) => {
-          console.error('Login error:', error);
-          return throwError(
-            () => new Error('Failed to login. Please check your credentials.')
-          );
-        })
-      );
+        } else {
+          throw new Error('User not found');
+        }
+      }),
+
+      catchError((error) => {
+        console.error('Login error:', error);
+        throw error;
+      })
+    );
+  }
+
+  // Gets the current user value
+  public get currentUserValue(): UserModel | null {
+    return this.currentUserSubject.value;
   }
 
   // Logs out the current user
   logout(): void {
     this.clearCurrentUser();
-    localStorage.removeItem(this.tokenKey);
+    if (this.isBrowser()) {
+      localStorage.removeItem('token');
+    }
+    // localStorage.removeItem('token'); //no need
   }
 
-  // Check if a user is authenticated
+  // Sets the current user and stores in localStorage
+  private setCurrentUser(user: UserModel): void {
+    if (this.isBrowser()) {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+    this.currentUserSubject.next(user);
+  }
+
+  // Clears the current user from localStorage
+  private clearCurrentUser(): void {
+    if (this.isBrowser()) {
+      localStorage.removeItem('currentUser');
+    }
+    this.currentUserSubject.next(null);
+  }
+
+  // Checks if the user is authenticated
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
 
   // Retrieves the token from localStorage
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return this.isBrowser() ? localStorage.getItem('token') : null;
+  }
+
+  // Retrieves the user role
+  getUserRole(): any {
+    return this.currentUserValue?.role;
   }
 
   // Stores the token in localStorage
-  private storeToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+  storeToken(token: string): void {
+    if (this.isBrowser()) {
+      localStorage.setItem('token', token);
+    }
   }
 
-  // Sets the current user and stores in localStorage
-  private setCurrentUser(
-    user: AdminModel | ManagerModel | EmployeeModel
-  ): void {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  // Method by Sir
+  // storeToken(token: string): void {
+  //   localStorage.setItem('token', token);
+  // }
+
+  // Stores the user profile in localStorage
+  storeUserProfile(user: UserModel): void {
+    if (this.isBrowser()) {
+      localStorage.setItem('userProfile', JSON.stringify(user));
+    }
   }
 
-  // Clears the current user from localStorage
-  private clearCurrentUser(): void {
-    localStorage.removeItem('currentUser');
+  // Retrieves the user profile from localStorage
+  getUserProfileFromStorage(): UserModel | null {
+    if (this.isBrowser()) {
+      const userProfile = localStorage.getItem('userProfile');
+      console.log('User Profile is: ', userProfile);
+      return userProfile ? JSON.parse(userProfile) : null;
+    }
+    return null;
   }
 
-  requestPasswordReset(email: string): Observable<void> {
-    return this.http
-      .post<void>(`${this.apiUrl}/forgot-password`, { email })
-      .pipe(catchError(this.handleError));
+  forgetPassword(email: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/forgetpassword`, { email });
   }
 
-  // Generates a token (for educational purposes)
-  private generateToken(
-    user: AdminModel | ManagerModel | EmployeeModel
-  ): string {
-    return btoa(JSON.stringify({ id: user.id, role: user.role }));
-  }
-
-  // Retrieves the current user from localStorage
-  getCurrentUser(): AdminModel | ManagerModel | EmployeeModel | null {
-    const user = localStorage.getItem('currentUser');
-    return user ? JSON.parse(user) : null;
-  }
-
-  // Retrieves the user ID from the current user
-  getUserId(): string | null {
-    const user = this.getCurrentUser();
-    return user ? user.id : null;
-  }
-
-  private handleError(error: any): Observable<never> {
-    console.error('An error occurred:', error);
-    return throwError(
-      () => new Error('An error occurred while processing the request.')
-    );
+  // Clears all user details from localStorage
+  removeUserDetails() {
+    if (this.isBrowser()) {
+      localStorage.clear();
+    }
   }
 }

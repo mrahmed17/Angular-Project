@@ -18,7 +18,7 @@ export class ListemployeeComponent implements OnInit {
   }
 
   loadEmployees(): void {
-    this.employeeService.getEmployees().subscribe(
+    this.employeeService.getAllEmployees().subscribe(
       (data) => {
         this.employees = data;
       },

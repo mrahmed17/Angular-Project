@@ -66,8 +66,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  { path: 'forgetpassword', component: ForgetpasswordComponent }, // Add this path for the Forget Password functionality
-
+  { path: 'forgetpassword', component: ForgetpasswordComponent },
   {
     path: 'employees',
     children: [
@@ -75,7 +74,7 @@ const routes: Routes = [
         path: 'create',
         component: CreateemployeeComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: 'Admin' },
+        data: { role: 'Admin' }
       },
       {
         path: 'view/:id',

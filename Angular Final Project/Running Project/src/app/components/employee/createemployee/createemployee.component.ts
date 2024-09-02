@@ -7,7 +7,7 @@ import { EmployeeModel } from '../../../models/employee.model';
 @Component({
   selector: 'app-createemployee',
   templateUrl: './createemployee.component.html',
-  styleUrls: ['./createemployee.component.css']
+  styleUrls: ['./createemployee.component.css'],
 })
 export class CreateemployeeComponent implements OnInit {
   employeeForm!: FormGroup;
@@ -27,12 +27,10 @@ export class CreateemployeeComponent implements OnInit {
       contactNumber: ['', Validators.required],
       departmentId: ['', Validators.required],
       managerId: ['', Validators.required],
-      hireDate: [{ value: new Date().toISOString().substring(0, 16), disabled: true }],
+      hireDate: ['', Validators.required],
       status: [true],
       hourlyRate: [250, Validators.required],
-      createdAt: [{ value: new Date().toISOString(), disabled: true }],
-      updatedAt: [{ value: new Date().toISOString(), disabled: true }],
-      updateStatus: ['']
+      // createdAt and updateStatus fields will be handled programmatically
     });
   }
 
@@ -40,15 +38,14 @@ export class CreateemployeeComponent implements OnInit {
     if (this.employeeForm.valid) {
       const newEmployee: EmployeeModel = {
         ...this.employeeForm.value,
-        hireDate: new Date(),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        id: this.generateEmployeeId(),
+        createdAt: new Date(), // Auto-generated
+        updatedAt: new Date(), // Same as createdAt initially
+        id: this.generateEmployeeId(), // Manually generated ID
       };
 
       this.employeeService.createEmployee(newEmployee).subscribe(
         () => {
-          this.router.navigate(['/employees']);
+          this.router.navigate(['/employees']); // Redirect after successful creation
         },
         (error) => {
           console.error('Error creating employee:', error);
@@ -70,16 +67,9 @@ export class CreateemployeeComponent implements OnInit {
       contactNumber: '',
       departmentId: '',
       managerId: '',
-      hireDate: new Date().toISOString().substring(0, 16),
+      hireDate: '',
       status: true,
       hourlyRate: 250,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      updateStatus: ''
     });
-  }
-
-  cancel(): void {
-    this.router.navigate(['/employees']);
   }
 }

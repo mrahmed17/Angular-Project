@@ -1,4 +1,22 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "name": "Md. Raju Ahmed",
+      "email": "raju@gmail.com",
+      "password": "123456",
+      "role": "Admin",
+      "profilePhoto": "https://media.istockphoto.com/id/1388912000/photo/smiling-adult-businessman-making-an-advertisement-for-his-company.jpg?s=1024x1024&w=is&k=20&c=1XLMSctfkZ-DkhSEteFYWDLrjgUJPG7i5cQ03peVEdQ="
+    },
+    {
+      "id": "73b4",
+      "name": "Tamim Ahmed Raju",
+      "email": "tamim@gmail.com",
+      "password": "123456",
+      "role": "User",
+      "profilePhoto": "https://media.istockphoto.com/id/1346124841/photo/successful-construction-site-worker-thinking.jpg?s=1024x1024&w=is&k=20&c=4SvUvVZDP5JOS7lXFUc05CLyZZQcTGD_kSopYBqsbxc="
+    }
+  ],
   "locations": [
     {
       "id": "2b59",
@@ -109,10 +127,10 @@
       "hourlyRate": "450"
     },
     {
-      "id": "traju-2836",
-      "username": "traju",
+      "id": "traj-2836",
+      "username": "traj",
       "fullName": "Tamim Ahmed Raju",
-      "email": "traju@gmail.com",
+      "email": "traj@gmail.com",
       "contactNumber": "01620500786",
       "role": "Admin",
       "gender": "Male",
@@ -131,7 +149,7 @@
   ],
   "attendances": [
     {
-      "id": "",
+      "id": "123",
       "userId": "tamim-2773",
       "firstName": "Md Raju",
       "lastName": "Ahmed",
@@ -144,7 +162,7 @@
       "totalHours": 0
     },
     {
-      "id": "",
+      "id": "234",
       "userId": "tamim-2773",
       "firstName": "Md Raju",
       "lastName": "Ahmed",
@@ -157,8 +175,35 @@
       "totalHours": 0
     }
   ],
-  "users": [],
-  "departments": [],
+  "departments": [
+    {
+      "id": "1da4",
+      "name": "JAVA59",
+      "phoneNumber": "01620000786",
+      "email": "raju@gmail.com",
+      "locationId": "2b59",
+      "managerId": "tamim-4750",
+      "numberOfEmployees": 50
+    },
+    {
+      "id": "a863",
+      "name": "C#",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "ac39",
+      "managerId": "rizvi-4610",
+      "numberOfEmployees": 40
+    },
+    {
+      "id": "435f",
+      "name": "NT",
+      "phoneNumber": "01620050786",
+      "email": "tamim@gmail.com",
+      "locationId": "8932",
+      "managerId": "raju-4054",
+      "numberOfEmployees": 45
+    }
+  ],
   "employees": [
     {
       "id": "raju1996-9374",
@@ -339,20 +384,19 @@
       "payDate": "2024-08-30T00:00:00.000Z"
     },
     {
+      "id": "6564",
       "employeeId": "tamim1996-6787",
-      "managerId": "tamim-4750",
-      "hourlyRate": 500,
-      "performanceBonuses": 5000,
+      "managerId": "raju-4054",
+      "hourlyRate": 250,
+      "performanceBonuses": 1000,
       "insurance": 3000,
-      "medicare": 455,
-      "deductions": 488,
+      "medicare": 500,
+      "deductions": 3550,
       "overtimeHours": 4,
-      "overtimeRate": 750,
-      "yearlySickDay": 1,
-      "totalPay": 24512,
-      "payDate": "2024-08-31",
-      "editAt": "2024-08-31T04:19:10.530Z",
-      "id": "35"
+      "overtimeRate": 374,
+      "yearlySickDay": 5,
+      "totalPay": 7450,
+      "payDate": "2024-09-02T00:00:00.000Z"
     }
   ],
   "performances": [
@@ -377,6 +421,17 @@
       "rating": 5,
       "comments": "Keep it up buddy.",
       "bonusPercentage": 10
+    },
+    {
+      "id": "232d",
+      "employeeId": "tamim1996-6787",
+      "managerId": "tamim-4750",
+      "goals": true,
+      "achievements": "Yes",
+      "reviewDate": "2024-09-01T18:38:12.759Z",
+      "rating": 5,
+      "comments": "asfsadf",
+      "bonusPercentage": 75
     }
   ]
 }

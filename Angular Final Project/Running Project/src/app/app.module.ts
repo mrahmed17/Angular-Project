@@ -12,7 +12,6 @@ import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
 import { HomeComponent } from './template/home/home.component';
 import { NotificationComponent } from './template/notification/notification.component';
-import { LayoutComponent } from './template/layout/layout.component';
 import { ErrorComponent } from './errorhandling/error/error.component';
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
 import { CreatelocationComponent } from './components/location/createlocation/createlocation.component';
@@ -58,17 +57,23 @@ import { CreateperformanceComponent } from './components/performance/createperfo
 import { EditperformanceComponent } from './components/performance/editperformance/editperformance.component';
 import { ListperformanceComponent } from './components/performance/listperformance/listperformance.component';
 import { ViewperformanceComponent } from './components/performance/viewperformance/viewperformance.component';
+import { UserprofileComponent } from './administration/userprofile/userprofile.component';
+import { CreateprofileComponent } from './administration/createprofile/createprofile.component';
+import { LoginComponent } from './administration/login/login.component';
+import { LogoutComponent } from './administration/logout/logout.component';
+import { DashboardComponent } from './template/dashboard/dashboard.component';
+import { ForgetpasswordComponent } from './administration/forgetpassword/forgetpassword.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     BreadcrumbComponent,
     SidebarComponent,
     FooterComponent,
     HeaderComponent,
     HomeComponent,
     NotificationComponent,
-    LayoutComponent,
     ErrorComponent,
     NotfoundComponent,
     CreatelocationComponent,
@@ -107,6 +112,12 @@ import { ViewperformanceComponent } from './components/performance/viewperforman
     EditperformanceComponent,
     ListperformanceComponent,
     ViewperformanceComponent,
+    UserprofileComponent,
+    CreateprofileComponent,
+    LoginComponent,
+    LogoutComponent,
+    DashboardComponent,
+    ForgetpasswordComponent,
   ],
   imports: [
     BrowserModule,

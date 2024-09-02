@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
         role: ['Employee', Validators.required], // Default role is 'Employee'
         position: [''], // Optional field for the position
         salary: [''], // Optional field for the salary
-        joiningDate: [''], // Optional field for the joining date
+        joiningDate: [''], //  Optional field for the joining date
         gender: ['Male'], // Default gender
         contactNumber: [''],
         departmentId: [''],

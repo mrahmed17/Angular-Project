@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { AuthResponse } from '../models/auth-response';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { AuthResponse } from '../models/auth-response';
 import { UserModel } from '../models/user.model';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -165,6 +165,7 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+  
   // Retrieves the token from localStorage
   getToken(): string | null {
     return this.isBrowser() ? localStorage.getItem('token') : null;

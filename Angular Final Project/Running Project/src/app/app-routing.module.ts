@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './template/home/home.component';
-import { LayoutComponent } from './template/layout/layout.component';
+
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
 import { CreatelocationComponent } from './components/location/createlocation/createlocation.component';
 import { EditlocationComponent } from './components/location/editlocation/editlocation.component';
-import { ViewlocationComponent } from './components/location/viewlocation/viewlocation.component'; // Assuming you have this component
+import { ViewlocationComponent } from './components/location/viewlocation/viewlocation.component';
 import { ListlocationComponent } from './components/location/listlocation/listlocation.component';
 import { CreateadminComponent } from './components/admin/createadmin/createadmin.component';
 import { EditadminComponent } from './components/admin/editadmin/editadmin.component';
@@ -39,16 +39,53 @@ import { CreateperformanceComponent } from './components/performance/createperfo
 import { EditperformanceComponent } from './components/performance/editperformance/editperformance.component';
 import { ViewperformanceComponent } from './components/performance/viewperformance/viewperformance.component';
 import { ListperformanceComponent } from './components/performance/listperformance/listperformance.component';
+import { LoginComponent } from './administration/login/login.component';
+import { SidebarComponent } from './template/sidebar/sidebar.component';
+import { LogoutComponent } from './administration/logout/logout.component';
+import { CreateprofileComponent } from './administration/createprofile/createprofile.component';
+import { AuthGuard } from './administration/guard/authguard.guard';
+import { RoleGuard } from './administration/guard/role.guard';
+import { UserprofileComponent } from './administration/userprofile/userprofile.component';
+import { DashboardComponent } from './template/dashboard/dashboard.component';
+import { ForgetpasswordComponent } from './administration/forgetpassword/forgetpassword.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'home', component: HomeComponent },
   {
-    path: 'layout',
-    component: LayoutComponent,
+    path: 'register',
+    component: CreateprofileComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: 'Admin' },
   },
   {
+    path: 'userprofile',
+    component: UserprofileComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: ['Admin', 'User'] },
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'sidebar',
+    component: SidebarComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: ['Admin', 'User'] },
+  },
+  { path: 'forgetpassword', component: ForgetpasswordComponent },
+  {
     path: 'admins',
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: 'Admin' },
     children: [
       {
         path: 'create',
@@ -70,6 +107,8 @@ const routes: Routes = [
   },
   {
     path: 'managers',
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: 'Admin' },
     children: [
       {
         path: 'create',
@@ -91,6 +130,8 @@ const routes: Routes = [
   },
   {
     path: 'employees',
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: 'Admin' },
     children: [
       {
         path: 'create',
