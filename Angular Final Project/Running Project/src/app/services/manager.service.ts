@@ -13,57 +13,17 @@ export class ManagerService {
 
   // Method to generate a unique managerId
   private generateManagerId(username: string): string {
-    const randomNumber = Math.floor(Math.random() * 10000); // Random number for uniqueness
-    return `${username}-${randomNumber}`;
+    const randomNumber = Math.floor(1000 + Math.random() * 9000); // Random number for uniqueness
+    return `MNG-${username.toUpperCase()}-${randomNumber}`;
   }
 
-  // Method to create a new manager and save it to db.json
-  createManager(
-    username: string,
-    fullName: string,
-    email: string,
-    contactNumber: string,
-    gender: 'Male' | 'Female' | 'Other',
-    age: string,
-    nidNo: number,
-    department: string,
-    assignedEmployees: string[],
-    hireDate: Date,
-    payrollCalculationMethod: 'Weekly' | 'Monthly',
-    lastLogin: Date,
-    status: 'active' | 'inactive',
-    hourlyRate: number,
-    profilePhoto?: string
-  ): Observable<ManagerModel> {
-    const managerId = this.generateManagerId(username);
-    const currentDate = new Date();
-    const newManager = new ManagerModel(
-      managerId,
-      username,
-      fullName,
-      email,
-      contactNumber,
-      'Manager',
-      gender,
-      age,
-      nidNo,
-      department,
-      assignedEmployees,
-      hireDate,
-      payrollCalculationMethod,
-      lastLogin,
-      status,
-      hourlyRate,
-      currentDate,
-      currentDate,
-      profilePhoto
-    );
-
-    // Save the new manager to db.json
+  // Method to get all managers
+  getAllManagers(): Observable<ManagerModel[]> {
     return this.http
-      .post<ManagerModel>(this.apiUrl, newManager)
+      .get<ManagerModel[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
   }
+
 
   // Method to get manager by ID
   getManagerById(managerId: string): Observable<ManagerModel> {
@@ -88,13 +48,6 @@ export class ManagerService {
   deleteManager(managerId: string): Observable<void> {
     return this.http
       .delete<void>(`${this.apiUrl}/${managerId}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Method to get all managers
-  getAllManagers(): Observable<ManagerModel[]> {
-    return this.http
-      .get<ManagerModel[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
   }
 

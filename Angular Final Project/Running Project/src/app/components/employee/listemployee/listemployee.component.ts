@@ -51,6 +51,6 @@ export class ListemployeeComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/']); // Navigate to the home page or wherever you want to go back
+    this.router.navigate(['/employees/list']); // Navigate to the home page or wherever you want to go back
   }
 }

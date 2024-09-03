@@ -6,10 +6,8 @@ export class ManagerModel {
   contactNumber: string; // Contact number of the manager
   role: 'Manager'; // Role should be 'Manager'
   gender: 'Male' | 'Female' | 'Other'; // Gender of the manager
-  age: string; // Age of the manager (for verification purposes)
+  dateOfBirth: Date; // Age of the manager (for verification purposes)
   nidNo: number; // National ID number, must be provided and unique
-  department: string; // Department the manager is associated with
-  assignedEmployees: string[]; // List of employee IDs assigned to this manager
   profilePhoto?: string; // Optional profile photo of the manager
   hireDate: Date; // Date when the manager was hired
   payrollCalculationMethod: 'Weekly' | 'Monthly'; // Method of payroll calculation
@@ -27,10 +25,8 @@ export class ManagerModel {
     contactNumber: string,
     role: 'Manager',
     gender: 'Male' | 'Female' | 'Other',
-    age: string,
+    dateOfBirth: Date,
     nidNo: number,
-    department: string,
-    assignedEmployees: string[],
     hireDate: Date,
     payrollCalculationMethod: 'Weekly' | 'Monthly',
     lastLogin: Date,
@@ -47,10 +43,8 @@ export class ManagerModel {
     this.contactNumber = contactNumber;
     this.role = role;
     this.gender = gender;
-    this.age = age;
+    this.dateOfBirth = dateOfBirth;
     this.nidNo = nidNo;
-    this.department = department;
-    this.assignedEmployees = assignedEmployees;
     this.profilePhoto = profilePhoto;
     this.hireDate = hireDate;
     this.payrollCalculationMethod = payrollCalculationMethod;
@@ -71,17 +65,17 @@ export class ManagerModel {
     return `${this.fullName} (${this.email}) - Status: ${this.status}`;
   }
 
-  // Method to add an employee to the list of assigned employees
-  addEmployee(employeeId: string) {
-    if (!this.assignedEmployees.includes(employeeId)) {
-      this.assignedEmployees.push(employeeId);
-    }
-  }
+  // // Method to add an employee to the list of assigned employees
+  // addEmployee(employeeId: string) {
+  //   if (!this.assignedEmployees.includes(employeeId)) {
+  //     this.assignedEmployees.push(employeeId);
+  //   }
+  // }
 
-  // Method to remove an employee from the list of assigned employees
-  removeEmployee(employeeId: string) {
-    this.assignedEmployees = this.assignedEmployees.filter(
-      (id) => id !== employeeId
-    );
-  }
+  // // Method to remove an employee from the list of assigned employees
+  // removeEmployee(employeeId: string) {
+  //   this.assignedEmployees = this.assignedEmployees.filter(
+  //     (id) => id !== employeeId
+  //   );
+  // }
 }

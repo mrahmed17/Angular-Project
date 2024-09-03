@@ -1,36 +1,51 @@
-/* General Container Styles */
-.container {
+/* Container for the Form */
+.employee-form-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 20px;
 }
 
 /* Form Card Styles */
 .employee-form-card {
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-body {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  margin-bottom: 20px;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
+/* Form Group Styles */
+.employee-form-group {
+  margin-bottom: 20px;
 }
 
-.form-control {
+.employee-form-group label {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.employee-form-group .form-control {
   border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
 }
 
+/* Error Message Styles */
 .text-danger {
   font-size: 0.875rem;
+  margin-top: 5px;
 }
 
 /* Button Styles */
 .btn-primary {
   background-color: #007bff;
   border-color: #007bff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .btn-primary:hover {
@@ -41,6 +56,10 @@
 .btn-secondary {
   background-color: #6c757d;
   border-color: #6c757d;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .btn-secondary:hover {
@@ -48,22 +67,20 @@
   border-color: #545b62;
 }
 
-/* Form Buttons Container */
+/* Buttons Container */
 .form-buttons {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
-/* Loading Spinner Styles */
-.spinner-border {
-  width: 2rem;
-  height: 2rem;
-  border-width: 0.3em;
+.form-buttons .btn {
+  width: 48%;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .container {
+  .employee-form-container {
     padding: 10px;
   }
 
@@ -72,6 +89,7 @@
   }
 
   .form-buttons .btn {
+    width: 100%;
     margin-bottom: 10px;
   }
 }

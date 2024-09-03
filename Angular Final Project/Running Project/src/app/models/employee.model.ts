@@ -5,17 +5,14 @@ export class EmployeeModel {
   email!: string;
   address!: string;
   gender?: string;
-  age?: number;
+  dateOfBirth?: Date;
   nidNo?: string;
   contactNumber!: string;
   departmentId!: string;
   managerId!: string;
-  hireDate!: Date;
-  status!: boolean;
+  hireDate!: Date; //Creation date will be the hire date
+  status!: boolean; //Active or Inactive
   hourlyRate!: number;
-  createdAt!: Date;
-  updatedAt!: Date;
-  updateStatus!: string;
+  updatedAt!: Date; //For form editation.
   profilePhoto?: string;
-  department?: string;
 }

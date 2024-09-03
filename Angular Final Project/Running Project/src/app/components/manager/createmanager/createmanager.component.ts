@@ -23,14 +23,10 @@ export class CreatemanagerComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       contactNumber: ['', Validators.required],
       gender: ['Male', Validators.required],
-      age: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
       nidNo: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      department: ['', Validators.required],
-      assignedEmployees: [[]],
       hireDate: ['', Validators.required],
       payrollCalculationMethod: ['Monthly', Validators.required],
-      lastLogin: ['', Validators.required],
-      status: ['active', Validators.required],
       hourlyRate: [0, [Validators.required, Validators.min(0)]],
       profilePhoto: [''],
     });
@@ -51,14 +47,10 @@ export class CreatemanagerComponent implements OnInit {
         formValue.email,
         formValue.contactNumber,
         formValue.gender,
-        formValue.age,
+        formValue.dateOfBirth,
         formValue.nidNo,
-        formValue.department,
-        formValue.assignedEmployees,
         new Date(formValue.hireDate),
         formValue.payrollCalculationMethod,
-        new Date(formValue.lastLogin),
-        formValue.status,
         formValue.hourlyRate,
         formValue.profilePhoto
       )
@@ -72,6 +64,47 @@ export class CreatemanagerComponent implements OnInit {
         }
       );
   }
+
+  // // Method to create a new manager and save it to db.json
+  // createManager(
+  //   username: string,
+  //   fullName: string,
+  //   email: string,
+  //   contactNumber: string,
+  //   gender: 'Male' | 'Female' | 'Other',
+  //   dateOfBirth: Date,
+  //   nidNo: number,
+  //   hireDate: Date,
+  //   payrollCalculationMethod: 'Weekly' | 'Monthly',
+  //   hourlyRate: number,
+  //   profilePhoto?: string
+  // ): Observable<ManagerModel> {
+  //   const managerId = this.generateManagerId(username);
+  //   const currentDate = new Date();
+  //   const newManager = new ManagerModel(
+  //     managerId,
+  //     username,
+  //     fullName,
+  //     email,
+  //     contactNumber,
+  //     'Manager',
+  //     gender,
+  //     dateOfBirth,
+  //     nidNo,
+  //     hireDate,
+  //     payrollCalculationMethod,
+  //     hourlyRate,
+  //     currentDate,
+  //     currentDate,
+  //     currentDate,
+  //     profilePhoto
+  //   );
+
+  //   // Save the new manager to db.json
+  //   return this.http
+  //     .post<ManagerModel>(this.apiUrl, newManager)
+  //     .pipe(catchError(this.handleError));
+  // }
 
   resetForm(): void {
     this.managerForm.reset();

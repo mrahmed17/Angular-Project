@@ -202,40 +202,23 @@
   ],
   "employees": [
     {
-      "username": "raju1996",
-      "fullName": "Md. Raju Ahmed",
-      "email": "raju5@gmail.com",
-      "address": "4 Way Road, Lalbagh Kellah",
-      "contactNumber": "01600000789",
-      "departmentId": "JAVA59",
-      "managerId": "raju-4054",
-      "hireDate": "2024-01-16T00:00",
-      "status": "active",
-      "hourlyRate": 250,
-      "createdAt": "2024-08-30T16:55:42.929Z",
-      "updatedAt": "2024-09-02T07:16:54.198Z",
-      "id": "raju1996-9374"
-    },
-    {
-      "id": "EMP2XGZT1AZ5",
-      "username": "sanaullah",
-      "fullName": "Sanullah",
-      "email": "sanaullahtarget2030@gmail.com",
-      "address": "Dhanmondi",
-      "contactNumber": "01620000786",
-      "departmentId": "JAVA59",
+      "id": "EMP-TRAJ-6871",
+      "username": "traj",
+      "fullName": "Tamim Ahmed Raju",
+      "email": "traj@gmail.com",
+      "address": "Give you later",
+      "contactNumber": "1234564",
+      "departmentId": "65b9",
       "managerId": "tamim-4750",
-      "hireDate": "2024-09-02T13:16",
       "status": true,
-      "hourlyRate": 250,
-      "createdAt": "2024-09-02T07:16:30.001Z",
-      "updatedAt": "2024-09-02T07:16:30.001Z"
+      "createdAt": "2024-09-02T18:12:15.029Z",
+      "updatedAt": "2024-09-02T18:12:15.029Z"
     }
   ],
   "feedbacks": [
     {
       "id": "5242",
-      "employeeId": "raju1996-9374",
+      "employeeId": null,
       "managerId": "raju-4054",
       "performanceRating": 5,
       "comments": "Bhal hoye jao masud. Tumi kobe bhalo hoba amake ektu bolo to?",
@@ -356,7 +339,7 @@
   "payrolls": [
     {
       "id": "12",
-      "employeeId": "raju1996-9374",
+      "employeeId": null,
       "managerId": "raju-4054",
       "hourlyRate": 250,
       "performanceBonuses": 1000,
@@ -371,7 +354,7 @@
     },
     {
       "id": "22",
-      "employeeId": "raju1996-9374",
+      "employeeId": null,
       "managerId": "raju-4054",
       "hourlyRate": 250,
       "performanceBonuses": 1000,
@@ -416,7 +399,7 @@
     },
     {
       "id": "4512",
-      "employeeId": "EMP2XGZT1AZ5",
+      "employeeId": null,
       "managerId": "raju-4054",
       "hourlyRate": 500,
       "performanceBonuses": 500,
@@ -431,7 +414,7 @@
     },
     {
       "id": "12132",
-      "employeeId": "EMP2XGZT1AZ5",
+      "employeeId": null,
       "managerId": "raju-4054",
       "hourlyRate": 250,
       "performanceBonuses": 250,
@@ -446,7 +429,7 @@
     },
     {
       "id": "RS5",
-      "employeeId": "raju1996-9374",
+      "employeeId": null,
       "managerId": "raju-4054",
       "hourlyRate": 250,
       "performanceBonuses": 1000,
@@ -463,7 +446,7 @@
   "performances": [
     {
       "id": "d37c",
-      "employeeId": "raju1996-9374",
+      "employeeId": null,
       "managerId": "raju-4054",
       "goals": true,
       "achievements": "Very Good",

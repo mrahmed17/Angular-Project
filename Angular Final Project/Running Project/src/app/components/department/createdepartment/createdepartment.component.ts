@@ -38,7 +38,7 @@ export class CreatedepartmentComponent implements OnInit {
       phoneNumber: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       locationId: ['', [Validators.required]],
-      managerId: ['', [Validators.required]],
+      // managerId: ['', [Validators.required]],
       numberOfEmployees: [0, [Validators.required, Validators.min(0)]],
     });
 
@@ -78,6 +78,13 @@ export class CreatedepartmentComponent implements OnInit {
         )
         .subscribe();
     }
+  }
+
+  // Method to generate employee ID
+  generateDepartmentId(): string {
+    const name = this.departmentForm.get('name')?.value || '';
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    return `DEP-${name.toUpperCase()}-${randomNum}`;
   }
 
   resetForm(): void {
