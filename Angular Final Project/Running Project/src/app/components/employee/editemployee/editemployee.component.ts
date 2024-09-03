@@ -14,6 +14,8 @@ export class EditemployeeComponent implements OnInit {
   employeeForm!: FormGroup;
   employeeId!: string;
   departments: any[] = [];
+  submissionError: string | null = null;
+  loading = true;
 
   constructor(
     private fb: FormBuilder,
@@ -56,11 +58,13 @@ export class EditemployeeComponent implements OnInit {
     if (this.employeeId) {
       this.employeeService.getEmployeeById(this.employeeId).subscribe(
         (employee: EmployeeModel) => {
+          const hireDate = employee.hireDate
+            ? new Date(employee.hireDate).toISOString().substring(0, 16)
+            : '';
           this.employeeForm.patchValue({
             ...employee,
-            hireDate: employee.hireDate
-              ? new Date(employee.hireDate).toISOString().substring(0, 16)
-              : '',
+            hireDate: hireDate,
+            updatedAt: new Date(employee.updatedAt).toISOString(),
           });
         },
         (error) => {
@@ -98,6 +102,7 @@ export class EditemployeeComponent implements OnInit {
       const updatedEmployee: EmployeeModel = {
         ...this.employeeForm.value,
         updatedAt: new Date(), // Set updatedAt to current date/time
+        hireDate: new Date(this.employeeForm.value.hireDate), // Convert back to Date object
       };
 
       this.employeeService
@@ -107,6 +112,8 @@ export class EditemployeeComponent implements OnInit {
             this.router.navigate(['/employees/list']); // Redirect after successful update
           },
           (error) => {
+            this.submissionError =
+              'Failed to update manager. Please try again.';
             console.error('Error updating employee:', error);
           }
         );
@@ -115,6 +122,10 @@ export class EditemployeeComponent implements OnInit {
 
   resetForm(): void {
     this.loadEmployee(); // Reload employee data to reset form
+  }
+
+  cancel(): void {
+    this.router.navigate(['/managers/list']);
   }
 }
 

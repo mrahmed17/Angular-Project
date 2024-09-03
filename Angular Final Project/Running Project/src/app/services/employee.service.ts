@@ -9,20 +9,13 @@ import { EmployeeModel } from '../models/employee.model';
 })
 export class EmployeeService {
   private apiUrl: string = 'http://localhost:3000/employees';
-  private departmentApiUrl: string = 'https://localhost:3000/departments'; // Assuming you have a departments endpoint
+  private departmentApiUrl: string = 'https://localhost:3000/departments';
 
-  
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
-
-  // Method to generate a unique adminId
-  private generateEmployeeId(username: string): string {
-    const randomNumber = Math.floor(Math.random() * 10000); // Random number for uniqueness
-    return `${username}-${randomNumber}`;
-  }
 
   constructor(private http: HttpClient) {}
 
@@ -71,8 +64,9 @@ export class EmployeeService {
       .pipe(catchError(this.handleError));
   }
 
+  // Error handling method
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
+    let errorMessage = 'Something went wrong; please try again later.!';
     if (error.error instanceof ErrorEvent) {
       // Client-side errors
       errorMessage = `Error: ${error.error.message}`;
@@ -80,6 +74,6 @@ export class EmployeeService {
       // Server-side errors
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    return throwError(errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 }

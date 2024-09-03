@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManagerService } from '../../../services/manager.service';
 import { ManagerModel } from '../../../models/manager.model';
+import { DepartmentService } from '../../../services/department.service';
 
 @Component({
   selector: 'app-editmanager',
@@ -10,76 +11,117 @@ import { ManagerModel } from '../../../models/manager.model';
   styleUrls: ['./editmanager.component.css'],
 })
 export class EditmanagerComponent implements OnInit {
-  managerForm: FormGroup;
+  managerForm!: FormGroup;
   managerId: string | null = null;
+  departments: any[] = [];
+
   submissionError: string | null = null;
   loading = true;
 
   constructor(
     private fb: FormBuilder,
     private managerService: ManagerService,
+    private departmentService: DepartmentService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    // Get managerId from route parameters
+    this.managerId = this.route.snapshot.paramMap.get('id') || '';
+
+    // Initialize form
     this.managerForm = this.fb.group({
       username: ['', Validators.required],
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      gender: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      nidNo: ['', Validators.required],
       contactNumber: ['', Validators.required],
-      gender: ['Male', Validators.required],
-      age: ['', Validators.required],
-      nidNo: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      department: ['', Validators.required],
-      assignedEmployees: [[]],
-      hireDate: ['', Validators.required],
-      payrollCalculationMethod: ['Monthly', Validators.required],
-      lastLogin: ['', Validators.required],
-      status: ['active', Validators.required],
-      hourlyRate: [0, [Validators.required, Validators.min(0)]],
+      departmentId: ['', Validators.required],
+      hireDate: [{ value: '', disabled: true }, Validators.required], // Hire date should not be changeable
+      status: [true],
+      hourlyRate: [{ value: 250, disabled: true }, Validators.required],
       profilePhoto: [''],
     });
+
+    // Fetch manager details
+    this.loadManager();
+
+    // Fetch departments from the department service
+    this.getDepartments();
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.managerId = params['id'];
-      if (this.managerId) {
-        this.managerService.getManagerById(this.managerId).subscribe(
-          (data: ManagerModel) => {
-            this.managerForm.patchValue(data);
-            this.loading = false;
-          },
-          (error) => {
-            this.submissionError = 'Failed to load manager details.';
-            this.loading = false;
-            console.error('Edit Manager Error:', error);
-          }
-        );
+  loadManager(): void {
+    if (this.managerId) {
+      this.managerService.getManagerById(this.managerId).subscribe(
+        (manager: ManagerModel) => {
+          const hireDate = manager.hireDate
+            ? new Date(manager.hireDate).toISOString().substring(0, 16)
+            : '';
+          this.managerForm.patchValue({
+            ...manager,
+            hireDate: hireDate,
+            updatedAt: new Date(manager.updatedAt).toISOString(),
+          });
+        },
+        (error) => {
+          console.error('Error fetching manager details:', error);
+        }
+      );
+    }
+  }
+
+  getDepartments(): void {
+    this.departmentService.getAllDepartments().subscribe(
+      (data) => {
+        this.departments = data;
+      },
+      (error) => {
+        console.error('Error fetching departments:', error);
       }
-    });
+    );
+  }
+
+  onDepartmentChange(): void {
+    const selectedDepartmentId = this.managerForm.get('departmentId')?.value;
+    const selectedDepartment = this.departments.find(
+      (dept) => dept.id === selectedDepartmentId
+    );
+    if (selectedDepartment) {
+      this.managerForm.patchValue({
+        locationId: selectedDepartment.locationId,
+      });
+    }
   }
 
   onSubmit(): void {
     if (this.managerForm.invalid) {
-      return;
-    }
+      const updatedManager: ManagerModel = {
+        ...this.managerForm.value,
+        updatedAt: new Date(), // Set updatedAt to current date/time
+        hireDate: new Date(this.managerForm.value.hireDate), // Convert back to Date object
+      };
 
-    const formValue = this.managerForm.value;
-    this.managerService
-      .updateManager(this.managerId as string, formValue)
-      .subscribe(
-        () => {
-          this.router.navigate(['/managers/list']);
-        },
-        (error) => {
-          this.submissionError = 'Failed to update manager. Please try again.';
-          console.error('Update Manager Error:', error);
-        }
-      );
+      this.managerService
+        .updateManager(this.managerId as string, updatedManager)
+        .subscribe(
+          () => {
+            this.router.navigate(['/managers/list']);
+          },
+          (error) => {
+            this.submissionError =
+              'Failed to update manager. Please try again.';
+            console.error('Update Manager Error:', error);
+          }
+        );
+    }
   }
 
   resetForm(): void {
-    this.managerForm.reset();
+    this.loadManager();
   }
 
   cancel(): void {

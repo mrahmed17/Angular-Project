@@ -6,12 +6,15 @@ import { EmployeeModel } from '../../../models/employee.model';
 @Component({
   selector: 'app-listemployee',
   templateUrl: './listemployee.component.html',
-  styleUrls: ['./listemployee.component.css']
+  styleUrls: ['./listemployee.component.css'],
 })
 export class ListemployeeComponent implements OnInit {
   employees: EmployeeModel[] = [];
 
-  constructor(private employeeService: EmployeeService, private router: Router) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -28,16 +31,19 @@ export class ListemployeeComponent implements OnInit {
     );
   }
 
-  editEmployee(id: string): void {
-    this.router.navigate(['/employees/edit', id]);
+  viewEmployee(employeeId: string): void {
+    this.router.navigate(['/employees/view', employeeId]);
   }
 
-  deleteEmployee(id: string): void {
+  editEmployee(employeeId: string): void {
+    this.router.navigate(['/employees/edit', employeeId]);
+  }
+
+  deleteEmployee(employeeId: string): void {
     if (confirm('Are you sure you want to delete this employee?')) {
-      this.employeeService.deleteEmployee(id).subscribe(
+      this.employeeService.deleteEmployee(employeeId).subscribe(
         () => {
-          this.employees = this.employees.filter((employee) => employee.id !== id);
-          console.log('Employee deleted successfully.');
+          this.loadEmployees();
         },
         (error) => {
           console.error('Error deleting employee:', error);
@@ -46,11 +52,7 @@ export class ListemployeeComponent implements OnInit {
     }
   }
 
-  viewEmployee(id: string): void {
-    this.router.navigate(['/employees/view', id]);
-  }
-
   goBack(): void {
-    this.router.navigate(['/employees/list']); // Navigate to the home page or wherever you want to go back
+    this.router.navigate(['/employees/list']);
   }
 }

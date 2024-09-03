@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 import { ManagerService } from '../../../services/manager.service';
+import { ManagerModel } from '../../../models/manager.model';
+import { DepartmentService } from '../../../services/department.service';
 
 @Component({
   selector: 'app-createmanager',
@@ -9,105 +13,127 @@ import { ManagerService } from '../../../services/manager.service';
   styleUrls: ['./createmanager.component.css'],
 })
 export class CreatemanagerComponent implements OnInit {
-  managerForm: FormGroup;
+  managerForm!: FormGroup;
+  departments: any[] = [];
   submissionError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private managerService: ManagerService,
+    private departmentService: DepartmentService,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.managerForm = this.fb.group({
       username: ['', Validators.required],
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      contactNumber: ['', Validators.required],
-      gender: ['Male', Validators.required],
+      address: ['', Validators.required],
+      gender: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      nidNo: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      hireDate: ['', Validators.required],
-      payrollCalculationMethod: ['Monthly', Validators.required],
-      hourlyRate: [0, [Validators.required, Validators.min(0)]],
+      nidNo: ['', Validators.required],
+      contactNumber: ['', Validators.required],
+      departmentId: ['', Validators.required],
+      hireDate: [
+        { value: new Date().toISOString().slice(0, 16), disabled: true },
+        Validators.required,
+      ],
+      status: [true, Validators.required],
+      hourlyRate: [{ value: 250, disabled: true }, Validators.required],
       profilePhoto: [''],
+    });
+
+    // Fetch departments from the department service
+    this.getDepartments();
+  }
+
+  // Fetch the list of departments
+  getDepartments(): void {
+    this.departmentService.getAllDepartments().subscribe(
+      (data) => {
+        this.departments = data;
+      },
+      (error) => {
+        console.error('Error fetching departments:', error);
+      }
+    );
+  }
+
+  // Method to handle department change and set the manager accordingly
+  onDepartmentChange(): void {
+    const selectedDepartmentId = this.managerForm.get('departmentId')?.value;
+    const selectedDepartment = this.departments.find(
+      (dept) => dept.id === selectedDepartmentId
+    );
+    if (selectedDepartment) {
+      this.managerForm.patchValue({
+        managerId: selectedDepartment.managerId,
+      });
+    }
+  }
+
+  onSubmit(): void {
+    if (this.managerForm.valid) {
+      const newManager: ManagerModel = {
+        ...this.managerForm.value,
+        updatedAt: new Date(), // Same as createdAt initially
+        id: this.generateManagerId(), // Manually generated ID
+      };
+      this.managerService.createManager(newManager).subscribe(
+        () => {
+          this.router.navigate(['/managers/list']); // Redirect after successful creation
+        },
+        (error) => {
+          console.error('Error creating manager:', error);
+        }
+      );
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
+  // Method to generate a unique manager ID
+  generateManagerId(): string {
+    const username = this.managerForm.get('username')?.value || '';
+    const randomNumber = Math.floor(1000 + Math.random() * 9000); // Generate a random 4-digit number
+    return `MNG-${username.toUpperCase()}-${randomNumber}`;
+  }
+
+  resetForm(): void {
+    // Save the current hire date before resetting the form
+    const currentHireDate = this.managerForm.get('hireDate')?.value;
+    this.managerForm.reset({
+      username: '',
+      fullName: '',
+      email: '',
+      address: '',
+      gender: '',
+      dateOfBirth: '',
+      nidNo: '',
+      contactNumber: '',
+      departmentId: '',
+      status: true,
+      hourlyRate: 250,
+      profilePhoto: '',
+    });
+    // Reset to default values if necessary
+    this.managerForm.patchValue({
+      hireDate: currentHireDate,
     });
   }
 
-  ngOnInit(): void {}
-
-  onSubmit(): void {
-    if (this.managerForm.invalid) {
-      return;
+  // Error handling method
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Something went wrong; please try again later.!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
-    const formValue = this.managerForm.value;
-    this.managerService
-      .createManager(
-        formValue.username,
-        formValue.fullName,
-        formValue.email,
-        formValue.contactNumber,
-        formValue.gender,
-        formValue.dateOfBirth,
-        formValue.nidNo,
-        new Date(formValue.hireDate),
-        formValue.payrollCalculationMethod,
-        formValue.hourlyRate,
-        formValue.profilePhoto
-      )
-      .subscribe(
-        () => {
-          this.router.navigate(['/managers/list']);
-        },
-        (error) => {
-          this.submissionError = 'Failed to create manager. Please try again.';
-          console.error('Create Manager Error:', error);
-        }
-      );
-  }
-
-  // // Method to create a new manager and save it to db.json
-  // createManager(
-  //   username: string,
-  //   fullName: string,
-  //   email: string,
-  //   contactNumber: string,
-  //   gender: 'Male' | 'Female' | 'Other',
-  //   dateOfBirth: Date,
-  //   nidNo: number,
-  //   hireDate: Date,
-  //   payrollCalculationMethod: 'Weekly' | 'Monthly',
-  //   hourlyRate: number,
-  //   profilePhoto?: string
-  // ): Observable<ManagerModel> {
-  //   const managerId = this.generateManagerId(username);
-  //   const currentDate = new Date();
-  //   const newManager = new ManagerModel(
-  //     managerId,
-  //     username,
-  //     fullName,
-  //     email,
-  //     contactNumber,
-  //     'Manager',
-  //     gender,
-  //     dateOfBirth,
-  //     nidNo,
-  //     hireDate,
-  //     payrollCalculationMethod,
-  //     hourlyRate,
-  //     currentDate,
-  //     currentDate,
-  //     currentDate,
-  //     profilePhoto
-  //   );
-
-  //   // Save the new manager to db.json
-  //   return this.http
-  //     .post<ManagerModel>(this.apiUrl, newManager)
-  //     .pipe(catchError(this.handleError));
-  // }
-
-  resetForm(): void {
-    this.managerForm.reset();
+    return throwError(() => new Error(errorMessage));
   }
 
   cancel(): void {

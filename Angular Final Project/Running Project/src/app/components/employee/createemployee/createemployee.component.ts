@@ -15,6 +15,7 @@ import { DepartmentService } from '../../../services/department.service';
 export class CreateemployeeComponent implements OnInit {
   employeeForm!: FormGroup;
   departments: any[] = [];
+  submissionError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +41,7 @@ export class CreateemployeeComponent implements OnInit {
         { value: new Date().toISOString().slice(0, 16), disabled: true },
         Validators.required,
       ],
-      status: [true],
+      status: [true, Validators.required],
       hourlyRate: [{ value: 250, disabled: true }, Validators.required],
       profilePhoto: [''],
     });
@@ -99,7 +100,7 @@ export class CreateemployeeComponent implements OnInit {
   // Method to generate employee ID
   generateEmployeeId(): string {
     const username = this.employeeForm.get('username')?.value || '';
-    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const randomNum = Math.floor(1000 + Math.random() * 9000); // Generate a random 4-digit number
     return `EMP-${username.toUpperCase()}-${randomNum}`;
   }
 
@@ -107,7 +108,6 @@ export class CreateemployeeComponent implements OnInit {
   resetForm(): void {
     // Save the current hire date before resetting the form
     const currentHireDate = this.employeeForm.get('hireDate')?.value;
-
     this.employeeForm.reset({
       username: '',
       fullName: '',
@@ -132,14 +132,19 @@ export class CreateemployeeComponent implements OnInit {
 
   // Error handling method
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
+    let errorMessage = 'Something went wrong; please try again later.!';
     if (error.error instanceof ErrorEvent) {
-      errorMessage = `Client-side error: ${error.error.message}`;
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
     } else {
-      errorMessage = `Server-side error: ${error.status}\nMessage: ${error.message}`;
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.error('Error details:', error);
-    return throwError(errorMessage);
+    return throwError(() => new Error(errorMessage));
+  }
+
+  cancel(): void {
+    this.router.navigate(['/employees/list']);
   }
 }
 

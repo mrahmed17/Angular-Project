@@ -117,6 +117,17 @@
       "country": "Bangladesh",
       "photo": "https://angular.io/assets/images/tutorials/faa/saru-robert-9rP3mxf8qWI-unsplash.jpg",
       "createdAt": "2024-08-30T12:42:47.178Z"
+    },
+    {
+      "id": "80c6",
+      "name": "Modammadpur",
+      "address": "Mohammadpur",
+      "city": "Dhaka",
+      "state": "North Dhaka",
+      "zipCode": "1256",
+      "country": "Bangladesh ",
+      "photo": "https://angular.io/assets/images/tutorials/faa/phil-hearing-IYfp2Ixe9nM-unsplash.jpg",
+      "createdAt": "2024-09-03T10:35:13.407Z"
     }
   ],
   "admins": [
@@ -213,6 +224,22 @@
       "status": true,
       "createdAt": "2024-09-02T18:12:15.029Z",
       "updatedAt": "2024-09-02T18:12:15.029Z"
+    },
+    {
+      "id": "EMP-KUTUB-4585",
+      "username": "kutub",
+      "fullName": "Kutub Uddin",
+      "email": "kutub@gmail.com",
+      "address": "adfasdfaf",
+      "gender": "Male",
+      "dateOfBirth": "2024-09-03",
+      "nidNo": 456465465,
+      "contactNumber": "6546546565",
+      "departmentId": "1da4",
+      "managerId": "raju-4054",
+      "status": true,
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
+      "updatedAt": "2024-09-03T10:32:33.781Z"
     }
   ],
   "feedbacks": [

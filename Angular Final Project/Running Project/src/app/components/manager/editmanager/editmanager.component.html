@@ -12,133 +12,128 @@
       <!-- Manager Form -->
       <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
         <div class="row">
+          <!-- Username -->
           <div class="col-md-6 mb-3">
             <label for="username" class="form-label">Username</label>
-            <input type="text" id="username" formControlName="username" class="form-control" />
-            <div *ngIf="managerForm.get('username')?.invalid && managerForm.get('username')?.touched"
-              class="text-danger">
+            <input type="text" id="username" class="form-control" formControlName="username" placeholder="Enter username" />
+            <div *ngIf="managerForm.get('username')?.invalid && managerForm.get('username')?.touched" class="text-danger">
               Username is required.
             </div>
           </div>
-
+        
+          <!-- Full Name -->
           <div class="col-md-6 mb-3">
             <label for="fullName" class="form-label">Full Name</label>
-            <input type="text" id="fullName" formControlName="fullName" class="form-control" />
-            <div *ngIf="managerForm.get('fullName')?.invalid && managerForm.get('fullName')?.touched"
-              class="text-danger">
-              Full Name is required.
+            <input type="text" id="fullName" class="form-control" formControlName="fullName" placeholder="Enter full name" />
+            <div *ngIf="managerForm.get('fullName')?.invalid && managerForm.get('fullName')?.touched" class="text-danger">
+              Full name is required.
             </div>
           </div>
-        </div>
-
-        <div class="row">
+        
+          <!-- Email -->
           <div class="col-md-6 mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" formControlName="email" class="form-control" />
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email" />
             <div *ngIf="managerForm.get('email')?.invalid && managerForm.get('email')?.touched" class="text-danger">
-              Valid Email is required.
+              Valid email is required.
             </div>
           </div>
-
+        
+          <!-- Address -->
           <div class="col-md-6 mb-3">
-            <label for="contactNumber" class="form-label">Contact Number</label>
-            <input type="text" id="contactNumber" formControlName="contactNumber" class="form-control" />
-            <div *ngIf="managerForm.get('contactNumber')?.invalid && managerForm.get('contactNumber')?.touched"
-              class="text-danger">
-              Contact Number is required.
+            <label for="address" class="form-label">Address</label>
+            <input type="text" id="address" class="form-control" formControlName="address" placeholder="Enter address" />
+            <div *ngIf="managerForm.get('address')?.invalid && managerForm.get('address')?.touched" class="text-danger">
+              Address is required.
             </div>
           </div>
-        </div>
-
-        <div class="row">
+        
+          <!-- Gender -->
           <div class="col-md-6 mb-3">
             <label for="gender" class="form-label">Gender</label>
-            <select id="gender" formControlName="gender" class="form-control">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
+            <select id="gender" class="form-select" formControlName="gender">
+              <option value="" disabled>Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
             </select>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="age" class="form-label">Age</label>
-            <input type="text" id="age" formControlName="age" class="form-control" />
-            <div *ngIf="managerForm.get('age')?.invalid && managerForm.get('age')?.touched" class="text-danger">
-              Age is required.
+            <div *ngIf="managerForm.get('gender')?.invalid && managerForm.get('gender')?.touched" class="text-danger">
+              Gender is required.
             </div>
           </div>
-        </div>
-
-        <div class="row">
+        
+          <!-- Date of Birth -->
           <div class="col-md-6 mb-3">
-            <label for="nidNo" class="form-label">National ID Number</label>
-            <input type="text" id="nidNo" formControlName="nidNo" class="form-control" />
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth" />
+            <div *ngIf="managerForm.get('dateOfBirth')?.invalid && managerForm.get('dateOfBirth')?.touched"
+              class="text-danger">
+              Date of Birth is required.
+            </div>
+          </div>
+        
+          <!-- NID Number -->
+          <div class="col-md-6 mb-3">
+            <label for="nidNo" class="form-label">NID Number</label>
+            <input type="text" id="nidNo" class="form-control" formControlName="nidNo" placeholder="Enter NID number" />
             <div *ngIf="managerForm.get('nidNo')?.invalid && managerForm.get('nidNo')?.touched" class="text-danger">
-              National ID Number is required and must be numeric.
+              NID Number is required.
             </div>
           </div>
-
+        
+          <!-- Contact Number -->
           <div class="col-md-6 mb-3">
-            <label for="department" class="form-label">Department</label>
-            <input type="text" id="department" formControlName="department" class="form-control" />
-            <div *ngIf="managerForm.get('department')?.invalid && managerForm.get('department')?.touched"
+            <label for="contactNumber" class="form-label">Contact Number</label>
+            <input type="text" id="contactNumber" class="form-control" formControlName="contactNumber"
+              placeholder="Enter contact number" />
+            <div *ngIf="managerForm.get('contactNumber')?.invalid && managerForm.get('contactNumber')?.touched"
+              class="text-danger">
+              Contact number is required.
+            </div>
+          </div>
+        
+          <!-- Department -->
+          <div class="col-md-6 mb-3">
+            <label for="departmentId" class="form-label">Department</label>
+            <select id="departmentId" class="form-select" formControlName="departmentId" (change)="onDepartmentChange()">
+              <option value="" disabled>Select department</option>
+              <option *ngFor="let department of departments" [value]="department.id">
+                {{ department.name }}
+              </option>
+            </select>
+            <div *ngIf="managerForm.get('departmentId')?.invalid && managerForm.get('departmentId')?.touched"
               class="text-danger">
               Department is required.
             </div>
           </div>
-        </div>
-
-        <div class="row">
+        
+        
+          <!-- Hire Date -->
           <div class="col-md-6 mb-3">
             <label for="hireDate" class="form-label">Hire Date</label>
-            <input type="date" id="hireDate" formControlName="hireDate" class="form-control" />
-            <div *ngIf="managerForm.get('hireDate')?.invalid && managerForm.get('hireDate')?.touched"
-              class="text-danger">
-              Hire Date is required.
-            </div>
+            <input type="datetime-local" id="hireDate" class="form-control" formControlName="hireDate" readonly />
           </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="payrollCalculationMethod" class="form-label">Payroll Calculation Method</label>
-            <select id="payrollCalculationMethod" formControlName="payrollCalculationMethod" class="form-control">
-              <option value="Weekly">Weekly</option>
-              <option value="Monthly">Monthly</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="lastLogin" class="form-label">Last Login</label>
-            <input type="date" id="lastLogin" formControlName="lastLogin" class="form-control" />
-            <div *ngIf="managerForm.get('lastLogin')?.invalid && managerForm.get('lastLogin')?.touched"
-              class="text-danger">
-              Last Login is required.
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select id="status" formControlName="status" class="form-control">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
+        
+          <!-- Hourly Rate -->
           <div class="col-md-6 mb-3">
             <label for="hourlyRate" class="form-label">Hourly Rate</label>
-            <input type="number" id="hourlyRate" formControlName="hourlyRate" class="form-control" />
-            <div *ngIf="managerForm.get('hourlyRate')?.invalid && managerForm.get('hourlyRate')?.touched"
-              class="text-danger">
-              Hourly Rate is required and must be a positive number.
-            </div>
+            <input type="number" id="hourlyRate" class="form-control" formControlName="hourlyRate" readonly />
           </div>
-
+        
+          <!-- Status -->
+          <div class="col-md-6 mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select id="status" class="form-select" formControlName="status">
+              <option [value]="true">Active</option>
+              <option [value]="false">Inactive</option>
+            </select>
+          </div>
+        
+          <!-- Profile Photo -->
           <div class="col-md-6 mb-3">
             <label for="profilePhoto" class="form-label">Profile Photo URL</label>
-            <input type="text" id="profilePhoto" formControlName="profilePhoto" class="form-control" />
+            <input type="text" id="profilePhoto" class="form-control" formControlName="profilePhoto"
+              placeholder="Enter profile photo URL" />
           </div>
         </div>
 
