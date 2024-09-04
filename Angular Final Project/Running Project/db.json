@@ -1,36 +1,89 @@
 {
   "user": [
     {
-      "id": "1",
-      "name": "Md. Raju Ahmed",
-      "email": "raju@gmail.com",
+      "id": "5f8d",
+      "userName": "admin",
+      "fullName": "Md. Raju Ahmed",
+      "email": "admin@gmail.com",
       "password": "123456",
+      "address": "Near Lalbagh Kellah",
+      "gender": "Male",
+      "dateOfBirth": "2024-09-04",
+      "nid": "4546546565",
+      "contactNumber": "0456465465",
       "role": "Admin",
-      "profilePhoto": "https://media.istockphoto.com/id/1388912000/photo/smiling-adult-businessman-making-an-advertisement-for-his-company.jpg?s=1024x1024&w=is&k=20&c=1XLMSctfkZ-DkhSEteFYWDLrjgUJPG7i5cQ03peVEdQ="
+      "status": true,
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
+      "createAt": "2024-09-04T12:49:38.262Z",
+      "updateAt": "2024-09-04T12:49:38.263Z"
     },
     {
-      "id": "40c4",
-      "name": "Tamim Ahmed Raju",
-      "email": "traj@gmail.com",
+      "id": "a55f",
+      "userName": "hr",
+      "fullName": "Tamim Ahmed Raju",
+      "email": "hr@gmail.com",
       "password": "123456",
+      "address": "Near Lalbagh Kellah",
+      "gender": "Male",
+      "dateOfBirth": "2024-09-04",
+      "nid": "4546546565",
+      "contactNumber": "0456465465",
+      "role": "HR",
+      "status": true,
+      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
+      "createAt": "2024-09-04T12:44:24.688Z",
+      "updateAt": "2024-09-04T12:44:24.688Z"
+    },
+    {
+      "id": "f845",
+      "userName": "manager",
+      "fullName": "Md. Raju Ahmed",
+      "email": "manager@gmail.com",
+      "password": "123456",
+      "address": "Near Lalbagh Kellah",
+      "gender": "Male",
+      "dateOfBirth": "2024-09-01",
+      "nid": "4546546565",
+      "contactNumber": "0456465465",
       "role": "Manager",
-      "profilePhoto": "https://media.istockphoto.com/id/1346124841/photo/successful-construction-site-worker-thinking.jpg?s=1024x1024&w=is&k=20&c=4SvUvVZDP5JOS7lXFUc05CLyZZQcTGD_kSopYBqsbxc="
+      "status": true,
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "createAt": "2024-09-04T12:51:46.244Z",
+      "updateAt": "2024-09-04T12:51:46.244Z"
     },
     {
-      "id": "73b4",
-      "name": "Tamim Ahmed Raju",
-      "email": "tamim@gmail.com",
+      "id": "09e7",
+      "userName": "payrolladmin",
+      "fullName": "Tamim Ahmed Raju",
+      "email": "payroll@gmail.com",
       "password": "123456",
-      "role": "User",
-      "profilePhoto": "https://media.istockphoto.com/id/1346124841/photo/successful-construction-site-worker-thinking.jpg?s=1024x1024&w=is&k=20&c=4SvUvVZDP5JOS7lXFUc05CLyZZQcTGD_kSopYBqsbxc="
+      "address": "Near Lalbagh Kellah",
+      "gender": "Male",
+      "dateOfBirth": "2024-09-04",
+      "nid": "4546546565",
+      "contactNumber": "01620500786",
+      "role": "PayrollAdmin",
+      "status": true,
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "createAt": "2024-09-04T12:52:58.342Z",
+      "updateAt": "2024-09-04T12:52:58.342Z"
     },
     {
-      "id": "aadb",
-      "name": "Md. Raju Ahmed",
-      "email": "raju@gmail.com",
+      "id": "31cc",
+      "userName": "employee",
+      "fullName": "Md. Raju Ahmed",
+      "email": "employee@gmail.com",
       "password": "123456",
-      "role": "User",
-      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY="
+      "address": "Near Lalbagh Kellah",
+      "gender": "Male",
+      "dateOfBirth": "2024-09-04",
+      "nid": "465464545",
+      "contactNumber": "0456465465",
+      "role": "Employee",
+      "status": true,
+      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
+      "createAt": "2024-09-04T12:54:46.900Z",
+      "updateAt": "2024-09-04T12:54:46.900Z"
     }
   ],
   "users": [
@@ -173,13 +226,13 @@
     }
   ],
   "attendances": [
-     {
-       "id": "ee08",
-       "employeeId": "EMP-TRAJ-6871",
-       "clockInTime": "2024-09-04T07:01:03.563Z",
-       "clockOutTime": "2024-09-04T17:10:03.563Z",
-       "totalHours": 10
-     }
+    {
+      "id": "ee08",
+      "employeeId": "EMP-TRAJ-6871",
+      "clockInTime": "2024-09-04T07:01:03.563Z",
+      "clockOutTime": "2024-09-04T17:10:03.563Z",
+      "totalHours": 10
+    }
   ],
   "departments": [
     {

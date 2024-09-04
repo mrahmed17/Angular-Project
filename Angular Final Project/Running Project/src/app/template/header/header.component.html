@@ -7,10 +7,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">HR & PM System</a>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <!-- <span class="navbar-toggler-icon"></span> -->
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -20,11 +18,153 @@
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
         </li>
 
+        <!-- Admin Role Links -->
         <ng-container *ngIf="userRole === 'Admin'">
-          <!-- Admin-specific links -->
-
-
           <!-- Manager Panel -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Manager
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/managers/create">Add Manager</a></li>
+              <li><a class="dropdown-item" routerLink="/managers/list">Manager List</a></li>
+            </ul>
+          </li>
+
+          <!-- Employee Panel -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Employee
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/employees/create">Add Employee</a></li>
+              <li><a class="dropdown-item" routerLink="/employees/list">Employee List</a></li>
+            </ul>
+          </li>
+
+          <!-- Department Panel -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Department
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/departments/create">Add Department</a></li>
+              <li><a class="dropdown-item" routerLink="/departments/list">Department List</a></li>
+            </ul>
+          </li>
+
+          <!-- Location Panel -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Location
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/locations/create">Add Location</a></li>
+              <li><a class="dropdown-item" routerLink="/locations/list">Location List</a></li>
+            </ul>
+          </li>
+
+          <!-- Miscellaneous Panel -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Miscellaneous
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/attendances/list">Attendance</a></li>
+              <li><a class="dropdown-item" routerLink="/performances/list">Performance</a></li>
+              <li><a class="dropdown-item" routerLink="/leaves/list">Leave</a></li>
+              <li><a class="dropdown-item" routerLink="/feedbacks/list">Feedback</a></li>
+            </ul>
+          </li>
+        </ng-container>
+
+        <!-- Manager Role Links -->
+        <ng-container *ngIf="userRole === 'Manager'">
+          <!-- Employee Management -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Employee
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/employees/create">Add Employee</a></li>
+              <li><a class="dropdown-item" routerLink="/employees/list">Employee List</a></li>
+            </ul>
+          </li>
+
+          <!-- Attendance and Performance -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/attendances/list">Attendance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/performances/list">Performance</a>
+          </li>
+        </ng-container>
+
+        <!-- User Role Links -->
+        <ng-container *ngIf="userRole === 'User'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/attendances/create">Attendance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/feedbacks/create">Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/leaves/create">Leave</a>
+          </li>
+        </ng-container>
+      </ul>
+
+      <!-- Profile and Search Forms -->
+      <ng-container *ngIf="userRole">
+        <ul class="navbar-nav d-flex me-4 me-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/userprofile">View Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/logout">Log Out</a></li>
+              <li><a class="dropdown-item" routerLink="/forgetpassword">Forget Password?</a></li>
+            </ul>
+          </li>
+        </ul>
+      </ng-container>
+
+      <!-- Log In Button: Only show if no user is logged in -->
+      <ng-container *ngIf="!userRole">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="btn btn-info text-white" routerLink="/login" role="button" aria-expanded="false">
+              Log In
+            </a>
+          </li>
+        </ul>
+      </ng-container>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">HR & PM System</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        </li>
+
+        <ng-container *ngIf="userRole === 'Admin'">
+
+
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,7 +181,7 @@
             </li>
           </ul>
 
-          <!-- Employee Panel -->
+
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +197,7 @@
             </li>
           </ul>
 
-          <!-- Department Panel -->
+
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,7 +212,6 @@
             </li>
           </ul>
 
-          <!-- Location Panel -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,7 +226,7 @@
             </li>
           </ul>
 
-          <!-- Miscellaneous Panel -->
+
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -112,8 +251,7 @@
         </ng-container>
         
         <ng-container *ngIf="userRole === 'User'">
-          <!-- User-specific links -->
-          <!-- Employee Panel -->
+
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <a class="nav-link " routerLink="/attendances/create"     aria-expanded="false">
                 Attendance
@@ -132,13 +270,12 @@
         </ng-container>
       </ul>
 
-      <!-- Profile and Search Forms -->
       <ng-container *ngIf="userRole">
-        <!-- <form class="d-flex me-4 me-auto" role="search">
+        <form class="d-flex me-4 me-auto" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-success" type="submit">Search</button>
-        </form> -->
-        <!-- Profile dropdown -->
+        </form>
+
         <ul class="navbar-nav d-flex me-4 me-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
@@ -165,7 +302,6 @@
         </ul>
       </ng-container>
 
-      <!-- Log In Button: Only show if no user is logged in -->
       <ng-container *ngIf="!userRole">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
@@ -178,4 +314,4 @@
 
     </div>
   </div>
-</nav>
+</nav> -->

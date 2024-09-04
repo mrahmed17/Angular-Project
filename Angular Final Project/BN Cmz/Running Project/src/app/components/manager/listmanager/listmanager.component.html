@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2 class="text-center">Managers List</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let manager of managers">
+      <div class="card">
+        <img [src]="manager.profilePhoto" alt="{{ manager.fullName }}" class="card-img-top profile-photo" />
+        <div class="card-body">
+          <h5 class="card-title"> {{ manager.fullName }}</h5>
+          <p class="card-text"><strong>Address: </strong>{{ manager.address }}</p>
+          <p class="card-text"><strong>Date of Birth: </strong> {{ manager.dateOfBirth | date: 'mediumDate' }}</p>
+          <p class="card-text"><strong>National ID: </strong>{{ manager.nidNo }}</p>
+          <p class="card-text"><strong>Department ID: </strong>{{ manager.departmentId }}</p>
+          <p class="card-text"><strong>Hire Date: </strong>{{ manager.hireDate | date: 'mediumDate' }}</p>
+          <p class="card-text"><strong>Hourly Rate: </strong>{{ manager.hourlyRate }}</p>
+          <p class="card-text"><strong>Status:</strong> {{ manager.status ? 'Active' : 'Inactive' }}</p>
+          <p class="card-text"><strong>Email: </strong> {{ manager.email }}</p>
+          <div class="btn-group">
+            <button (click)="viewManager(manager.id)" class="btn btn-info btn-sm">View</button>
+            <button (click)="editManager(manager.id)" class="btn btn-warning btn-sm">Edit</button>
+            <button (click)="deleteManager(manager.id)" class="btn btn-danger btn-sm">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <a routerLink="/managers/create" class="btn btn-primary">Add New Manager</a>
+  </div>
+
+</div>
