@@ -30,8 +30,8 @@
             Admins
           </a>
           <ul class="dropdown-menu" aria-labelledby="adminsDropdown">
-            <li><a class="dropdown-item" href="/admins/list">Admins List</a></li>
             <li><a class="dropdown-item" href="/admins/create">Create Admin</a></li>
+            <li><a class="dropdown-item" href="/admins/list">Admins List</a></li>
           </ul>
         </li>
 
@@ -43,8 +43,9 @@
             Managers
           </a>
           <ul class="dropdown-menu" aria-labelledby="managersDropdown">
-            <li><a class="dropdown-item" href="/managers/list">Managers List</a></li>
             <li><a class="dropdown-item" href="/managers/create">Create Manager</a></li>
+            <li><a class="dropdown-item" href="/managers/list">Managers List</a></li>
+            <li><a class="dropdown-item" href="/managers/view">View All Managers</a></li>
           </ul>
         </li>
 
@@ -56,8 +57,9 @@
             Employees
           </a>
           <ul class="dropdown-menu" aria-labelledby="employeesDropdown">
-            <li><a class="dropdown-item" href="/employees/list">Employees List</a></li>
-            <li><a class="dropdown-item" href="/employees/create">Create Employee</a></li>
+            <li><a class="dropdown-item" href="/employees/create">Create Employees</a></li>
+            <li><a class="dropdown-item" href="/employees/list">Employee List</a></li>
+            <li><a class="dropdown-item" href="/employees/view">View All Employee</a></li>
           </ul>
         </li>
 
@@ -69,8 +71,8 @@
             Locations
           </a>
           <ul class="dropdown-menu" aria-labelledby="locationsDropdown">
-            <li><a class="dropdown-item" href="/locations/list">Locations List</a></li>
             <li><a class="dropdown-item" href="/locations/create">Create Location</a></li>
+            <li><a class="dropdown-item" href="/locations/list">Locations List</a></li>
           </ul>
         </li>
 
@@ -82,8 +84,8 @@
             Departments
           </a>
           <ul class="dropdown-menu" aria-labelledby="departmentsDropdown">
-            <li><a class="dropdown-item" href="/departments/list">Departments List</a></li>
             <li><a class="dropdown-item" href="/departments/create">Create Department</a></li>
+            <li><a class="dropdown-item" href="/departments/list">Departments List</a></li>
           </ul>
         </li>
 
@@ -95,23 +97,24 @@
             Attendances
           </a>
           <ul class="dropdown-menu" aria-labelledby="attendancesDropdown">
-            <li><a class="dropdown-item" href="/attendances/list">Attendances List</a></li>
             <li><a class="dropdown-item" href="/attendances/create">Create Attendance</a></li>
+            <li><a class="dropdown-item" href="/attendances/list">Attendances List</a></li>
+            <li><a class="dropdown-item" href="/attendances/view">View Attendances</a></li>
           </ul>
         </li>
 
         <!-- Leaves Dropdown -->
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="leavesDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <span data-feather="calendar"></span>
             Leaves
           </a>
           <ul class="dropdown-menu" aria-labelledby="leavesDropdown">
-            <li><a class="dropdown-item" href="/leaves/list">Leaves List</a></li>
             <li><a class="dropdown-item" href="/leaves/create">Create Leave</a></li>
+            <li><a class="dropdown-item" href="/leaves/list">Leaves List</a></li>
           </ul>
-        </li> -->
+        </li>
 
         <!-- Payrolls Dropdown -->
         <li class="nav-item">
@@ -121,8 +124,8 @@
             Payrolls
           </a>
           <ul class="dropdown-menu" aria-labelledby="payrolslDropdown">
-            <li><a class="dropdown-item" href="/payrolls/list">Payrolls List</a></li>
             <li><a class="dropdown-item" href="/payrolls/create">Create Payroll</a></li>
+            <li><a class="dropdown-item" href="/payrolls/list">Payrolls List</a></li>
           </ul>
         </li>
 
@@ -134,8 +137,8 @@
             Performances
           </a>
           <ul class="dropdown-menu" aria-labelledby="performancesDropdown">
-            <li><a class="dropdown-item" href="/performances/list">Performances List</a></li>
             <li><a class="dropdown-item" href="/performances/create">Create Performance</a></li>
+            <li><a class="dropdown-item" href="/performances/list">Performances List</a></li>
           </ul>
         </li>
 
@@ -147,18 +150,18 @@
             Feedbacks
           </a>
           <ul class="dropdown-menu" aria-labelledby="feedbacksDropdown">
-            <li><a class="dropdown-item" href="/feedbacks/list">Feedbacks List</a></li>
             <li><a class="dropdown-item" href="/feedbacks/create">Create Feedback</a></li>
+            <li><a class="dropdown-item" href="/feedbacks/list">Feedbacks List</a></li>
           </ul>
         </li>
 
         <!-- Authentication -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/userprofile">
             <span data-feather="user"></span>
             Profile
           </a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/createprofille">
@@ -166,7 +169,7 @@
             Create Profile
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/login">
             <span data-feather="log-in"></span>
             Login
@@ -177,7 +180,7 @@
             <span data-feather="log-out"></span>
             Logout
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/unauthorized">
             <span data-feather="alert-circle"></span>

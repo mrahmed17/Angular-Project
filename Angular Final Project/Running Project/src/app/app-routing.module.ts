@@ -134,6 +134,12 @@ const routes: Routes = [
         data: { role: 'Admin' },
       },
       {
+        path: 'view',
+        component: ViewmanagerComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: 'Admin' },
+      },
+      {
         path: 'list',
         component: ListmanagerComponent,
         canActivate: [AuthGuard, RoleGuard],
@@ -153,6 +159,12 @@ const routes: Routes = [
       {
         path: 'edit/:id',
         component: EditemployeeComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: ['Admin', 'Manager'] },
+      },
+      {
+        path: 'view',
+        component: ViewemployeeComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { role: ['Admin', 'Manager'] },
       },
@@ -244,10 +256,9 @@ const routes: Routes = [
         data: { role: ['Admin'] },
       },
       {
-        path: 'view/:id',
+        path: 'view',
         component: ViewattendanceComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { role: ['Admin', 'Manager'] },
+        canActivate: [AuthGuard],
       },
       {
         path: 'list',

@@ -1,5 +1,6 @@
 export class ManagerModel {
   id!: string;
+  role!: 'Manager';
   username!: string;
   fullName!: string;
   email!: string;

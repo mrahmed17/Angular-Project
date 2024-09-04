@@ -1,52 +1,36 @@
 <div class="container">
-  <h1 class="text-center mb-4">Edit Attendance Record</h1>
+  <h1>Edit Attendance</h1>
 
-  <!-- Display loading indicator -->
-  <div *ngIf="loading" class="loading-spinner text-center">
-    <p>Loading attendance details...</p>
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Updating attendance record...</p>
   </div>
 
-  <!-- Display error message -->
-  <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+  <div *ngIf="errorMessage" class="error-message">
     <p>{{ errorMessage }}</p>
   </div>
 
-  <!-- Attendance Edit Form -->
-  <form [formGroup]="editAttendanceForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="employeeId">Employee ID</label>
-          <input type="text" id="employeeId" formControlName="employeeId" class="form-control" [attr.disabled]="true" />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="managerId">Manager ID</label>
-          <input type="text" id="managerId" formControlName="managerId" class="form-control" [attr.disabled]="true" />
-        </div>
-      </div>
+  <form [formGroup]="attendanceForm">
+    <div class="form-group">
+      <label for="employee">Employee</label>
+      <select id="employee" formControlName="employee" class="form-control">
+        <option *ngFor="let employee of employeeData" [value]="employee.id">
+          {{ employee.fullName }} - {{ employee.id }}
+        </option>
+      </select>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="clockInTime">Clock In Time</label>
-          <input type="datetime-local" id="clockInTime" formControlName="clockInTime" class="form-control" />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="clockOutTime">Clock Out Time</label>
-          <input type="datetime-local" id="clockOutTime" formControlName="clockOutTime" class="form-control" />
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="checkIn">Check-In Time</label>
+      <input type="datetime-local" id="checkIn" formControlName="checkIn" class="form-control" />
     </div>
 
-    <!-- Form Actions -->
-    <div class="text-center mt-4">
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <div class="form-group">
+      <label for="checkOut">Check-Out Time</label>
+      <input type="datetime-local" id="checkOut" formControlName="checkOut" class="form-control" />
+    </div>
+
+    <div class="text-center pt-4">
+      <button type="button" class="btn btn-primary" (click)="updateAttendance()">Update Attendance</button>
     </div>
   </form>
 </div>

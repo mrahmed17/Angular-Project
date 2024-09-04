@@ -53,6 +53,6 @@ export class ListemployeeComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/employees/list']);
+    this.router.navigate(['/employees/create']);
   }
 }

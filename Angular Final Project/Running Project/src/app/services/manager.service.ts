@@ -30,7 +30,7 @@ export class ManagerService {
       .pipe(catchError(this.handleError));
   }
 
-  getManagerByDepartment(departmentId: string): Observable<ManagerModel[]> {
+  getManagersByDepartment(departmentId: string): Observable<ManagerModel[]> {
     return this.http
       .get<ManagerModel[]>(`${this.apiUrl}?departmentId=${departmentId}`)
       .pipe(catchError(this.handleError));

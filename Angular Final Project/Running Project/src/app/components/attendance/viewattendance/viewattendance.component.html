@@ -1,38 +1,41 @@
 <div class="container">
-  <h1 class="text-center mb-4">Attendance Details</h1>
+  <h1>View Attendance History</h1>
 
-  <!-- Display loading indicator -->
-  <div *ngIf="loading" class="loading-spinner text-center">
-    <p>Loading attendance details...</p>
-  </div>
-
-  <!-- Display error message -->
-  <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+  <div *ngIf="errorMessage" class="error-message">
     <p>{{ errorMessage }}</p>
   </div>
 
-  <div class="container mt-4">
-    <h2>Attendance Records</h2>
+  <form [formGroup]="attendanceForm">
+    <div class="form-group">
+      <label for="employee">Select Employee</label>
+      <select id="employee" formControlName="employee" class="form-control">
+        <option value="">-- Select Employee --</option>
+        <option *ngFor="let employee of employeeData" [value]="employee.id">
+          {{ employee.fullName }} - {{ employee.id }}
+        </option>
+      </select>
+    </div>
+  </form>
 
-    <table *ngIf="attendances.length > 0" class="table table-striped">
-      <thead>
+  <div *ngIf="attendanceData.length > 0">
+    <h5 class="text-center mb-4">Attendance Details</h5>
+    <table class="table table-bordered">
+      <thead class="text-center">
         <tr>
-          <th>ID</th>
-          <th>Clock In Time</th>
-          <th>Clock Out Time</th>
+          <th>Sl No</th>
+          <th>Check In</th>
+          <th>Check Out</th>
           <th>Total Hours</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let attendance of attendances">
-          <td>{{ attendance.id }}</td>
-          <td>{{ attendance.clockInTime }}</td>
-          <td>{{ attendance.clockOutTime }}</td>
-          <td>{{ attendance.totalHours || 'N/A' }}</td>
+        <tr *ngFor="let attendance of attendanceData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ attendance.checkIn | date: 'medium' }}</td>
+          <td>{{ attendance.checkOut | date: 'medium' }}</td>
+          <td>{{ attendance.totalHours | number: '1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
-
-    <button class="btn btn-primary mt-3" (click)="backToList()">Back to Attendance List</button>
   </div>
 </div>

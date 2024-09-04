@@ -1,4 +1,14 @@
 <div class="container">
+  <div *ngIf="loading" class="text-center">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </div>
+  <h2 class="text-center">Department Wise Employee</h2>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
   <form [formGroup]="viewEmployeeForm">
     <div class="row">
       <div class="col-md-4">
@@ -19,7 +29,7 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Username</th>
+            <!-- <th>Username</th> -->
             <th>Full Name</th>
             <th>Email</th>
             <th>Contact Number</th>
@@ -30,7 +40,7 @@
         <tbody>
           <tr *ngFor="let employee of employees">
             <td>{{ employee.id }}</td>
-            <td>{{ employee.username }}</td>
+            <!-- <td>{{ employee.username }}</td> -->
             <td>{{ employee.fullName }}</td>
             <td>{{ employee.email }}</td>
             <td>{{ employee.contactNumber }}</td>
@@ -40,6 +50,10 @@
         </tbody>
       </table>
     </div>
+  </div>
+
+  <div>
+    <button class="btn btn-secondary" (click)="goBack()">Back to List</button>
   </div>
 </div>
 

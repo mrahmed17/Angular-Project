@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-viewattendance',
@@ -8,53 +9,53 @@ import { AttendanceService } from '../../../services/attendance.service';
   styleUrls: ['./viewattendance.component.css'],
 })
 export class ViewattendanceComponent implements OnInit {
-  attendances: any[] = [];
+  attendanceForm!: FormGroup;
+  attendanceData: any[] = [];
+  employeeData: any[] = [];
   errorMessage: string = '';
   loading: boolean = false;
-  employeeId: string = '';
-  managerId: string = ''; // Add this if you also need manager ID
 
   constructor(
+    private fb: FormBuilder,
     private attendanceService: AttendanceService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.employeeId = this.route.snapshot.paramMap.get('employeeId') || '';
-    this.managerId = this.route.snapshot.paramMap.get('managerId') || '';
-    this.loadAttendances();
+   ngOnInit(): void {
+     this.attendanceForm = this.fb.group({
+       employee: [''],
+     });
+     this.loadEmployees();
+
+     this.attendanceForm
+       .get('employee')
+       ?.valueChanges.subscribe((employeeId) => {
+         if (employeeId) {
+           this.loadAttendanceByEmployee(employeeId);
+         }
+       });
+   }
+
+   loadEmployees() {
+    this.attendanceService.getAllEmployees().subscribe(
+      (data) => {
+        this.employeeData = data;
+      },
+      (error) => {
+        this.errorMessage = 'Failed to load employees.';
+      }
+    );
   }
 
-  loadAttendances(): void {
-    this.loading = true;
-    if (this.employeeId) {
-      this.attendanceService
-        .getAttendancesByEmployeeId(this.employeeId)
-        .subscribe({
-          next: (data) => {
-            this.attendances = data;
-            this.loading = false;
-          },
-          error: (error) => {
-            this.errorMessage = 'Failed to load attendance records';
-            this.loading = false;
-          },
-        });
-    } else if (this.managerId) {
-      this.attendanceService
-        .getAttendancesByManagerId(this.managerId)
-        .subscribe({
-          next: (data) => {
-            this.attendances = data;
-            this.loading = false;
-          },
-          error: (error) => {
-            this.errorMessage = 'Failed to load attendance records';
-            this.loading = false;
-          },
-        });
-    }
+  loadAttendanceByEmployee(employeeId: string) {
+    this.attendanceService.getAttendancesByEmployeeId(employeeId).subscribe(
+      (data) => {
+        this.attendanceData = data;
+      },
+      (error) => {
+        this.errorMessage = 'Failed to load attendance data.';
+      }
+    );
   }
 
   backToList(): void {
