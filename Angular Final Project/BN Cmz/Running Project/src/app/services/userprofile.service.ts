@@ -27,6 +27,7 @@ export class UserprofileService {
   }
 
   updateUserProfile(user: UserModel): Observable<UserModel> {
+    user.updateAt = new Date();
     localStorage.setItem('userProfile', JSON.stringify(user));
     return this.http.put<UserModel>(`${this.apiUrl}/${user.id}`, user);
   }

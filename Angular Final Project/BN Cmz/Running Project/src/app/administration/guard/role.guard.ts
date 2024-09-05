@@ -18,16 +18,29 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    const expectedRole = route.data['role'] as Array<string>;
-    const roles = this.authService.getUserRole();
+    const expectedRole = route.data['role'] as Array<
+      'HR' | 'Manager' | 'PayrollAdmin' | 'Employee'
+    >;
     return this.authService.currentUser$.pipe(
-      map((user) => {
-        if (user && expectedRole.includes(roles)) {
+      map(() => {
+        const role: 'HR' | 'Manager' | 'PayrollAdmin' | 'Employee' | null =
+          this.authService.getUserRole();
+        if (role && expectedRole.includes(role)) {
           return true;
         } else {
           this.router.navigate(['/login']);
           return false;
         }
+
+        // const role: 'HR' | 'Manager' | 'PayrollAdmin' | 'Employee' | null =
+        //   this.authService.getUserRole();
+
+        // if (role === null || !expectedRole.includes(role)) {
+        //   this.router.navigate(['/login']);
+        //   return false;
+        // }
+
+        // return true;
       })
     );
   }

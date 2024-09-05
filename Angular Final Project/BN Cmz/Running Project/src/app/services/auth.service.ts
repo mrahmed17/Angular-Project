@@ -101,6 +101,7 @@ export class AuthService {
   private setCurrentUser(user: UserModel): void {
     if (this.isBrowser()) {
       localStorage.setItem('currentUser', JSON.stringify(user));
+      localStorage.setItem('role', user.role); // Store role
     }
     this.currentUserSubject.next(user);
   }
@@ -124,9 +125,18 @@ export class AuthService {
   }
 
   // Retrieves the user role
-  getUserRole(): any {
-    return this.currentUserValue?.role;
+  getUserRole(): 'HR' | 'Manager' | 'PayrollAdmin' | 'Employee' | null {
+    return (
+      this.currentUserValue?.role ||
+      (localStorage.getItem('role') as
+        | 'HR'
+        | 'Manager'
+        | 'PayrollAdmin'
+        | 'Employee'
+        | null)
+    );
   }
+
 
   // Stores the token in localStorage
   storeToken(token: string): void {
