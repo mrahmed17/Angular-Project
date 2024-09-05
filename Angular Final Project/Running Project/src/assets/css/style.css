@@ -8848,7 +8848,7 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  -webkit-appearance: button;
+  appearance: button;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -8905,7 +8905,7 @@ legend + * {
 }
 
 [type=search] {
-  -webkit-appearance: textfield;
+  appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -8927,7 +8927,7 @@ legend + * {
 
 ::file-selector-button {
   font: inherit;
-  -webkit-appearance: button;
+  appearance: button;
 }
 
 output {
@@ -21291,13 +21291,13 @@ code {
   z-index: -1;
 }
 .performance-overview-carousel .carousel-inner .item .icon.icon-a::before {
-  content: url("../../../assets/images/dashboard/shape-1.svg");
+  content: url("../../assets/images/dashboard/shape-1.svg");
 }
 .performance-overview-carousel .carousel-inner .item .icon.icon-b::before {
-  content: url("../../../assets/images/dashboard/shape-1.svg");
+  content: url("../../assets/images/dashboard/shape-1.svg");
 }
 .performance-overview-carousel .carousel-inner .item .icon.icon-c::before {
-  content: url("../../../assets/images/dashboard/shape-3.svg");
+  content: url("../../assets/images/dashboard/shape-3.svg");
 }
 .performance-overview-carousel .carousel-control-prev,
 .performance-overview-carousel .carousel-control-next {
@@ -22365,7 +22365,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-primary .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-primary .background-icon i {
@@ -22381,7 +22381,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-secondary .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-secondary .background-icon i {
@@ -22397,7 +22397,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-success .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-success .background-icon i {
@@ -22413,7 +22413,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-info .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-info .background-icon i {
@@ -22429,7 +22429,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-warning .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-warning .background-icon i {
@@ -22445,7 +22445,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-danger .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-danger .background-icon i {
@@ -22461,7 +22461,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-light .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-light .background-icon i {
@@ -22477,7 +22477,7 @@ code {
   color: #ffffff;
 }
 .data-icon-card-dark .background-icon::before {
-  content: url("../../assets/images//dashboard/shape-4.svg");
+  content: url("../images/dashboard/shape-4.svg");
   position: absolute;
 }
 .data-icon-card-dark .background-icon i {
@@ -23863,15 +23863,15 @@ table.dataTable tbody td.select-checkbox:after {
 /* === Landing screens === */
 /* Auth */
 .auth .login-half-bg {
-  background: url("../../../assets/images/auth/login-bg.jpg");
+  background: url("../images/auth/login-bg.jpg");
   background-size: cover;
 }
 .auth .register-half-bg {
-  background: url("../../../assets/images/auth/register-bg.jpg");
+  background: url("../images/auth/register-bg.jpg");
   background-size: cover;
 }
 .auth.lock-full-bg {
-  background: url("../../../assets/images/auth/lockscreen-bg.jpg");
+  background: url("../images/auth/lockscreen-bg.jpg");
   background-size: cover;
 }
 .auth .lock-profile-img {

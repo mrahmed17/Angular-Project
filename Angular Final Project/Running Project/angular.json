@@ -53,8 +53,6 @@
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/assets/vendors/js/vendor.bundle.base.js",
               "src/assets/vendors/chart.js/chart.umd.js",
-              "src/assets/vendors/datatables.net/jquery.dataTables.js",
-              "src/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js",
               "src/assets/js/dataTables.select.min.js",
               "src/assets/js/off-canvas.js",
               "src/assets/js/template.js",
