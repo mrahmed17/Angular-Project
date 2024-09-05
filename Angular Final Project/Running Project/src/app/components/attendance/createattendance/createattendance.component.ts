@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AttendanceService } from '../../../services/attendance.service';
 import { EmployeeModel } from '../../../models/employee.model';
+import { AttendanceModel } from '../../../models/attendance.model';
 
 @Component({
   selector: 'app-createattendance',
@@ -10,10 +11,11 @@ import { EmployeeModel } from '../../../models/employee.model';
 })
 export class CreateattendanceComponent implements OnInit {
   attendanceForm!: FormGroup;
+  employees: EmployeeModel[] = [];
+  attendances: AttendanceModel[] = [];
   loading = false;
-  errorMessage = '';
-  attendanceData: any[] = [];
-  employeeData: EmployeeModel[] = [];
+  errorMessage: string | null = null;
+  attendence: AttendanceModel = new AttendanceModel();
 
   constructor(
     private fb: FormBuilder,
@@ -21,67 +23,69 @@ export class CreateattendanceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.fetchEmployees();
+    this.fetchAttendances();
+  }
+
+  // Initialize form
+  initializeForm(): void {
     this.attendanceForm = this.fb.group({
-      employee: ['', Validators.required],
+      employeeId: ['', Validators.required],
+      clockInTime: [null],
+      clockOutTime: [null],
     });
-    this.loadEmployees();
-    this.loadAttendanceData();
   }
 
-  loadEmployees() {
+  // Fetch employees for dropdown
+  fetchEmployees(): void {
     this.attendanceService.getAllEmployees().subscribe(
-      (data) => {
-        this.employeeData = data;
+      (employees) => {
+        this.employees = employees;
       },
       (error) => {
-        this.errorMessage = 'Failed to load employees.';
+        this.errorMessage = 'Failed to load employees';
       }
     );
   }
 
-  loadAttendanceData() {
+  // Fetch all attendances to show in the table
+  fetchAttendances(): void {
     this.attendanceService.getAllAttendances().subscribe(
-      (data) => {
-        this.attendanceService.getAllEmployees().subscribe((employees) => {
-          this.attendanceData = data.map((attendance) => ({
-            ...attendance,
-            employee: employees.find((emp) => emp.id === attendance.employeeId),
-          }));
-        });
+      (attendances) => {
+        console.log('Attendances:', attendances); // Log to see the response
+        this.attendances = attendances;
       },
       (error) => {
-        this.errorMessage = 'Failed to load attendance data.';
+        this.errorMessage = 'Failed to load attendance records';
       }
     );
   }
 
-  saveAttendance(action: 'checkIn' | 'checkOut') {
-    const selectedEmployee = this.attendanceForm.get('employee')?.value;
-
-    if (!selectedEmployee) {
-      this.errorMessage = 'Please select an employee.';
-      return;
-    }
-
+  // Handle clock-in and clock-out actions
+  saveAttendance(action: 'checkIn' | 'checkOut'): void {
+    const employeeId = this.attendanceForm.get('employeeId')?.value;
     this.loading = true;
-    this.errorMessage = '';
+    this.errorMessage = null;
 
     if (action === 'checkIn') {
-      this.attendanceService.clockInEmployee(selectedEmployee).subscribe(
+      this.attendanceService
+        .clockInEmployee(employeeId, this.attendence)
+        .subscribe(
+          (response) => {
+            this.loading = false;
+            this.fetchAttendances(); // Refresh attendances after clock-in
+          },
+          (error) => {
+            this.loading = false;
+            this.errorMessage = 'Failed to check in employee.';
+          }
+        );
+    } else if (action === 'checkOut') {
+      this.attendanceService.clockOutEmployee(employeeId).subscribe(
         (response) => {
           this.loading = false;
-          this.loadAttendanceData();
-        },
-        (error) => {
-          this.loading = false;
-          this.errorMessage = 'Failed to check in employee.';
-        }
-      );
-    } else {
-      this.attendanceService.clockOutEmployee(selectedEmployee).subscribe(
-        (response) => {
-          this.loading = false;
-          this.loadAttendanceData();
+          this.fetchAttendances(); // Refresh attendances after clock-out
         },
         (error) => {
           this.loading = false;

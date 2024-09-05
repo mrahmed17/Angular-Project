@@ -1,32 +1,20 @@
-<!-- <ng-container *ngIf="userRole === 'Admin'"> -->
-  <div class="container-fluid g-0">
-    <!-- Pass isAuthenticated to the HeaderComponent -->
-    <app-header></app-header>
-    <!-- <app-header [isAuthenticated]="isAuthenticated"></app-header> -->
-    <div class="container-fluid">
-      <div class="row">
-        <!-- Conditionally show the sidebar if authenticated -->
-        <div class="col-md-2">
-          <app-sidebar ngSkipHydration></app-sidebar>
-        </div>
-        <div class="bg-white col-md-9">
-          <app-breadcrumb></app-breadcrumb>
-          <app-notification></app-notification>
-          <router-outlet></router-outlet>
-          <app-footer></app-footer>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- </ng-container> -->
+<!-- <app-header></app-header>
+<app-sidebar></app-sidebar>
 
-<!-- 
-<ng-container *ngIf="userRole === 'Manager'">
+<app-breadcrumb></app-breadcrumb>
+<app-notification></app-notification>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>
+ -->
+
+
   <div class="container-fluid g-0">
     <app-header></app-header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <app-sidebar ngSkipHydration></app-sidebar>
         </div>
         <div class="bg-white col-md-9">
@@ -38,7 +26,10 @@
       </div>
     </div>
   </div>
-</ng-container> -->
+
+
+  <!-- <ng-container *ngIf="userRole === 'Manager'">
+</ng-container>  -->
 
 <!-- <ng-container *ngIf="userRole === 'user'">
   <div class="container-fluid g-0">

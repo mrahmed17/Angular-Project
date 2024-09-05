@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { EmployeeModel } from '../models/employee.model';
+import { AttendanceModel } from '../models/attendance.model';
 
 @Injectable({
   providedIn: 'root',
@@ -46,40 +47,57 @@ export class AttendanceService {
   }
 
   // Update a specific attendance record
-  updateAttendance(
-    attendanceId: number,
-    updatedAttendance: any
-  ): Observable<any> {
+  updateAttendance(employeeId: number, attendanceData: any): Observable<any> {
     return this.http
-      .put<any>(`${this.apiUrl}/${attendanceId}`, updatedAttendance)
+      .post<any>(`${this.apiUrl}/update/${employeeId}`, attendanceData)
       .pipe(
-        map((res) => res),
-        catchError(this.handleError)
+        tap((response) =>
+          console.log(`Attendance updated successfully: ${response}`)
+        ),
+        catchError((error) => {
+          console.error(`Error updating attendance: ${JSON.stringify(error)}`);
+          return throwError(
+            `Failed to update attendance. Please try again later.`
+          );
+        })
       );
   }
 
   // Clock-in employee
-  clockInEmployee(employeeId: number): Observable<any> {
+  clockInEmployee(
+    employeeId: number,
+    attendence: AttendanceModel
+  ): Observable<any> {
     const now = new Date().toISOString();
-    return this.http
-      .post<any>(`${this.apiUrl}/clock-in`, {
-        employeeId,
-        clockInTime: now,
+    const clockInData = { clockInTime: now };
+    attendence.clockInTime=now;
+
+    return this.http.post<any>(`${this.apiUrl}`, attendence).pipe(
+      tap((response) => console.log(`Clock-in successful: ${response}`)),
+      catchError((error) => {
+        console.error(`Error clocking in employee: ${error}`);
+        return throwError(
+          `Failed to check in employee. Please try again later.`
+        );
       })
-      .pipe(catchError(this.handleError));
+    );
   }
 
   // Clock-out employee
   clockOutEmployee(employeeId: number): Observable<any> {
     const now = new Date().toISOString();
+    const clockOutData = { clockOutTime: now };
+
     return this.http
-      .post<any>(`${this.apiUrl}/clock-out`, {
-        employeeId,
-        clockOutTime: now,
-      })
+      .post<any>(`${this.apiUrl}/update/${employeeId}`, clockOutData)
       .pipe(
-        map((attendance) => this.calculateTotalHours(attendance)),
-        catchError(this.handleError)
+        tap((response) => console.log(`Clock-out successful: ${response}`)),
+        catchError((error) => {
+          console.error(`Error updating attendance: ${error}`);
+          return throwError(
+            `Failed to update attendance. Please try again later.`
+          );
+        })
       );
   }
 
@@ -90,7 +108,7 @@ export class AttendanceService {
     attendance.totalHours = (clockOut - clockIn) / (1000 * 60 * 60);
     return attendance;
   }
-  
+
   // Delete a specific attendance record
   deleteAttendance(id: number): Observable<void> {
     return this.http
