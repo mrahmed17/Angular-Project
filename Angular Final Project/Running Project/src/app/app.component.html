@@ -1,3 +1,24 @@
+<div *ngIf="(authService.currentUser$ | async) as user; else loggedOut" class="container-scroller bg-dark text-white bg-dark">
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar></app-navbar>
+    <div class="content-wrapper p-2 mr-4 mt-2">
+      <div class="main-panel">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
+
+
 <!-- <app-header></app-header>
 <app-sidebar></app-sidebar>
 
@@ -10,7 +31,7 @@
  -->
 
 
-  <div class="container-fluid g-0">
+<!--  <div class="container-fluid g-0">
     <app-header></app-header>
     <div class="container-fluid">
       <div class="row">
@@ -25,7 +46,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
   <!-- <ng-container *ngIf="userRole === 'Manager'">
