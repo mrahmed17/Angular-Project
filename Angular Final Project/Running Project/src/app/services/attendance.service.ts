@@ -9,14 +9,13 @@ import { AttendanceModel } from '../models/attendance.model';
   providedIn: 'root',
 })
 export class AttendanceService {
-  private apiUrl: string = 'http://localhost:3000/attendances';
-  private employeeApiUrl: string = 'http://localhost:3000/employees';
+  private baseUrl: string = 'http://localhost:3000/attendances';
 
   constructor(private http: HttpClient) {}
 
   // Fetch all employees
   getAllEmployees(): Observable<EmployeeModel[]> {
-    return this.http.get<EmployeeModel[]>(this.employeeApiUrl).pipe(
+    return this.http.get<EmployeeModel[]>(this.employeebaseUrl).pipe(
       map((res) => res),
       catchError(this.handleError)
     );
@@ -24,7 +23,7 @@ export class AttendanceService {
 
   // Method to get attendance records by employee ID
   getAttendancesByEmployeeId(employeeId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?employeeId=${employeeId}`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}?employeeId=${employeeId}`).pipe(
       map((res) => res),
       catchError(this.handleError)
     );
@@ -32,7 +31,7 @@ export class AttendanceService {
 
   // Fetch all attendance records
   getAllAttendances(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    return this.http.get<any[]>(this.baseUrl).pipe(
       map((res) => res),
       catchError(this.handleError)
     );
@@ -40,7 +39,7 @@ export class AttendanceService {
 
   // Get a specific attendance record by ID
   getAttendanceById(attendanceId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${attendanceId}`).pipe(
+    return this.http.get<any>(`${this.baseUrl}/${attendanceId}`).pipe(
       map((res) => res),
       catchError(this.handleError)
     );
@@ -49,7 +48,7 @@ export class AttendanceService {
   // Update a specific attendance record
   updateAttendance(employeeId: number, attendanceData: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiUrl}/update/${employeeId}`, attendanceData)
+      .post<any>(`${this.baseUrl}/update/${employeeId}`, attendanceData)
       .pipe(
         tap((response) =>
           console.log(`Attendance updated successfully: ${response}`)
@@ -72,7 +71,7 @@ export class AttendanceService {
     const clockInData = { clockInTime: now };
     attendence.clockInTime=now;
 
-    return this.http.post<any>(`${this.apiUrl}`, attendence).pipe(
+    return this.http.post<any>(`${this.baseUrl}`, attendence).pipe(
       tap((response) => console.log(`Clock-in successful: ${response}`)),
       catchError((error) => {
         console.error(`Error clocking in employee: ${error}`);
@@ -89,7 +88,7 @@ export class AttendanceService {
     const clockOutData = { clockOutTime: now };
 
     return this.http
-      .post<any>(`${this.apiUrl}/update/${employeeId}`, clockOutData)
+      .post<any>(`${this.baseUrl}/update/${employeeId}`, clockOutData)
       .pipe(
         tap((response) => console.log(`Clock-out successful: ${response}`)),
         catchError((error) => {
@@ -112,7 +111,7 @@ export class AttendanceService {
   // Delete a specific attendance record
   deleteAttendance(id: number): Observable<void> {
     return this.http
-      .delete<void>(`${this.apiUrl}/${id}`)
+      .delete<void>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 

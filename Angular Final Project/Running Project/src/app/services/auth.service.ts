@@ -10,7 +10,7 @@ import { AuthResponseModel } from '../models/auth-response.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl: string = 'http://localhost:3000/user';
+  private baseUrl: string = 'http://localhost:3000/user';
   private currentUserSubject: BehaviorSubject<UserModel | null>;
   public currentUser$: Observable<UserModel | null>;
 
@@ -37,7 +37,7 @@ export class AuthService {
 
   // Registers a new user
   registration(user: UserModel): Observable<AuthResponseModel> {
-    return this.http.post<UserModel>(this.apiUrl, user).pipe(
+    return this.http.post<UserModel>(this.baseUrl, user).pipe(
       map((newUser: UserModel) => {
         const token = btoa(`${newUser.email}${newUser.password}`);
         return { token, user: newUser } as AuthResponseModel;
@@ -58,7 +58,7 @@ export class AuthService {
     let params = new HttpParams();
     params = params.append('email', credentials.email);
 
-    return this.http.get<UserModel[]>(`${this.apiUrl}`, { params }).pipe(
+    return this.http.get<UserModel[]>(`${this.baseUrl}`, { params }).pipe(
       map((users) => {
         if (users.length > 0) {
           const user = users[0];
@@ -168,7 +168,7 @@ export class AuthService {
   }
 
   forgetPassword(email: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/forgetpassword`, { email });
+    return this.http.post<any>(`${this.baseUrl}/forgetpassword`, { email });
   }
 
   // Clears all user details from localStorage

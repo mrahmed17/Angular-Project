@@ -8,7 +8,7 @@ import { catchError, Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class UserprofileService {
-  private apiUrl = 'http://localhost:3000/users';
+  private baseUrl = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -16,27 +16,27 @@ export class UserprofileService {
     const userId = this.authService.getUserId();
     console.log('User ID:', userId); // Log user ID
     if (userId) {
-      return this.http.get<UserModel>(`${this.apiUrl}/${userId}`).pipe(
+      return this.http.get<UserModel>(`${this.baseUrl}/${userId}`).pipe(
         catchError((err) => {
           console.error('Error fetching user profile:', err);
-          return of(null); // Return an observable with null in case of error
+          return of(null);
         })
       );
     }
-    return of(null); // Return an observable with null if userId is not available
+    return of(null); 
   }
 
   updateUserProfile(user: UserModel): Observable<UserModel> {
     user.updateAt = new Date();
     localStorage.setItem('userProfile', JSON.stringify(user));
-    return this.http.put<UserModel>(`${this.apiUrl}/${user.id}`, user);
+    return this.http.put<UserModel>(`${this.baseUrl}/${user.id}`, user);
   }
   
   // UserprofileService
   // getUserProfile(): Observable<UserModel | null> {
   //   const userId = this.authService.getUserId();
   //   if (userId) {
-  //     return this.http.get<UserModel>(`${this.apiUrl}/${userId}`);
+  //     return this.http.get<UserModel>(`${this.baseUrl}/${userId}`);
   //   }
   //   return of(null); // Return an observable with null if userId is not available
   // }

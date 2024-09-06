@@ -8,8 +8,8 @@ import { EmployeeModel } from '../models/employee.model';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private apiUrl: string = 'http://localhost:3000/employees';
-  private departmentApiUrl: string = 'https://localhost:3000/departments';
+  private baseUrl: string = 'http://localhost:3000/employees';
+  private departmentbaseUrl: string = 'https://localhost:3000/departments';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -21,24 +21,24 @@ export class EmployeeService {
 
   getAllEmployees(): Observable<EmployeeModel[]> {
     return this.http
-      .get<EmployeeModel[]>(this.apiUrl)
+      .get<EmployeeModel[]>(this.baseUrl)
       .pipe(catchError(this.handleError));
   }
 
   getEmployeesByDepartment(departmentId: string): Observable<EmployeeModel[]> {
     return this.http
-      .get<EmployeeModel[]>(`${this.apiUrl}?departmentId=${departmentId}`)
+      .get<EmployeeModel[]>(`${this.baseUrl}?departmentId=${departmentId}`)
       .pipe(catchError(this.handleError));
   }
 
   getEmployeeById(id: string): Observable<EmployeeModel> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.get<EmployeeModel>(url).pipe(catchError(this.handleError));
   }
 
   createEmployee(employee: EmployeeModel): Observable<EmployeeModel> {
     return this.http
-      .post<EmployeeModel>(this.apiUrl, employee, this.httpOptions)
+      .post<EmployeeModel>(this.baseUrl, employee, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -46,21 +46,21 @@ export class EmployeeService {
     id: string,
     employee: EmployeeModel
   ): Observable<EmployeeModel> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http
       .put<EmployeeModel>(url, employee, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   deleteEmployee(id: string): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.delete<void>(url).pipe(catchError(this.handleError));
   }
 
   getAllDepartments(): Observable<any[]> {
     // Adjust the return type based on your department model
     return this.http
-      .get<any[]>(this.departmentApiUrl)
+      .get<any[]>(this.departmentbaseUrl)
       .pipe(catchError(this.handleError));
   }
 

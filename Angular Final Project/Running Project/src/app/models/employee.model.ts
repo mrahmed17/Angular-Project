@@ -1,18 +1,22 @@
+import { DepartmentModel } from "./department.model";
+
 export class EmployeeModel {
-  id!: string;
-  username!: string;
+  id!: number;
+  userName!: string;
   fullName!: string;
   email!: string;
+  password!: string;
   address!: string;
-  gender?: string;
-  dateOfBirth?: Date;
-  nidNo?: string;
+  gender!: string;
+  dateOfBirth!: Date;
+  nid!: string;
   contactNumber!: string;
-  departmentId!: string;
-  managerId!: string;
-  hireDate!: Date; //Creation date will be the hire date
-  status!: boolean; //Active or Inactive
-  hourlyRate!: number;
-  updatedAt!: Date; //For form editation.
+  department!: DepartmentModel; //(branch)
+  role!: 'Employee'; // For auth and role
+  joiningDate!: string;
+  status!: boolean;
+  baseSalary!: number;
+  createAt!: Date;
+  updatedAt!: Date;
   profilePhoto?: string;
 }

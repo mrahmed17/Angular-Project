@@ -8,42 +8,42 @@ import { LeaveModel } from '../models/leave.model';
   providedIn: 'root',
 })
 export class LeaveService {
-  private apiUrl: string = 'http://localhost:3000/leaves';
+  private baseUrl: string = 'http://localhost:3000/leaves';
 
   constructor(private httpClient: HttpClient) {}
 
   // Method to create a new leave
   createLeave(leave: LeaveModel): Observable<LeaveModel> {
     return this.httpClient
-      .post<LeaveModel>(this.apiUrl, leave)
+      .post<LeaveModel>(this.baseUrl, leave)
       .pipe(catchError(this.handleError));
   }
 
   // Method to get a leave by ID
   getLeave(id: string): Observable<LeaveModel> {
     return this.httpClient
-      .get<LeaveModel>(`${this.apiUrl}/${id}`)
+      .get<LeaveModel>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
   // Method to get all leaves
   getAllLeaves(): Observable<LeaveModel[]> {
     return this.httpClient
-      .get<LeaveModel[]>(this.apiUrl)
+      .get<LeaveModel[]>(this.baseUrl)
       .pipe(catchError(this.handleError));
   }
 
   // Method to update an existing leave
   updateLeave(id: string, leave: LeaveModel): Observable<LeaveModel> {
     return this.httpClient
-      .put<LeaveModel>(`${this.apiUrl}/${id}`, leave)
+      .put<LeaveModel>(`${this.baseUrl}/${id}`, leave)
       .pipe(catchError(this.handleError));
   }
 
   // Method to delete a leave by ID
   deleteLeave(id: string): Observable<void> {
     return this.httpClient
-      .delete<void>(`${this.apiUrl}/${id}`)
+      .delete<void>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 

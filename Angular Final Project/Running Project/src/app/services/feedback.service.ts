@@ -7,28 +7,28 @@ import { FeedbackModel } from '../models/feedback.model';
   providedIn: 'root',
 })
 export class FeedbackService {
-  private apiUrl: string = 'http://localhost:3000/feedbacks';
+  private baseUrl: string = 'http://localhost:3000/feedbacks';
 
   constructor(private http: HttpClient) {}
 
   // Method to create feedback
   createFeedback(feedback: FeedbackModel): Observable<FeedbackModel> {
     return this.http
-      .post<FeedbackModel>(this.apiUrl, feedback)
+      .post<FeedbackModel>(this.baseUrl, feedback)
       .pipe(catchError(this.handleError));
   }
 
   // Method to get a single feedback by ID
   getFeedback(id: string): Observable<FeedbackModel> {
     return this.http
-      .get<FeedbackModel>(`${this.apiUrl}/${id}`)
+      .get<FeedbackModel>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
   // Method to list all feedbacks
   getFeedbacks(): Observable<FeedbackModel[]> {
     return this.http
-      .get<FeedbackModel[]>(this.apiUrl)
+      .get<FeedbackModel[]>(this.baseUrl)
       .pipe(catchError(this.handleError));
   }
 
@@ -38,14 +38,14 @@ export class FeedbackService {
     feedback: FeedbackModel
   ): Observable<FeedbackModel> {
     return this.http
-      .put<FeedbackModel>(`${this.apiUrl}/${id}`, feedback)
+      .put<FeedbackModel>(`${this.baseUrl}/${id}`, feedback)
       .pipe(catchError(this.handleError));
   }
 
   // Method to delete feedback
   deleteFeedback(id: string): Observable<void> {
     return this.http
-      .delete<void>(`${this.apiUrl}/${id}`)
+      .delete<void>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 

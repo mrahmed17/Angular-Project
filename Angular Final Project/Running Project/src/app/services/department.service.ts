@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { DepartmentModel } from '../models/department.model';
-import { LocationModel } from '../models/location.model'; // Updated import
-import { ManagerModel } from '../models/manager.model'; // Updated import
+import { LocationModel } from '../models/branch.model'; // Updated import
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DepartmentService {
-  private apiUrl: string = 'http://localhost:3000/departments'; // Base URL for departments API
+  private baseUrl: string = 'http://localhost:3000/departments'; // Base URL for departments API
   private locationUrl: string = 'http://localhost:3000/locations'; // Base URL for locations API
   private managerUrl: string = 'http://localhost:3000/managers'; // Base URL for managers API
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' }); // Headers for JSON requests
@@ -20,7 +20,7 @@ export class DepartmentService {
   // Fetch all departments
   getAllDepartments(): Observable<DepartmentModel[]> {
     return this.httpClient
-      .get<DepartmentModel[]>(this.apiUrl)
+      .get<DepartmentModel[]>(this.baseUrl)
       .pipe(
         catchError(this.handleError<DepartmentModel[]>('getAllDepartments', []))
       );
@@ -29,14 +29,16 @@ export class DepartmentService {
   // Create a new department
   createDepartment(department: DepartmentModel): Observable<DepartmentModel> {
     return this.httpClient
-      .post<DepartmentModel>(this.apiUrl, department, { headers: this.headers })
+      .post<DepartmentModel>(this.baseUrl, department, {
+        headers: this.headers,
+      })
       .pipe(catchError(this.handleError<DepartmentModel>('createDepartment')));
   }
 
   // Delete a department by ID
   deleteDepartment(id: string): Observable<void> {
     return this.httpClient
-      .delete<void>(`${this.apiUrl}/${id}`, { headers: this.headers })
+      .delete<void>(`${this.baseUrl}/${id}`, { headers: this.headers })
       .pipe(catchError(this.handleError<void>('deleteDepartment')));
   }
 
@@ -46,7 +48,7 @@ export class DepartmentService {
     department: Partial<DepartmentModel>
   ): Observable<DepartmentModel> {
     return this.httpClient
-      .put<DepartmentModel>(`${this.apiUrl}/${id}`, department, {
+      .put<DepartmentModel>(`${this.baseUrl}/${id}`, department, {
         headers: this.headers,
       })
       .pipe(catchError(this.handleError<DepartmentModel>('updateDepartment')));
@@ -55,7 +57,7 @@ export class DepartmentService {
   // Get a department by ID
   getDepartmentById(id: string): Observable<DepartmentModel> {
     return this.httpClient
-      .get<DepartmentModel>(`${this.apiUrl}/${id}`)
+      .get<DepartmentModel>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError<DepartmentModel>('getDepartmentById')));
   }
 
@@ -69,10 +71,10 @@ export class DepartmentService {
   }
 
   // Fetch all managers
-  getAllManagers(): Observable<ManagerModel[]> {
+  getAllManagers(): Observable<UserModel[]> {
     return this.httpClient
-      .get<ManagerModel[]>(this.managerUrl)
-      .pipe(catchError(this.handleError<ManagerModel[]>('getAllManagers', [])));
+      .get<UserModel[]>(this.managerUrl)
+      .pipe(catchError(this.handleError<UserModel[]>('getAllManagers', [])));
   }
 
   // Error handling
