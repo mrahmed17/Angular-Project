@@ -1,5 +1,5 @@
 export class UserModel {
-  id!: string;
+  id!: number;
   userName!: string;
   fullName!: string;
   email!: string;
@@ -9,9 +9,8 @@ export class UserModel {
   dateOfBirth!: Date;
   nid!: string;
   contactNumber!: string;
-  role!: 'HR' | 'Manager' | 'PayrollAdmin' | 'Employee';
+  role!: 'HR' | 'Manager' | 'PayrollAdmin';
   status!: boolean;
-  hourlyRate!: number;
   createAt!: Date;
   updateAt!: Date;
   profilePhoto!: string;

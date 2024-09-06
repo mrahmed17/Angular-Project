@@ -9,7 +9,7 @@ import { LocationService } from '../../../services/location.service';
 import { ManagerService } from '../../../services/manager.service';
 import { DepartmentModel } from '../../../models/department.model';
 import { ManagerModel } from '../../../models/manager.model';
-import { LocationModel } from '../../../models/location.model';
+import { LocationModel } from '../../../models/branch.model';
 
 @Component({
   selector: 'app-editdepartment',

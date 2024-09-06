@@ -55,7 +55,7 @@
       "id": "09e7",
       "userName": "payrolladmin",
       "fullName": "Tamim Ahmed Raju",
-      "email": "payroll@gmail.com",
+      "email": "payrolladmin@gmail.com",
       "password": "123456",
       "address": "Near Lalbagh Kellah",
       "gender": "Male",
@@ -67,23 +67,6 @@
       "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
       "createAt": "2024-09-04T12:52:58.342Z",
       "updateAt": "2024-09-04T12:52:58.342Z"
-    },
-    {
-      "id": "31cc",
-      "userName": "employee",
-      "fullName": "Md. Raju Ahmed",
-      "email": "employee@gmail.com",
-      "password": "123456",
-      "address": "Near Lalbagh Kellah",
-      "gender": "Male",
-      "dateOfBirth": "2024-09-04",
-      "nid": "465464545",
-      "contactNumber": "0456465465",
-      "role": "Employee",
-      "status": true,
-      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
-      "createAt": "2024-09-04T12:54:46.900Z",
-      "updateAt": "2024-09-04T12:54:46.900Z"
     }
   ],
   "users": [
@@ -183,61 +166,12 @@
       "createdAt": "2024-09-03T10:35:13.407Z"
     }
   ],
-  "admins": [
-    {
-      "id": "raju-7063",
-      "username": "raju",
-      "fullName": "Md. Raju Ahmed",
-      "email": "raju@gmail.com",
-      "contactNumber": "01620000786",
-      "role": "Admin",
-      "gender": "Male",
-      "age": "27",
-      "nidNo": "123456789",
-      "accessLevel": "SuperAdmin",
-      "assignedLocations": [],
-      "assignedManagers": [],
-      "assignedDepartments": [],
-      "profilePhoto": "https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=1024x1024&w=is&k=20&c=fRiq_aLd5eX7bjr9Y0umM-b0kIxYDewARvO_9Ykqayc=",
-      "payrollCalculationMethod": "Monthly",
-      "lastLogin": "2024-08-30T13:01:51.803Z",
-      "status": "active",
-      "hourlyRate": "500"
-    },
-    {
-      "id": "tamim-2773",
-      "username": "tamim",
-      "fullName": "Tamim Ahmed Raju",
-      "email": "tamim@gmail.com",
-      "contactNumber": "01620500786",
-      "role": "Admin",
-      "gender": "Male",
-      "age": "27",
-      "nidNo": "456123456",
-      "accessLevel": "Admin",
-      "assignedLocations": [],
-      "assignedManagers": [],
-      "assignedDepartments": [],
-      "profilePhoto": "https://media.istockphoto.com/id/1336658193/photo/confident-young-man-working-on-computer.jpg?s=1024x1024&w=is&k=20&c=iQa87-sj1oDk_uV82rw772GIr09Wo7jQfShL60Z2cDY=",
-      "payrollCalculationMethod": "Monthly",
-      "lastLogin": "2024-08-30T13:42:11.430Z",
-      "status": "active",
-      "hourlyRate": "450"
-    }
-  ],
   "attendances": [
     {
       "id": "ee08",
       "employeeId": "EMP-TRAJ-6871",
       "clockInTime": "2024-09-04T07:01:03.563Z",
-      "clockOutTime": "2024-09-04T17:10:03.563Z",
-      "totalHours": 10
-    },
-    {
-      "id": "87e8"
-    },
-    {
-      "id": "a1a1"
+      "clockOutTime": "2024-09-04T17:10:03.563Z"
     },
     {
       "id": "878b",
@@ -251,8 +185,6 @@
   "departments": [
     {
       "name": "JAVA59",
-      "phoneNumber": "01620000786",
-      "email": "java59@gmail.com",
       "locationId": "2b59",
       "managerId": "raju-4054",
       "numberOfEmployees": 50,
@@ -260,8 +192,6 @@
     },
     {
       "name": "NT",
-      "phoneNumber": "01620050786",
-      "email": "nt@gmail.com",
       "locationId": "8932",
       "managerId": "towhid-5224",
       "numberOfEmployees": 45,
@@ -269,8 +199,6 @@
     },
     {
       "name": "Web Development",
-      "phoneNumber": "01620050786",
-      "email": "webdeb@gmail.com",
       "locationId": "ed03",
       "managerId": "rizvi-4610",
       "numberOfEmployees": 100,
@@ -279,8 +207,6 @@
     {
       "id": "65b9",
       "name": "C#",
-      "phoneNumber": "01620050786",
-      "email": "c#@gmail.com",
       "locationId": "ac39",
       "managerId": "tamim-4750",
       "numberOfEmployees": 80
@@ -291,6 +217,7 @@
       "username": "traj",
       "fullName": "Tamim Ahmed Raju",
       "email": "traj@gmail.com",
+      "password": "123456",
       "address": "Give you later",
       "gender": "male",
       "dateOfBirth": "2024-09-04",
@@ -309,6 +236,7 @@
       "username": "kutub",
       "fullName": "Kutub Uddin",
       "email": "kutub@gmail.com",
+      "password": "123456",
       "address": "adfasdfaf",
       "gender": "Male",
       "dateOfBirth": "2024-09-03",
@@ -325,6 +253,7 @@
       "username": "shabab",
       "fullName": "Md Shabab Ahmed",
       "email": "shabab@gmail.com",
+      "password": "123456",
       "address": "Give you later",
       "gender": "Male",
       "dateOfBirth": "2024-09-04",
@@ -340,33 +269,29 @@
   "feedbacks": [
     {
       "id": "5242",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "performanceRating": 5,
+      "employeeId": null,      
+      "rating": 5,
       "comments": "Bhal hoye jao masud. Tumi kobe bhalo hoba amake ektu bolo to?",
       "date": "2024-08-31"
     },
     {
       "id": "5d2f",
       "employeeId": null,
-      "managerId": "raju-4054",
-      "performanceRating": 4.5,
+      "rating": 4.5,
       "comments": "Ki Likhbo Sukher Kotha, Onek Chestar Por Ekhane Feedback Likhte Parchi. Good Job. Go Ahead.",
       "date": "2024-08-31"
     },
     {
       "id": "9338",
       "employeeId": null,
-      "managerId": "raju-4054",
-      "performanceRating": 5,
+      "rating": 5,
       "comments": "Ektu Upgrade Kore Aslam. Aage Create Feedback Submit Korle, Redirect Hoye Vul Page E Jeto. Now Ekhon Asha Kori Thik Page E Jabe.",
       "date": "2024-08-31"
     },
     {
       "id": "b411",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "performanceRating": 5,
+      "employeeId": null,      
+      "rating": 5,
       "comments": "Hello Dear",
       "date": "2024-08-31"
     }
@@ -473,157 +398,12 @@
       "updatedAt": "2024-09-03T18:47:31.330Z"
     }
   ],
-  "payrolls": [
-    {
-      "id": "12",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "hourlyRate": 250,
-      "performanceBonuses": 1000,
-      "insurance": 3000,
-      "medicare": 500,
-      "deductions": 3700,
-      "overtimeHours": 4,
-      "overtimeRate": 375,
-      "yearlySickDay": 9,
-      "totalPay": 7300,
-      "payDate": "2024-08-30T00:00:00.000Z"
-    },
-    {
-      "id": "22",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "hourlyRate": 250,
-      "performanceBonuses": 1000,
-      "insurance": 3000,
-      "medicare": 1000,
-      "deductions": 4250,
-      "overtimeHours": 4,
-      "overtimeRate": 375,
-      "yearlySickDay": 5,
-      "totalPay": 6750,
-      "payDate": "2024-08-30T00:00:00.000Z"
-    },
-    {
-      "id": "6564",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "hourlyRate": 250,
-      "performanceBonuses": 1000,
-      "insurance": 3000,
-      "medicare": 500,
-      "deductions": 3550,
-      "overtimeHours": 4,
-      "overtimeRate": 374,
-      "yearlySickDay": 5,
-      "totalPay": 7450,
-      "payDate": "2024-09-02T00:00:00.000Z"
-    },
-    {
-      "id": "584",
-      "employeeId": "raju1996",
-      "managerId": "rizvi-4750",
-      "hourlyRate": 500,
-      "performanceBonuses": 500,
-      "insurance": 3000,
-      "medicare": 5000,
-      "deductions": 9010,
-      "overtimeHours": 4,
-      "overtimeRate": 750,
-      "yearlySickDay": 10,
-      "totalPay": 11490,
-      "payDate": "2024-09-02T00:00:00.000Z"
-    },
-    {
-      "id": "4512",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "hourlyRate": 500,
-      "performanceBonuses": 500,
-      "insurance": 3000,
-      "medicare": 500,
-      "deductions": 4000,
-      "overtimeHours": 4,
-      "overtimeRate": 750,
-      "yearlySickDay": 5,
-      "totalPay": 16500,
-      "payDate": "2024-09-02T00:00:00.000Z"
-    },
-    {
-      "id": "12132",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "hourlyRate": 250,
-      "performanceBonuses": 250,
-      "insurance": 3000,
-      "medicare": 1000,
-      "deductions": 5000,
-      "overtimeHours": 4,
-      "overtimeRate": 500,
-      "yearlySickDay": 0,
-      "totalPay": 5250,
-      "payDate": "2024-09-02T00:00:00.000Z"
-    },
-    {
-      "id": "RS5",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "hourlyRate": 250,
-      "performanceBonuses": 1000,
-      "insurance": 3000,
-      "medicare": 5000,
-      "deductions": 9000,
-      "overtimeHours": 4,
-      "overtimeRate": 5000,
-      "yearlySickDay": 5,
-      "totalPay": 2000,
-      "payDate": "2024-09-02T12:39:41.188Z"
-    }
-  ],
-  "performances": [
+  "bonuses": [
     {
       "id": "d37c",
-      "employeeId": null,
-      "managerId": "raju-4054",
-      "goals": true,
-      "achievements": "Very Good",
-      "rating": 5,
-      "comments": "Nothing to say",
-      "bonusPercentage": 50,
-      "reviewDate": "2024-08-31T06:27:13.960Z"
-    },
-    {
-      "id": "4a04",
-      "employeeId": null,
-      "managerId": "tamim-4750",
-      "goals": false,
-      "achievements": "Yeah",
-      "reviewDate": "2024-08-31T06:33:13.989Z",
-      "rating": 5,
-      "comments": "Keep it up buddy.",
-      "bonusPercentage": 10
-    },
-    {
-      "id": "232d",
-      "employeeId": null,
-      "managerId": "tamim-4750",
-      "goals": true,
-      "achievements": "Yes",
-      "reviewDate": "2024-09-01T18:38:12.759Z",
-      "rating": 5,
-      "comments": "asfsadf",
-      "bonusPercentage": 75
-    },
-    {
-      "id": "fb9a",
-      "employeeId": null,
-      "managerId": "tamim-4750",
-      "goals": true,
-      "achievements": "true",
-      "reviewDate": "2024-09-02T05:40:59.662Z",
-      "rating": 5,
-      "comments": "opasdjfsj",
-      "bonusPercentage": 50
+      "employee": "Aminul",
+      "amount": 10000,
+      "reviewDate": "2024-08-31"
     }
   ]
 }

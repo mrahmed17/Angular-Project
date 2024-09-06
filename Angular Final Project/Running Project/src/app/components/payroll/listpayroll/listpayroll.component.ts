@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PayrollService } from '../../../services/payroll.service';
+import { PayrollService } from '../../../services/salary.service';
 import { PayrollModel } from '../../../models/payroll.model';
 
 @Component({

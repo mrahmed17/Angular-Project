@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocationService } from '../../../services/location.service';
-import { LocationModel } from '../../../models/location.model';
+import { LocationModel } from '../../../models/branch.model';
 
 @Component({
   selector: 'app-editlocation',
