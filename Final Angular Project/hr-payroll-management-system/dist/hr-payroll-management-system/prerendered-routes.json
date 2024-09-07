@@ -1,0 +1,13 @@
+{
+  "routes": [
+    "/createlocation",
+    "/createstudent",
+    "/home",
+    "/location",
+    "/login",
+    "/logout",
+    "/reg",
+    "/student",
+    "/userprofile"
+  ]
+}
