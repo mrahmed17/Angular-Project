@@ -13,7 +13,7 @@ export class AttendanceService {
 
   constructor(private http: HttpClient) {}
 
-  // Fetch all employees
+ 
   getAllEmployees(): Observable<EmployeeModel[]> {
     return this.http.get<EmployeeModel[]>(this.employeebaseUrl).pipe(
       map((res) => res),

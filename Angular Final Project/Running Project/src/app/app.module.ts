@@ -63,6 +63,7 @@ import { LoginComponent } from './administration/login/login.component';
 import { LogoutComponent } from './administration/logout/logout.component';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { ForgetpasswordComponent } from './administration/forgetpassword/forgetpassword.component';
+import { AdvanceSalaryComponent } from './salaries/advance-salary/advance-salary.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { ForgetpasswordComponent } from './administration/forgetpassword/forgetp
     LogoutComponent,
     DashboardComponent,
     ForgetpasswordComponent,
+    AdvanceSalaryComponent,
   ],
   imports: [
     BrowserModule,

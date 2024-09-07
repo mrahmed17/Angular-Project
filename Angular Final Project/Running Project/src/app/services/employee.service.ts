@@ -1,79 +1,120 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { EmployeeModel } from '../models/employee.model';
+import { SalaryModel } from '../models/salary.model';
+import { FeedbackModel } from '../models/feedback.model';
+import { LeaveModel } from '../models/leave.model';
+import { BonusModel } from '../models/bonus.model';
+import { AdvanceSalaryModel } from '../models/advance-salary.model';
+import { DepartmentModel } from '../models/department.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private baseUrl: string = 'http://localhost:3000/employees';
-  private departmentbaseUrl: string = 'https://localhost:3000/departments';
+  private baseUrl: string = 'https://localhost:3000/employees';
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-
-  constructor(private http: HttpClient) {}
-
-  getAllEmployees(): Observable<EmployeeModel[]> {
-    return this.http
-      .get<EmployeeModel[]>(this.baseUrl)
-      .pipe(catchError(this.handleError));
-  }
-
-  getEmployeesByDepartment(departmentId: string): Observable<EmployeeModel[]> {
-    return this.http
-      .get<EmployeeModel[]>(`${this.baseUrl}?departmentId=${departmentId}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  getEmployeeById(id: string): Observable<EmployeeModel> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<EmployeeModel>(url).pipe(catchError(this.handleError));
-  }
+  constructor(private httpClient: HttpClient) {}
 
   createEmployee(employee: EmployeeModel): Observable<EmployeeModel> {
-    return this.http
-      .post<EmployeeModel>(this.baseUrl, employee, this.httpOptions)
+    return this.httpClient
+      .post<EmployeeModel>(`${this.baseUrl}`, employee)
+      .pipe(catchError(this.handleError));
+  }
+
+  getAllEmployees(): Observable<EmployeeModel[]> {
+    return this.httpClient
+      .get<EmployeeModel[]>(`${this.baseUrl}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getEmployeeById(id: number): Observable<EmployeeModel> {
+    return this.httpClient
+      .get<EmployeeModel>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
   updateEmployee(
-    id: string,
+    id: number,
     employee: EmployeeModel
   ): Observable<EmployeeModel> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http
-      .put<EmployeeModel>(url, employee, this.httpOptions)
+    return this.httpClient
+      .put<EmployeeModel>(`${this.baseUrl}/${id}`, employee)
       .pipe(catchError(this.handleError));
   }
 
-  deleteEmployee(id: string): Observable<void> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<void>(url).pipe(catchError(this.handleError));
-  }
-
-  getAllDepartments(): Observable<any[]> {
-    // Adjust the return type based on your department model
-    return this.http
-      .get<any[]>(this.departmentbaseUrl)
+  deleteEmployee(id: number): Observable<void> {
+    return this.httpClient
+      .delete<void>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
-  // Error handling method
+  getSalaryByEmployeeId(id: number): Observable<SalaryModel> {
+    return this.httpClient
+      .get<SalaryModel>(`${this.baseUrl}/${id}/salary`)
+      .pipe(catchError(this.handleError));
+  }
+
+  requestAdvanceSalary(
+    advanceSalary: AdvanceSalaryModel
+  ): Observable<AdvanceSalaryModel> {
+    return this.httpClient
+      .post<AdvanceSalaryModel>(`${this.baseUrl}/advance-salary`, advanceSalary)
+      .pipe(catchError(this.handleError));
+  }
+
+  getAdvanceSalaryByEmployeeId(id: number): Observable<AdvanceSalaryModel[]> {
+    return this.httpClient
+      .get<AdvanceSalaryModel[]>(`${this.baseUrl}/${id}/advance-salary`)
+      .pipe(catchError(this.handleError));
+  }
+
+  grantBonus(bonus: BonusModel): Observable<BonusModel> {
+    return this.httpClient
+      .post<BonusModel>(`${this.baseUrl}/bonus`, bonus)
+      .pipe(catchError(this.handleError));
+  }
+
+  getBonusByEmployeeId(id: number): Observable<BonusModel[]> {
+    return this.httpClient
+      .get<BonusModel[]>(`${this.baseUrl}/${id}/bonus`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getFeedbackByEmployeeId(id: number): Observable<FeedbackModel[]> {
+    return this.httpClient
+      .get<FeedbackModel[]>(`${this.baseUrl}/${id}/feedback`)
+      .pipe(catchError(this.handleError));
+  }
+
+  applyForLeave(leave: LeaveModel): Observable<LeaveModel> {
+    return this.httpClient
+      .post<LeaveModel>(`${this.baseUrl}/apply-leave`, leave)
+      .pipe(catchError(this.handleError));
+  }
+
+  getLeaveByEmployeeId(id: number): Observable<LeaveModel[]> {
+    return this.httpClient
+      .get<LeaveModel[]>(`${this.baseUrl}/${id}/leaves`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getDepartmentByEmployeeId(id: number): Observable<DepartmentModel> {
+    return this.httpClient
+      .get<DepartmentModel>(`${this.baseUrl}/${id}/department`)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Something went wrong; please try again later.!';
+    let errorMessage = 'Something went wrong; please try again later.';
     if (error.error instanceof ErrorEvent) {
-      // Client-side errors
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side errors
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
 }
