@@ -14,8 +14,10 @@ public class Bonus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Employee employee;
+
     private BigDecimal amount;
     private String bonusDate;
 

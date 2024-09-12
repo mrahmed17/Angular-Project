@@ -26,4 +26,5 @@ public class Advance {
         this.employee = employee;
         this.amount = amount;
     }
+
 }
