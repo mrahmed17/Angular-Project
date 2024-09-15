@@ -71,7 +71,7 @@ Angular Program Connection Follow:
 6. Navbar or Sidebar or both part (The routing path in this part should be connected with navbar or sidebar or both parts.)
 
 
-Nusrat
+ From Nusrat
 =====================================
 
 project open: ng new myangular --standalone false
