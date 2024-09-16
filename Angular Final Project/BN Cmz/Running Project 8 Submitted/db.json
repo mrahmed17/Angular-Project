@@ -458,6 +458,21 @@
       "yearlySickDay": 5,
       "totalPay": 2000,
       "payDate": "2024-09-02T12:39:41.188Z"
+    },
+    {
+      "id": "45",
+      "employeeId": "raju1996-9374",
+      "managerId": "raju-4054",
+      "hourlyRate": 250,
+      "performanceBonuses": 1000,
+      "insurance": 3000,
+      "medicare": 5000,
+      "deductions": 8100,
+      "overtimeHours": 4,
+      "overtimeRate": 220,
+      "yearlySickDay": 0,
+      "totalPay": 2900,
+      "payDate": "2024-09-16T06:42:08.380Z"
     }
   ],
   "performances": [
