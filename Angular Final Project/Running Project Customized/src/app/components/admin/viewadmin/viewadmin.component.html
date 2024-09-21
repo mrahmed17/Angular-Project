@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<!-- <div class="container mt-4">
   <div *ngIf="loading" class="text-center">
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Loading...
@@ -6,12 +6,10 @@
 
   <h2 class="text-center">View Admin</h2>
 
-  <!-- Display error message if any -->
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
-  <!-- Admin Details Card -->
   <div *ngIf="admin" class="card">
     <img *ngIf="admin.profilePhoto" [src]="admin.profilePhoto" class="card-img-top profile-photo"
       alt="{{ admin.fullName }}">
@@ -34,4 +32,4 @@
     <button class="btn btn-primary" (click)="goBack()">Back</button>
   </div>
 
-</div>
+</div> -->

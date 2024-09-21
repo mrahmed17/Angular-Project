@@ -46,22 +46,22 @@ export class ListdepartmentComponent implements OnInit {
     this.router.navigate(['/departments/edit', departmentId]);
   }
 
-  deleteDepartment(departmentId: string): void {
-    if (confirm('Are you sure you want to delete this department?')) {
-      this.loading = true;
-      this.departmentService.deleteDepartment(departmentId).subscribe(
-        () => {
-          this.departments = this.departments.filter(
-            (department) => department.id !== departmentId
-          );
-          this.loading = false;
-        },
-        (error) => {
-          this.errorMessage = 'Failed to delete department.';
-          this.loading = false;
-          console.error('Failed to delete department', error);
-        }
-      );
-    }
-  }
+  // deleteDepartment(departmentId: string): void {
+  //   if (confirm('Are you sure you want to delete this department?')) {
+  //     this.loading = true;
+  //     this.departmentService.deleteDepartment(departmentId).subscribe(
+  //       () => {
+  //         this.departments = this.departments.filter(
+  //           (department) => department.id !== departmentId
+  //         );
+  //         this.loading = false;
+  //       },
+  //       (error) => {
+  //         this.errorMessage = 'Failed to delete department.';
+  //         this.loading = false;
+  //         console.error('Failed to delete department', error);
+  //       }
+  //     );
+  //   }
+  // }
 }

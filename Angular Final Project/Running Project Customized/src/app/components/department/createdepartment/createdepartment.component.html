@@ -1,15 +1,12 @@
-<div class="container">
+<!-- <div class="container">
   <h2>Create Department</h2>
 
-  <!-- Display error message if any -->
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
-  <!-- Department Creation Form -->
   <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
 
-    <!-- Department Name -->
     <div class="form-group">
       <label for="name">Department Name</label>
       <input id="name" formControlName="name" class="form-control" type="text" />
@@ -18,7 +15,6 @@
       </div>
     </div>
 
-    <!-- Phone Number -->
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
       <input id="phoneNumber" formControlName="phoneNumber" class="form-control" type="text" />
@@ -28,7 +24,6 @@
       </div>
     </div>
 
-    <!-- Email -->
     <div class="form-group">
       <label for="email">Email</label>
       <input id="email" formControlName="email" class="form-control" type="email" />
@@ -38,7 +33,6 @@
       </div>
     </div>
 
-    <!-- Location -->
     <div class="form-group">
       <label for="locationId">Location</label>
       <select id="locationId" formControlName="locationId" class="form-control">
@@ -53,7 +47,6 @@
       </div>
     </div>
 
-    <!-- Manager -->
     <div class="form-group">
       <label for="managerId">Manager</label>
       <select id="managerId" formControlName="managerId" class="form-control">
@@ -68,7 +61,6 @@
       </div>
     </div>
 
-    <!-- Number of Employees -->
     <div class="form-group">
       <label for="numberOfEmployees">Number of Employees</label>
       <input id="numberOfEmployees" formControlName="numberOfEmployees" class="form-control" type="number" />
@@ -81,11 +73,10 @@
       </div>
     </div>
 
-    <!-- Buttons -->
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [disabled]="departmentForm.invalid">Create Department</button>
       <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
       <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
     </div>
   </form>
-</div>
+</div> -->

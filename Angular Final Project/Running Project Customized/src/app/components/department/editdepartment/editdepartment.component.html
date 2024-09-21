@@ -1,9 +1,9 @@
-<!-- editdepartment.component.html -->
+<!-- 
 <div class="container">
   <h2>Edit Department</h2>
 
   <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
-    <!-- Name Field -->
+   
     <div class="form-group">
       <label for="name">Department Name:</label>
       <input id="name" formControlName="name" class="form-control" />
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <!-- Phone Number Field -->
+
     <div class="form-group">
       <label for="phoneNumber">Phone Number:</label>
       <input id="phoneNumber" formControlName="phoneNumber" class="form-control" />
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <!-- Email Field -->
+ 
     <div class="form-group">
       <label for="email">Email:</label>
       <input id="email" formControlName="email" type="email" class="form-control" />
@@ -32,7 +32,6 @@
       </div>
     </div>
 
-    <!-- Location Dropdown -->
     <div class="form-group">
       <label for="locationId">Location:</label>
       <select id="locationId" formControlName="locationId" class="form-control">
@@ -45,7 +44,7 @@
       </div>
     </div>
 
-    <!-- Manager Dropdown -->
+ 
     <div class="form-group">
       <label for="managerId">Manager:</label>
       <select id="managerId" formControlName="managerId" class="form-control">
@@ -58,7 +57,6 @@
       </div>
     </div>
 
-    <!-- Number of Employees Field -->
     <div class="form-group">
       <label for="numberOfEmployees">Number of Employees:</label>
       <input id="numberOfEmployees" formControlName="numberOfEmployees" type="number" class="form-control" />
@@ -71,7 +69,7 @@
       </div>
     </div>
 
-    <!-- Form Buttons -->
+ 
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [disabled]="departmentForm.invalid || loading">
         {{ loading ? 'Saving...' : 'Save' }}
@@ -80,9 +78,8 @@
       <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
     </div>
 
-    <!-- Error Message -->
     <div *ngIf="errorMessage" class="alert alert-danger">
       {{ errorMessage }}
     </div>
   </form>
-</div>
+</div> -->
