@@ -1,0 +1,6 @@
+https://codedthemes.gitbook.io/datta-angular
+
+
+
+Copy all elements step by step from this web:
+https://codedthemes.com/demos/admin-templates/datta-able/angular/default/dashboard/default
