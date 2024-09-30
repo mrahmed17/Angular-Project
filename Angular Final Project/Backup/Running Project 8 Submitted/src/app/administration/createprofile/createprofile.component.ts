@@ -45,7 +45,7 @@ export class CreateprofileComponent {
         next: (res) => {
           console.log('User registered successfully:', res);
           this.authService.storeToken(res.token);
-          this.router.navigate(['/']); // Navigate to a protected route after registration
+          this.router.navigate(['/user/list']); // Navigate to a protected route after registration
         },
         error: (err) => {
           console.error('Error registering user:', err);
