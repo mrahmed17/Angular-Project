@@ -19,14 +19,11 @@ public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @ManyToOne
     @JoinColumn(name = "empid")
     private Employee employee;
-
     @CreationTimestamp
     private Date checkIn;
-
     @UpdateTimestamp
     private Date checkOut;
 
