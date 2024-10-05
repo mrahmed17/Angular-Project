@@ -1,0 +1,35 @@
+<!-- <div class="container mt-4">
+  <h1 class="text-center">Department List</h1>
+
+  <div *ngIf="loading" class="loading-spinner text-center">
+    <p>Loading departments...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message alert alert-danger text-center">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let department of departments">
+      <div class="card mb-4 department-card">
+        <div class="card-body">
+          <h5 class="card-title">{{ department.name }}</h5>
+          <p class="card-text"><strong>Phone:</strong> {{ department.phoneNumber }}</p>
+          <p class="card-text"><strong>Email:</strong> {{ department.email }}</p>
+          <p class="card-text"><strong>Location ID:</strong> {{ department.locationId }}</p>
+          <p class="card-text"><strong>Manager ID:</strong> {{ department.managerId }}</p>
+          <p class="card-text"><strong>Employees:</strong> {{ department.numberOfEmployees }}</p>
+          <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-info btn-sm" (click)="viewDepartment(department.id)">View</button>
+            <button class="btn btn-warning btn-sm" (click)="editDepartment(department.id)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a class="btn btn-primary" routerLink="/departments/create">Add New Department</a>
+  </div>
+</div> -->

@@ -1,0 +1,35 @@
+<!-- <div class="container mt-4">
+  <div *ngIf="loading" class="text-center">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </div>
+
+  <h2 class="text-center">View Admin</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="admin" class="card">
+    <img *ngIf="admin.profilePhoto" [src]="admin.profilePhoto" class="card-img-top profile-photo"
+      alt="{{ admin.fullName }}">
+
+    <div class="card-body">
+
+      <p><strong>Last Login:</strong> {{ admin.lastLogin | date }}</p>
+      <h5 class="card-title">{{ admin.fullName }}</h5>
+      <p><strong>Username:</strong> {{ admin.username }}</p>
+      <p><strong>Email:</strong> {{ admin.email }}</p>
+      <p><strong>Contact Number:</strong> {{ admin.contactNumber }}</p>
+      <p><strong>Gender:</strong> {{ admin.gender }}</p>
+      <p><strong>Age:</strong> {{ admin.age }}</p>
+      <p><strong>NID Number:</strong> {{ admin.nidNo }}</p>
+      <p><strong>Access Level:</strong> {{ admin.accessLevel }}</p>
+      <p><strong>Status:</strong> {{ admin.status }}</p>
+      <p><strong>Hourly Rate:</strong> {{ admin.hourlyRate | currency }}</p>
+      <p><strong>Payroll Calculation Method:</strong> {{ admin.payrollCalculationMethod }}</p>
+    </div>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </div>
+
+</div> -->

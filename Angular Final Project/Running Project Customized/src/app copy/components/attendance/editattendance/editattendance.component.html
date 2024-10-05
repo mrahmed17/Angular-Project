@@ -1,0 +1,36 @@
+<!-- <div class="container">
+  <h1>Edit Attendance</h1>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Updating attendance record...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <form [formGroup]="attendanceForm">
+    <div class="form-group">
+      <label for="employee">Employee</label>
+      <select id="employee" formControlName="employee" class="form-control">
+        <option *ngFor="let employee of employeeData" [value]="employee.id">
+          {{ employee.fullName }} - {{ employee.id }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="checkIn">Check-In Time</label>
+      <input type="datetime-local" id="checkIn" formControlName="checkIn" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="checkOut">Check-Out Time</label>
+      <input type="datetime-local" id="checkOut" formControlName="checkOut" class="form-control" />
+    </div>
+
+    <div class="text-center pt-4">
+      <button type="button" class="btn btn-primary" (click)="updateAttendance()">Update Attendance</button>
+    </div>
+  </form>
+</div> -->

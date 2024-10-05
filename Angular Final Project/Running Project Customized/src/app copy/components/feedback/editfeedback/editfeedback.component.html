@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Edit Feedback</h1>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Loading feedback details...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" *ngIf="!loading && !errorMessage">
+    <div class="form-group">
+      <label for="employeeId">Employee ID</label>
+      <input id="employeeId" formControlName="employeeId" class="form-control"
+        [class.is-invalid]="feedbackForm.get('employeeId')?.invalid && feedbackForm.get('employeeId')?.touched" />
+      <div *ngIf="feedbackForm.get('employeeId')?.invalid && feedbackForm.get('employeeId')?.touched"
+        class="invalid-feedback">
+        Employee ID is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="managerId">Manager ID</label>
+      <input id="managerId" formControlName="managerId" class="form-control"
+        [class.is-invalid]="feedbackForm.get('managerId')?.invalid && feedbackForm.get('managerId')?.touched" />
+      <div *ngIf="feedbackForm.get('managerId')?.invalid && feedbackForm.get('managerId')?.touched"
+        class="invalid-feedback">
+        Manager ID is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="performanceRating">Performance Rating (1-5)</label>
+      <input id="performanceRating" type="number" formControlName="performanceRating" class="form-control"
+        [class.is-invalid]="feedbackForm.get('performanceRating')?.invalid && feedbackForm.get('performanceRating')?.touched" />
+      <div *ngIf="feedbackForm.get('performanceRating')?.invalid && feedbackForm.get('performanceRating')?.touched"
+        class="invalid-feedback">
+        Performance Rating is required and must be between 1 and 5.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comments">Comments</label>
+      <textarea id="comments" formControlName="comments" class="form-control"
+        [class.is-invalid]="feedbackForm.get('comments')?.invalid && feedbackForm.get('comments')?.touched"></textarea>
+      <div *ngIf="feedbackForm.get('comments')?.invalid && feedbackForm.get('comments')?.touched"
+        class="invalid-feedback">
+        Comments are required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input id="date" type="date" formControlName="date" class="form-control"
+        [class.is-invalid]="feedbackForm.get('date')?.invalid && feedbackForm.get('date')?.touched" />
+      <div *ngIf="feedbackForm.get('date')?.invalid && feedbackForm.get('date')?.touched" class="invalid-feedback">
+        Date is required.
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary" [disabled]="loading">Update</button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

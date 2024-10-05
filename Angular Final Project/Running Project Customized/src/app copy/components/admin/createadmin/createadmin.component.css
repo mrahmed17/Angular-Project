@@ -1,0 +1,105 @@
+/* Container styling */
+.container {
+  max-width: 100%;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h2.text-center {
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+/* Form label styling */
+.form-label {
+  font-weight: bold;
+  color: #495057;
+}
+
+/* Input field styling */
+.form-control {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Input focus effect */
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Validation error message styling */
+.text-danger {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Form buttons styling */
+.btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Error alert box styling */
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .col-md-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .offset-md-2 {
+    margin-left: 0;
+  }
+}
